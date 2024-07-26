@@ -1,7 +1,7 @@
 +++
 title = 'Example'
 date = 2024-07-26T15:07:27+09:00
-draft = true
+draft = false
 +++
 
 # Example

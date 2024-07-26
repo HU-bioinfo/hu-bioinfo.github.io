@@ -7,6 +7,11 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
+    <loc>http://localhost:1313/blog/articles/example/</loc>
+    <lastmod>2024-07-26T15:07:27+09:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
     <loc>http://localhost:1313/blog/</loc>
     <lastmod>2024-07-26T03:25:28+09:00</lastmod>
     <changefreq>monthly</changefreq>
