@@ -1,4 +1,1 @@
-baseURL = 'https://example.org/'
-languageCode = 'ja'
-title = 'Hokkaido Univ Bioinformatics'
 theme = 'ananke'

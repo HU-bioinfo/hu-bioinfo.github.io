@@ -1,33 +1,42 @@
-title = "Hokkaido Univ Bioinformatics"
+title = "北海道大学医学部 Bioinfo研究会"
 baseURL = "https://gohugo-theme-ananke.pages.dev"
 languageCode = "ja"
 languageName = "Japanese"
 theme = ["github.com/theNewDynamic/gohugo-theme-ananke"]
 resourceDir = "../resources"
 
-DefaultContentLanguage = "Ja"
+DefaultContentLanguage = "ja"
 SectionPagesMenu = "main"
 Paginate = 3 # this is set low for demonstrating with dummy content. Set to a higher number
 googleAnalytics = ""
 enableRobotsTXT = true
 
 [languages]
-  [languages.Ja]
+  [languages.ja]
     title = "北海道大学医学部 Bioinfo研究会"
     weight = 1
-    contentDir = "content/ja"
-  [languages.En]
-    title = "Hokkaido Univ school of medicine Bioinformatics study group"
-    weight = 1
-    contentDir = "content/en"
+    contentDir = "content"
 
 [sitemap]
   changefreq = "monthly"
   priority = 0.5
   filename = "sitemap.xml"
 
-[cascade]
-  featured_image = "/images/jj-ying-8bghKxNU1j0-unsplash.jpg"
+[menu]
+[[menu.main]]
+  name = "About Us"
+  identifier = "about"
+  url = "/about/"
+
+[[menu.main]]
+  name = "Members"
+  identifier = "members"
+  url = "/members/"
+
+[[menu.main]]
+name = "Articles"
+identifier = "articles"
+url = "/articles/"
 
 [params]
   text_color = ""

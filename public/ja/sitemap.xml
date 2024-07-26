@@ -2,13 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/first-post/</loc>
-    <lastmod>2024-07-26T00:10:09+09:00</lastmod>
+    <loc>http://localhost:1313/hokudai/</loc>
+    <lastmod>2024-07-26T02:43:07+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>http://localhost:1313/</loc>
-    <lastmod>2024-07-26T00:10:09+09:00</lastmod>
+    <lastmod>2024-07-26T02:43:07+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <xhtml:link
@@ -21,6 +21,11 @@
                 hreflang="ja"
                 href="http://localhost:1313/"
                 />
+  </url><url>
+    <loc>http://localhost:1313/first-post/</loc>
+    <lastmod>2024-07-26T00:10:09+09:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url><url>
     <loc>http://localhost:1313/categories/</loc>
     <changefreq>monthly</changefreq>

@@ -6,14 +6,21 @@
     <description>Recent content on 北海道大学医学部 Bioinfo研究会</description>
     <generator>Hugo</generator>
     <language>ja</language>
-    <lastBuildDate>Fri, 26 Jul 2024 00:10:09 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 26 Jul 2024 03:02:09 +0900</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>First Post</title>
-      <link>http://localhost:1313/first-post/</link>
-      <pubDate>Fri, 26 Jul 2024 00:10:09 +0900</pubDate>
-      <guid>http://localhost:1313/first-post/</guid>
-      <description>hello world this is my first post of my blog</description>
+      <title>Members</title>
+      <link>http://localhost:1313/articles/members/</link>
+      <pubDate>Fri, 26 Jul 2024 03:02:09 +0900</pubDate>
+      <guid>http://localhost:1313/articles/members/</guid>
+      <description>Comming soon&amp;hellip;</description>
+    </item>
+    <item>
+      <title>About</title>
+      <link>http://localhost:1313/articles/about/</link>
+      <pubDate>Fri, 26 Jul 2024 03:00:59 +0900</pubDate>
+      <guid>http://localhost:1313/articles/about/</guid>
+      <description>私たちは北海道大学医学部に在学する学生によって構成されている学生団体です. バイオインフォマティクスや広く情報科学ついて学習し合っている団体です．</description>
     </item>
   </channel>
 </rss>
