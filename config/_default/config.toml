@@ -4,6 +4,7 @@ languageCode = "ja"
 languageName = "Japanese"
 theme = ["github.com/theNewDynamic/gohugo-theme-ananke"]
 resourceDir = "../resources"
+publishDir = "docs"
 
 DefaultContentLanguage = "ja"
 SectionPagesMenu = "main"
