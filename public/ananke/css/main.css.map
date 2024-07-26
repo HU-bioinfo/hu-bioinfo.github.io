@@ -1,7 +1,7 @@
 {
 	"version": 3,
 	"file": "main.css",
-	"sourceRoot": "/Users/ryoohkubo/Workspace/hu-bioinfo.github.io",
+	"sourceRoot": "/Users/ryoohkubo/Workspace/bioinfo_site",
 	"sources": [
 		"ananke/css/main.css"
 	],

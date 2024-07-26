@@ -1,5 +1,5 @@
 title = "北海道大学医学部 Bioinfo研究会"
-baseURL = "https://gohugo-theme-ananke.pages.dev"
+baseURL = "https://hu-bioinfo.github.io/blog"
 languageCode = "ja"
 languageName = "Japanese"
 theme = ["github.com/theNewDynamic/gohugo-theme-ananke"]
