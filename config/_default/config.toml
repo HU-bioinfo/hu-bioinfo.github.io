@@ -3,7 +3,7 @@ baseURL = "https://hu-bioinfo.github.io"
 languageCode = "ja"
 languageName = "Japanese"
 theme = ["github.com/theNewDynamic/gohugo-theme-ananke"]
-# resourceDir = "../resources"
+resourceDir = "../resources"
 publishDir = "docs"
 canonifyurls = true
 
