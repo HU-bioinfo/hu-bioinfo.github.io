@@ -34,9 +34,9 @@ enableRobotsTXT = true
   url = "/members/"
 
 [[menu.main]]
-name = "Articles"
-identifier = "articles"
-url = "/articles/"
+  name = "Articles"
+  identifier = "articles"
+  url = "/articles/"
 
 [params]
   text_color = ""
@@ -49,9 +49,9 @@ url = "/articles/"
   recent_posts_number = 3
 
 [[params.ananke_socials]]
-name = "x"
-url = "https://x.com/hokudaiBioinfo"
+  name = "x"
+  url = "https://x.com/hokudaiBioinfo"
 
 [[params.ananke_socials]]
-name = "github"
-url = "https://github.com/HU-bioinfo"
+  name = "github"
+  url = "https://github.com/HU-bioinfo"
