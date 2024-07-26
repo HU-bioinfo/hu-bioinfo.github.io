@@ -5,6 +5,7 @@ languageName = "Japanese"
 theme = ["github.com/theNewDynamic/gohugo-theme-ananke"]
 resourceDir = "../resources"
 publishDir = "docs"
+canonifyurls = true
 
 DefaultContentLanguage = "ja"
 SectionPagesMenu = "main"
