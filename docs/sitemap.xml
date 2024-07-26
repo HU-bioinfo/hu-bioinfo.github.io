@@ -2,42 +2,42 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/articles/</loc>
+    <loc>https://hu-bioinfo.github.io/articles/</loc>
     <lastmod>2024-07-26T15:07:27+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:1313/articles/example/</loc>
+    <loc>https://hu-bioinfo.github.io/articles/example/</loc>
     <lastmod>2024-07-26T15:07:27+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:1313/</loc>
+    <loc>https://hu-bioinfo.github.io/</loc>
     <lastmod>2024-07-26T03:25:28+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:1313/tags/about/</loc>
+    <loc>https://hu-bioinfo.github.io/tags/about/</loc>
     <lastmod>2024-07-26T03:02:09+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:1313/members/</loc>
+    <loc>https://hu-bioinfo.github.io/members/</loc>
     <lastmod>2024-07-26T03:02:09+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:1313/tags/</loc>
+    <loc>https://hu-bioinfo.github.io/tags/</loc>
     <lastmod>2024-07-26T03:02:09+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:1313/about/</loc>
+    <loc>https://hu-bioinfo.github.io/about/</loc>
     <lastmod>2024-07-26T03:00:59+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:1313/categories/</loc>
+    <loc>https://hu-bioinfo.github.io/categories/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
