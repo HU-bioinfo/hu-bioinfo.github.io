@@ -2,24 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>北海道大学医学部 Bioinfo研究会</title>
-    <link>https://hu-bioinfo.github.io/blog/</link>
+    <link>http://localhost:1313/blog/</link>
     <description>Recent content on 北海道大学医学部 Bioinfo研究会</description>
     <generator>Hugo</generator>
     <language>ja</language>
     <lastBuildDate>Fri, 26 Jul 2024 03:02:09 +0900</lastBuildDate>
-    <atom:link href="https://hu-bioinfo.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Members</title>
-      <link>https://hu-bioinfo.github.io/blog/articles/members/</link>
+      <link>http://localhost:1313/blog/members/</link>
       <pubDate>Fri, 26 Jul 2024 03:02:09 +0900</pubDate>
-      <guid>https://hu-bioinfo.github.io/blog/articles/members/</guid>
+      <guid>http://localhost:1313/blog/members/</guid>
       <description>Comming soon&amp;hellip;</description>
     </item>
     <item>
       <title>About Us</title>
-      <link>https://hu-bioinfo.github.io/blog/articles/about/</link>
+      <link>http://localhost:1313/blog/about/</link>
       <pubDate>Fri, 26 Jul 2024 03:00:59 +0900</pubDate>
-      <guid>https://hu-bioinfo.github.io/blog/articles/about/</guid>
+      <guid>http://localhost:1313/blog/about/</guid>
       <description>私たちは北海道大学医学部に在学する学生によって構成されている学生団体です. バイオインフォマティクスや広く情報科学ついて学習し合っている団体です．</description>
     </item>
   </channel>

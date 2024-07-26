@@ -2,37 +2,37 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://hu-bioinfo.github.io/blog/</loc>
+    <loc>http://localhost:1313/blog/articles/</loc>
+    <lastmod>2024-07-26T15:07:27+09:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/blog/</loc>
     <lastmod>2024-07-26T03:25:28+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://hu-bioinfo.github.io/blog/tags/about/</loc>
+    <loc>http://localhost:1313/blog/tags/about/</loc>
     <lastmod>2024-07-26T03:02:09+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://hu-bioinfo.github.io/blog/articles/</loc>
+    <loc>http://localhost:1313/blog/members/</loc>
     <lastmod>2024-07-26T03:02:09+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://hu-bioinfo.github.io/blog/articles/members/</loc>
+    <loc>http://localhost:1313/blog/tags/</loc>
     <lastmod>2024-07-26T03:02:09+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://hu-bioinfo.github.io/blog/tags/</loc>
-    <lastmod>2024-07-26T03:02:09+09:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://hu-bioinfo.github.io/blog/articles/about/</loc>
+    <loc>http://localhost:1313/blog/about/</loc>
     <lastmod>2024-07-26T03:00:59+09:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://hu-bioinfo.github.io/blog/categories/</loc>
+    <loc>http://localhost:1313/blog/categories/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
