@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>北海道大学医学部 Bioinfo研究会</title>
-    <link>https://hu-bioinfo.github.io/</link>
+    <link>http://localhost:1313/</link>
     <description>Recent content on 北海道大学医学部 Bioinfo研究会</description>
     <generator>Hugo</generator>
     <language>ja</language>
     <lastBuildDate>Fri, 26 Jul 2024 15:07:27 +0900</lastBuildDate>
-    <atom:link href="https://hu-bioinfo.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Example</title>
-      <link>https://hu-bioinfo.github.io/articles/example/</link>
+      <link>http://localhost:1313/articles/example/</link>
       <pubDate>Fri, 26 Jul 2024 15:07:27 +0900</pubDate>
-      <guid>https://hu-bioinfo.github.io/articles/example/</guid>
+      <guid>http://localhost:1313/articles/example/</guid>
       <description>&lt;h1 id=&#34;example&#34;&gt;Example&lt;/h1&gt;&#xA;&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Members</title>
-      <link>https://hu-bioinfo.github.io/members/</link>
+      <link>http://localhost:1313/members/</link>
       <pubDate>Fri, 26 Jul 2024 03:02:09 +0900</pubDate>
-      <guid>https://hu-bioinfo.github.io/members/</guid>
+      <guid>http://localhost:1313/members/</guid>
       <description>&lt;p&gt;Comming soon&amp;hellip;&lt;/p&gt;</description>
     </item>
     <item>
       <title>About Us</title>
-      <link>https://hu-bioinfo.github.io/about/</link>
+      <link>http://localhost:1313/about/</link>
       <pubDate>Fri, 26 Jul 2024 03:00:59 +0900</pubDate>
-      <guid>https://hu-bioinfo.github.io/about/</guid>
+      <guid>http://localhost:1313/about/</guid>
       <description>&lt;p&gt;私たちは北海道大学医学部に在学する学生によって構成されている学生団体です.&#xA;バイオインフォマティクスや広く情報科学ついて学習し合っている団体です．&lt;/p&gt;</description>
     </item>
   </channel>
