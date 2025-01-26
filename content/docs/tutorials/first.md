@@ -1,8 +1,12 @@
-+++
-title = 'チュートリアル第一回'
-date = 2025-01-23T00:49:37+09:00
-tags = []
-draft = false
-+++
+---
+title: "First"
+weight: 1
+# bookFlatSection: false
+# bookToc: true
+# bookHidden: false
+# bookCollapseSection: false
+# bookComments: false
+# bookSearchExclude: false
+---
 
-# これは練習用チュートリアル第一回目です
+# hello
