@@ -3,12 +3,11 @@ title = "北海道大学医学部 Bioinfo研究会"
 baseURL = "https://hu-bioinfo.github.io"
 languageCode = "ja"
 languageName = "Japanese"
-resourceDir = "../resources"
 canonifyurls = true
 
 DefaultContentLanguage = "ja"
 SectionPagesMenu = "main"
-enableRobotsTXT = true
+enableRobotsTXT = false
 
 [module]
 [[module.imports]]
@@ -20,22 +19,7 @@ path = 'github.com/alex-shpak/hugo-book'
     weight = 1
     contentDir = "content"
 
-[sitemap]
-  changefreq = "monthly"
-  priority = 0.5
-  filename = "sitemap.xml"
-
 [menu]
-[[menu.before]]
-  name = "About"
-  url = "/docs/about/"
-  weight = 10
-
-[[menu.before]]
-  name = "Members"
-  url = "/docs/members/"
-  weight = 10
-
 [[menu.after]]
   name = "Github"
   url = "https://github.com/HU-bioinfo/"
@@ -43,4 +27,4 @@ path = 'github.com/alex-shpak/hugo-book'
 
 [[menu.after]]
   name = "X"
-  url = "https://x.com/home"
+  url = "https://x.com/hokudaiBioinfo"
