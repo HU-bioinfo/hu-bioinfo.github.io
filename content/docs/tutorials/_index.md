@@ -7,4 +7,5 @@ bookFlatSection = true
 bookCollapseSection = true
 +++
 
-# これはチュートリアルページです
+# Tutorials
+![Bioinformatics Tutorial](bioinfo_tutorial.webp)
