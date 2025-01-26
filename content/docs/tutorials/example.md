@@ -31,3 +31,4 @@ if __name__ == "__main__":
 {{< katex display=true >}}
   \int_{-\infty}^{\infty}e^{-t^2}dt=\pi.
 {{< /katex >}}
+
