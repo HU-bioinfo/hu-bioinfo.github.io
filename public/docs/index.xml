@@ -42,4 +42,4 @@
  &lt;a class="anchor" href="#%e8%a8%98%e4%ba%8b%e3%81%ae%e4%bd%9c%e6%88%90">#&lt;/a>
 &lt;/h2>
 &lt;p>まず，&lt;a href="https://github.com/HU-bioinfo/hu-bioinfo.github.io">Githubリポジトリ&lt;/a>の&lt;code>main&lt;/code>ブランチをローカルにcloneしてください．
-自分で新しい記事を作成，修正するときは，mainではない別のブランチ(自分の名前とか)を作成し，そこで作業するようにしてください．&lt;/p></description></item></channel></rss>
+自分で新しい記事を作成，修正するときは，&lt;code>main&lt;/code>ではない別のブランチ(自分の名前とか)を作成し，そこで作業するようにしてください．&lt;/p></description></item></channel></rss>
