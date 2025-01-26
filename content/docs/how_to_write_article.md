@@ -50,7 +50,7 @@ weight: 100
 
 ## 記事の作成
 まず，[Githubリポジトリ](https://github.com/HU-bioinfo/hu-bioinfo.github.io)の`main`ブランチをローカルにcloneしてください．
-自分で新しい記事を作成，修正するときは，mainではない別のブランチ(自分の名前とか)を作成し，そこで作業するようにしてください．
+自分で新しい記事を作成，修正するときは，`main`ではない別のブランチ(自分の名前とか)を作成し，そこで作業するようにしてください．
 
 
 今後は基本的に`content/docs/tutorials`以下に，一記事ずつディレクトリを作成していきます．
@@ -80,7 +80,7 @@ weight: 1
 ---
 ```
 このときtitleにはディレクトリ名と同じ名前を基本的にはつけてください．
-weightはサイトの左側メニューに表示される時の順番を示しています．上に載せたいものほど大きい値をつけてください．
+weightはサイトの左側メニューに表示される時の順番を示しています．上に載せたいものほど小さい値をつけてください．
 挿入する画像は，作成したディレクトリ以下に配置してください．
 
 markdownの編集方法については，[Hugo-bookのサイト](https://hugo-book-demo.netlify.app/)のShortcodesや，私が作成した[記事](https://github.com/HU-bioinfo/hu-bioinfo.github.io/blob/main/content/docs/tutorials/example/index.md)と[サイト](https://hu-bioinfo.github.io/docs/tutorials/example/)を見比べてみてください．
