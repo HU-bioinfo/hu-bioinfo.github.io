@@ -28,3 +28,6 @@ path = 'github.com/alex-shpak/hugo-book'
 [[menu.after]]
   name = "X"
   url = "https://x.com/hokudaiBioinfo"
+
+[markup.goldmark.renderer]
+  unsafe = true
