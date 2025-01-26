@@ -32,3 +32,5 @@ if __name__ == "__main__":
   \int_{-\infty}^{\infty}e^{-t^2}dt=\pi.
 {{< /katex >}}
 
+## Image example
+![Bioinformatics Tutorial](bioinfo_tutorial.webp)
