@@ -1,5 +1,5 @@
 ---
-title: "How to Write Article"
+title: "How to Write Articles"
 weight: 100
 # bookFlatSection: false
 # bookToc: true
