@@ -500,7 +500,9 @@ species ごとに、
 * キャラクター数 (n())
 * height の平均 (mean(height, na.rm = TRUE))
 * mass の平均 (mean(mass, na.rm = TRUE))
-を求めよ。ただし、キャラクター数が 3 人未満の種族は除外せよ。
+を求めよ。
+
+ただし、キャラクター数が 3 人未満の種族は除外せよ。
 
 {{% hint info %}}
 💡 ヒント: `group_by`, `summarise`, `filter`関数の使い方を調べてみよう

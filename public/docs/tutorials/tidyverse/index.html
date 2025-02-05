@@ -1,4 +1,4 @@
-<!doctype html><html lang=ja dir=ltr><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content='
+<!doctype html><html lang=ja dir=ltr><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="
   Tidyverse
   #
 
@@ -6,33 +6,327 @@
   Tidyverseってなんぞや
   #
 
-tidyverseは，データ分析と可視化を効率的に行うために設計されたR言語のパッケージ群です．
-
-  練習問題
-  #
-
-
-  問題1
-  #
-
-Tidyverseを用いてcsvファイルを読み込み，変数名dfに代入せよ
-Answer
+Tidyverseは，データ分析と可視化を効率的に行うために設計されたR言語のパッケージ群です．
+このパッケージの思想上の特徴としてTidy Dataの原則のもと，一貫性のある操作体系により，データ処理の生産性を保つことを特徴としています．
+とはいえ含まれる内容や思想も膨大かつ難解なので，この章では，よくする使い方をメインに書いていきます．
+より詳しく知りたい方は，それぞれ詳細のページを見てください．(現在製作中です)
+Tidyverseのパッケージ群
   
 
-  解答1
+  
+      
+          パッケージ名
+          役割
+          主な機能
+      
+  
+  
+      
+          ggplot2
+          データ可視化
+          グラフィックスの文法に基づいて、グラフを宣言的に作成できる
+      
+      
+          dplyr
+          データ操作
+          フィルタリング，要約，並べ替え，結合といったデータ操作
+      
+      
+          tidyr
+          データ整理
+          Tidy data作成
+      
+      
+          readr
+          データ読み込み
+          矩形データ（csv、tsv、fwfなど）の高速読み込み
+      
+      
+          purrr
+          関数型プログラミング
+          ベクトルやリストの操作（map関数など）
+      
+      
+          tibble
+          データフレームの現代的な再構築
+          モダンなデータフレーム構造
+      
+      
+          stringr
+          文字列操作
+          パターンマッチングや文字列の処理
+      
+      
+          forcats
+          因子型操作
+          因子データのレベルの順序や値の変更など
+      
+      
+          lubridate
+          日付・時刻データ操作
+          日付や時間の解析と処理
+      
+  
+
+  
+
+
+  Tidy Data
   #
 
-df <- read_csv("src/sample.csv")
-  
-'><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://hu-bioinfo.github.io/docs/tutorials/tidyverse/"><meta property="og:site_name" content="北海道大学医学部 Bioinfo研究会"><meta property="og:title" content="Tidyverse"><meta property="og:description" content='Tidyverse # Tidyverseってなんぞや # tidyverseは，データ分析と可視化を効率的に行うために設計されたR言語のパッケージ群です．
-練習問題 # 問題1 # Tidyverseを用いてcsvファイルを読み込み，変数名dfに代入せよ
-Answer 解答1 # df <- read_csv("src/sample.csv")'><meta property="og:locale" content="ja"><meta property="og:type" content="article"><meta property="article:section" content="docs"><title>Tidyverse | 北海道大学医学部 Bioinfo研究会</title>
-<link rel=icon href=https://hu-bioinfo.github.io/favicon.png><link rel=manifest href=https://hu-bioinfo.github.io/manifest.json><link rel=canonical href=https://hu-bioinfo.github.io/docs/tutorials/tidyverse/><link rel=stylesheet href=https://hu-bioinfo.github.io/book.min.434035e7885c7f5d12818bd9f111cf1a0925c6fb78382667381c3d5eda3fb4f1.css integrity="sha256-Q0A154hcf10SgYvZ8RHPGgklxvt4OCZnOBw9Xto/tPE=" crossorigin=anonymous><script defer src=https://hu-bioinfo.github.io/fuse.min.js></script><script defer src=https://hu-bioinfo.github.io/ja.search.min.6253bdf3db44ddc8a9fedb5f697bc70a2e8f3fc025481a5d93555692b454f781.js integrity="sha256-YlO989tE3cip/ttfaXvHCi6PP8AlSBpdk1VWkrRU94E=" crossorigin=anonymous></script></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
+基本的にデータはExcelのように表形式となったデータを扱います．この時，ただ漫然と表を作成するのではなく，一定のルールの下に作成，加工していくことで効率や安全性が増します．具体的なルールとは以下の三つのことです.
+
+一つの変数は一つの列に（Each variable must have its own column.）
+一つの観測は一つの行に（Each observation must have its own row.）
+一つの値は一つのセルに（Each value must have its own cell.）
+
+上記3つを満たした表形式のデータを Tidy Data(整列データ) といいます．"><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://hu-bioinfo.github.io/docs/tutorials/tidyverse/"><meta property="og:site_name" content="北海道大学医学部 Bioinfo研究会"><meta property="og:title" content="Tidyverse"><meta property="og:description" content="Tidyverse # Tidyverseってなんぞや # Tidyverseは，データ分析と可視化を効率的に行うために設計されたR言語のパッケージ群です． このパッケージの思想上の特徴としてTidy Dataの原則のもと，一貫性のある操作体系により，データ処理の生産性を保つことを特徴としています．
+とはいえ含まれる内容や思想も膨大かつ難解なので，この章では，よくする使い方をメインに書いていきます． より詳しく知りたい方は，それぞれ詳細のページを見てください．(現在製作中です)
+Tidyverseのパッケージ群 パッケージ名 役割 主な機能 ggplot2 データ可視化 グラフィックスの文法に基づいて、グラフを宣言的に作成できる dplyr データ操作 フィルタリング，要約，並べ替え，結合といったデータ操作 tidyr データ整理 Tidy data作成 readr データ読み込み 矩形データ（csv、tsv、fwfなど）の高速読み込み purrr 関数型プログラミング ベクトルやリストの操作（map関数など） tibble データフレームの現代的な再構築 モダンなデータフレーム構造 stringr 文字列操作 パターンマッチングや文字列の処理 forcats 因子型操作 因子データのレベルの順序や値の変更など lubridate 日付・時刻データ操作 日付や時間の解析と処理 Tidy Data # 基本的にデータはExcelのように表形式となったデータを扱います．この時，ただ漫然と表を作成するのではなく，一定のルールの下に作成，加工していくことで効率や安全性が増します．具体的なルールとは以下の三つのことです.
+一つの変数は一つの列に（Each variable must have its own column.） 一つの観測は一つの行に（Each observation must have its own row.） 一つの値は一つのセルに（Each value must have its own cell.） 上記3つを満たした表形式のデータを Tidy Data(整列データ) といいます．"><meta property="og:locale" content="ja"><meta property="og:type" content="article"><meta property="article:section" content="docs"><title>Tidyverse | 北海道大学医学部 Bioinfo研究会</title>
+<link rel=icon href=https://hu-bioinfo.github.io/favicon.png><link rel=manifest href=https://hu-bioinfo.github.io/manifest.json><link rel=canonical href=https://hu-bioinfo.github.io/docs/tutorials/tidyverse/><link rel=stylesheet href=https://hu-bioinfo.github.io/book.min.434035e7885c7f5d12818bd9f111cf1a0925c6fb78382667381c3d5eda3fb4f1.css integrity="sha256-Q0A154hcf10SgYvZ8RHPGgklxvt4OCZnOBw9Xto/tPE=" crossorigin=anonymous><script defer src=https://hu-bioinfo.github.io/fuse.min.js></script><script defer src=https://hu-bioinfo.github.io/ja.search.min.ce441875d2e4a5d08d8cba9f93b8c92df31ad9c33e128843ecdfe114122989cc.js integrity="sha256-zkQYddLkpdCNjLqfk7jJLfMa2cM+EohD7N/hFBIpicw=" crossorigin=anonymous></script></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
 <input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=https://hu-bioinfo.github.io/><span>北海道大学医学部 Bioinfo研究会</span></a></h2><div class="book-search hidden"><input type=text id=book-search-input placeholder=検索 aria-label=検索 maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><script>document.querySelector(".book-search").classList.remove("hidden")</script><ul><li class=book-section-flat><input type=checkbox id=section-19e3ab56062efc00dcb4ec4cfb280452 class=toggle checked>
-<label for=section-19e3ab56062efc00dcb4ec4cfb280452 class="flex justify-between"><a href=https://hu-bioinfo.github.io/docs/tutorials/>Tutorials</a></label><ul><li><a href=https://hu-bioinfo.github.io/docs/tutorials/tidyverse/ class=active>Tidyverse</a></li><li><a href=https://hu-bioinfo.github.io/docs/tutorials/example/>Example</a></li></ul></li><li><a href=https://hu-bioinfo.github.io/docs/about/>About</a></li><li><a href=https://hu-bioinfo.github.io/docs/members/>Members</a></li><li><a href=https://hu-bioinfo.github.io/docs/how_to_write_article/>How to Write Article</a></li></ul><ul><li><a href=https://github.com/HU-bioinfo/ target=_blank rel=noopener>Github</a></li><li><a href=https://x.com/hokudaiBioinfo target=_blank rel=noopener>X</a></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class=book-header><div class="flex align-center justify-between"><label for=menu-control><img src=https://hu-bioinfo.github.io/svg/menu.svg class=book-icon alt=Menu></label><h3>Tidyverse</h3><label for=toc-control><img src=https://hu-bioinfo.github.io/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class="hidden clearfix"><nav id=TableOfContents><ul><li><a href=#tidyverseってなんぞや>Tidyverseってなんぞや</a></li><li><a href=#練習問題>練習問題</a><ul><li><a href=#問題1>問題1</a></li><li><a href=#解答1>解答1</a></li></ul></li></ul></nav></aside></header><article class="markdown book-article"><h1 id=tidyverse>Tidyverse
+<label for=section-19e3ab56062efc00dcb4ec4cfb280452 class="flex justify-between"><a href=https://hu-bioinfo.github.io/docs/tutorials/>Tutorials</a></label><ul><li><a href=https://hu-bioinfo.github.io/docs/tutorials/tidyverse/ class=active>Tidyverse</a></li><li><a href=https://hu-bioinfo.github.io/docs/tutorials/example/>Example</a></li></ul></li><li><a href=https://hu-bioinfo.github.io/docs/about/>About</a></li><li><a href=https://hu-bioinfo.github.io/docs/members/>Members</a></li><li><a href=https://hu-bioinfo.github.io/docs/how_to_write_articles/>How to Write Articles</a></li></ul><ul><li><a href=https://github.com/HU-bioinfo/ target=_blank rel=noopener>Github</a></li><li><a href=https://x.com/hokudaiBioinfo target=_blank rel=noopener>X</a></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class=book-header><div class="flex align-center justify-between"><label for=menu-control><img src=https://hu-bioinfo.github.io/svg/menu.svg class=book-icon alt=Menu></label><h3>Tidyverse</h3><label for=toc-control><img src=https://hu-bioinfo.github.io/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class="hidden clearfix"><nav id=TableOfContents><ul><li><a href=#tidyverseってなんぞや>Tidyverseってなんぞや</a></li><li><a href=#tidy-data>Tidy Data</a><ul><li><a href=#一つの変数は一つの列にeach-variable-must-have-its-own-column>一つの変数は一つの列に（Each variable must have its own column.）</a></li><li><a href=#一つの観測は一つの行にeach-observation-must-have-its-own-row>一つの観測は一つの行に（Each observation must have its own row.）</a></li><li><a href=#一つの値は一つのセルにeach-value-must-have-its-own-cell>一つの値は一つのセルに（Each value must have its own cell.）</a></li></ul></li><li><a href=#パイプライン演算子->パイプライン演算子 <code>|></code></a><ul><li><a href=#関数>関数</a></li><li><a href=#パイプライン演算子を使ってみよう>パイプライン演算子を使ってみよう</a></li></ul></li><li><a href=#tidyverseで遊んでみよう>Tidyverseで遊んでみよう</a><ul><li><a href=#列の操作>列の操作</a></li><li><a href=#行の操作>行の操作</a></li><li><a href=#データの要約>データの要約</a></li><li><a href=#データの拡張>データの拡張</a></li></ul></li><li><a href=#練習問題>練習問題</a><ul><li><a href=#問題1>問題1</a></li><li><a href=#問題2>問題2</a></li><li><a href=#問題3>問題3</a></li><li><a href=#問題4>問題4</a></li><li><a href=#問題5>問題5</a></li><li><a href=#問題6>問題6</a></li><li><a href=#問題7>問題7</a></li><li><a href=#問題8>問題8</a></li></ul></li></ul></nav></aside></header><article class="markdown book-article"><h1 id=tidyverse>Tidyverse
 <a class=anchor href=#tidyverse>#</a></h1><h2 id=tidyverseってなんぞや>Tidyverseってなんぞや
-<a class=anchor href=#tidyverse%e3%81%a3%e3%81%a6%e3%81%aa%e3%82%93%e3%81%9e%e3%82%84>#</a></h2><p>tidyverseは，データ分析と可視化を効率的に行うために設計されたR言語のパッケージ群です．</p><h2 id=練習問題>練習問題
-<a class=anchor href=#%e7%b7%b4%e7%bf%92%e5%95%8f%e9%a1%8c>#</a></h2><h3 id=問題1>問題1
-<a class=anchor href=#%e5%95%8f%e9%a1%8c1>#</a></h3><p>Tidyverseを用いてcsvファイルを読み込み，変数名dfに代入せよ</p><details open><summary>Answer</summary><div class=markdown-inner><h3 id=解答1>解答1
-<a class=anchor href=#%e8%a7%a3%e7%ad%941>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-R data-lang=R><span style=display:flex><span>df <span style=color:#f92672>&lt;-</span> <span style=color:#a6e22e>read_csv</span>(<span style=color:#e6db74>&#34;src/sample.csv&#34;</span>)
-</span></span></code></pre></div></div></details></article><footer class=book-footer><div class="flex flex-wrap justify-between"></div><script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><div class=book-comments></div><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#tidyverseってなんぞや>Tidyverseってなんぞや</a></li><li><a href=#練習問題>練習問題</a><ul><li><a href=#問題1>問題1</a></li><li><a href=#解答1>解答1</a></li></ul></li></ul></nav></div></aside></main></body></html>
+<a class=anchor href=#tidyverse%e3%81%a3%e3%81%a6%e3%81%aa%e3%82%93%e3%81%9e%e3%82%84>#</a></h2><p>Tidyverseは，データ分析と可視化を効率的に行うために設計されたR言語のパッケージ群です．
+このパッケージの思想上の特徴として<strong>Tidy Data</strong>の原則のもと，一貫性のある操作体系により，データ処理の生産性を保つことを特徴としています．</p><p>とはいえ含まれる内容や思想も膨大かつ難解なので，この章では，よくする使い方をメインに書いていきます．
+より詳しく知りたい方は，それぞれ詳細のページを見てください．(現在製作中です)</p><details><summary>Tidyverseのパッケージ群</summary><div class=markdown-inner><table><thead><tr><th>パッケージ名</th><th>役割</th><th>主な機能</th></tr></thead><tbody><tr><td>ggplot2</td><td>データ可視化</td><td>グラフィックスの文法に基づいて、グラフを宣言的に作成できる</td></tr><tr><td>dplyr</td><td>データ操作</td><td>フィルタリング，要約，並べ替え，結合といったデータ操作</td></tr><tr><td>tidyr</td><td>データ整理</td><td><strong>Tidy data</strong>作成</td></tr><tr><td>readr</td><td>データ読み込み</td><td>矩形データ（csv、tsv、fwfなど）の高速読み込み</td></tr><tr><td>purrr</td><td>関数型プログラミング</td><td>ベクトルやリストの操作（map関数など）</td></tr><tr><td>tibble</td><td>データフレームの現代的な再構築</td><td>モダンなデータフレーム構造</td></tr><tr><td>stringr</td><td>文字列操作</td><td>パターンマッチングや文字列の処理</td></tr><tr><td>forcats</td><td>因子型操作</td><td>因子データのレベルの順序や値の変更など</td></tr><tr><td>lubridate</td><td>日付・時刻データ操作</td><td>日付や時間の解析と処理</td></tr></tbody></table></div></details><h2 id=tidy-data>Tidy Data
+<a class=anchor href=#tidy-data>#</a></h2><p>基本的にデータはExcelのように表形式となったデータを扱います．この時，ただ漫然と表を作成するのではなく，一定のルールの下に作成，加工していくことで効率や安全性が増します．具体的なルールとは以下の三つのことです.</p><ol><li>一つの変数は一つの列に（Each variable must have its own column.）</li><li>一つの観測は一つの行に（Each observation must have its own row.）</li><li>一つの値は一つのセルに（Each value must have its own cell.）</li></ol><p>上記3つを満たした表形式のデータを <strong>Tidy Data(整列データ)</strong> といいます．</p><h3 id=一つの変数は一つの列にeach-variable-must-have-its-own-column>一つの変数は一つの列に（Each variable must have its own column.）
+<a class=anchor href=#%e4%b8%80%e3%81%a4%e3%81%ae%e5%a4%89%e6%95%b0%e3%81%af%e4%b8%80%e3%81%a4%e3%81%ae%e5%88%97%e3%81%abeach-variable-must-have-its-own-column>#</a></h3><p>この原則における変数とは，データの特徴を表すものです．人を対象にしたデータだとすると名前，身長，体重，年齢などが該当します．考え方として列では，単位が揃うようなデータにするようにします．例えば，一つの列でcmやkgが同時に登場しないようにします．</p><div class=book-tabs><input type=radio class=toggle name=tabs-1 id=tabs-1-0 checked>
+<label for=tabs-1-0>良い例</label><div class="book-tabs-content markdown-inner"><table><thead><tr><th>名前</th><th>年齢</th><th>身長 (cm)</th><th>体重 (kg)</th></tr></thead><tbody><tr><td>太郎</td><td>25</td><td>170</td><td>65</td></tr><tr><td>花子</td><td>22</td><td>160</td><td>50</td></tr></tbody></table></div><input type=radio class=toggle name=tabs-1 id=tabs-1-1>
+<label for=tabs-1-1>悪い例</label><div class="book-tabs-content markdown-inner"><table><thead><tr><th>名前</th><th>属性</th><th>値</th></tr></thead><tbody><tr><td>太郎</td><td>年齢</td><td>25</td></tr><tr><td>太郎</td><td>身長</td><td>170</td></tr><tr><td>太郎</td><td>体重</td><td>65</td></tr><tr><td>花子</td><td>年齢</td><td>22</td></tr><tr><td>花子</td><td>身長</td><td>160</td></tr><tr><td>花子</td><td>体重</td><td>50</td></tr></tbody></table></div></div><h3 id=一つの観測は一つの行にeach-observation-must-have-its-own-row>一つの観測は一つの行に（Each observation must have its own row.）
+<a class=anchor href=#%e4%b8%80%e3%81%a4%e3%81%ae%e8%a6%b3%e6%b8%ac%e3%81%af%e4%b8%80%e3%81%a4%e3%81%ae%e8%a1%8c%e3%81%abeach-observation-must-have-its-own-row>#</a></h3><p>観測とは、一つのデータのまとまりのことを指します．人を対象にしたデータだとすると名前がAlice,身長160cm，体重50kg，年齢20歳という一人のデータのことを指します．これらをまとめて一つのデータとして，行単位で追加していきます．</p><div class=book-tabs><input type=radio class=toggle name=tabs-2 id=tabs-2-0 checked>
+<label for=tabs-2-0>良い例</label><div class="book-tabs-content markdown-inner"><table><thead><tr><th>名前</th><th>年齢</th><th>身長 (cm)</th><th>体重 (kg)</th></tr></thead><tbody><tr><td>太郎</td><td>25</td><td>170</td><td>65</td></tr><tr><td>花子</td><td>22</td><td>160</td><td>50</td></tr></tbody></table></div><input type=radio class=toggle name=tabs-2 id=tabs-2-1>
+<label for=tabs-2-1>悪い例</label><div class="book-tabs-content markdown-inner"><table><thead><tr><th>名前</th><th>データ</th></tr></thead><tbody><tr><td>太郎</td><td>25歳</td></tr><tr><td>太郎</td><td>170cm</td></tr><tr><td>太郎</td><td>65kg</td></tr><tr><td>花子</td><td>22歳</td></tr><tr><td>花子</td><td>160cm</td></tr><tr><td>花子</td><td>50kg</td></tr></tbody></table></div></div><h3 id=一つの値は一つのセルにeach-value-must-have-its-own-cell>一つの値は一つのセルに（Each value must have its own cell.）
+<a class=anchor href=#%e4%b8%80%e3%81%a4%e3%81%ae%e5%80%a4%e3%81%af%e4%b8%80%e3%81%a4%e3%81%ae%e3%82%bb%e3%83%ab%e3%81%abeach-value-must-have-its-own-cell>#</a></h3><p>各セルに入る値は，一つだけにするという原則です．名前がAliceというデータについて，身長が2つや3つもあるのは不自然ですよね．
+ただし，Tidyverseで提供されているtibbleというデータフレーム(Excelの表の強化版みたいなもの)は一つのセルの中に,配列を入れることができたり，さらにtibbleを格納することもできるので，必ずしもこの原則が達成されているとは限らないので注意が必要です．</p><div class=book-tabs><input type=radio class=toggle name=tabs-3 id=tabs-3-0 checked>
+<label for=tabs-3-0>良い例</label><div class="book-tabs-content markdown-inner"><table><thead><tr><th>名前</th><th>好きな食べ物</th></tr></thead><tbody><tr><td>太郎</td><td>寿司</td></tr><tr><td>太郎</td><td>ラーメン</td></tr><tr><td>花子</td><td>カレー</td></tr><tr><td>花子</td><td>パスタ</td></tr></tbody></table></div><input type=radio class=toggle name=tabs-3 id=tabs-3-1>
+<label for=tabs-3-1>悪い例</label><div class="book-tabs-content markdown-inner"><table><thead><tr><th>名前</th><th>好きな食べ物</th></tr></thead><tbody><tr><td>太郎</td><td>寿司, ラーメン</td></tr><tr><td>花子</td><td>カレー, パスタ</td></tr></tbody></table></div></div><p>以上の内容を意識すると，統一的な記述方法でデータを解析，整形することができるので，tidy dataを意識してデータ解析すると良いでしょう．</p><details><summary>余談</summary><div class=markdown-inner><p>Tidy Dataが解析しやすいデータだとすれば，それ以外のデータは解析しずらい，めんどくさいデータです．例え人にとって見やすかったり，扱いやすかったりしてもTidyでないならコンピュータには扱いづらいです．そのため，データを提供する側と解析する側では，往々にしてこの部分ですれ違いがあったりするので，何かデータを扱うときはTidyであるかどうかを気にしてみるといいかもしれません．</p></div></details><h2 id=パイプライン演算子->パイプライン演算子 <code>|></code>
+<a class=anchor href=#%e3%83%91%e3%82%a4%e3%83%97%e3%83%a9%e3%82%a4%e3%83%b3%e6%bc%94%e7%ae%97%e5%ad%90->#</a></h2><p>Tidyverseを使用していく上でパイプライン演算子<code>|></code> を活用することで，処理を簡潔かつ解釈しやすく記述することができます．</p><h3 id=関数>関数
+<a class=anchor href=#%e9%96%a2%e6%95%b0>#</a></h3><p>まず，パイプライン演算子を使う前に，プログラミングにおける関数について説明します．プログラミングにおける関数は，ある処理のまとまりを集めて，いつでも呼び出せるようにしたものです．これは数学における，ある集合からある集合への対応を示す関数とは違い，サブルーチンといった方がより適切です．そのため，処理をまとめただけの関数もあれば，ある入力に対してある出力を返す関数があったりします．</p><p>ここで入力に対応するものを引数，出力に対応するものを返り値(戻り値)といいます．</p><p><strong>純粋関数</strong>という概念があります．純粋関数とは所謂，数学における関数と等価なもので，ある入力(引数)に対して，いつも同じ出力(返り値)を返す関数です．この純粋関数を組み合わせることでコーディングをしていくのがTidyverseとパイプラインを組み合わせた方法です．</p><p>具体的には純粋関数は，同じ引数に対して，特定の返り値を返すので，ある純粋関数の返り値をそのまま，別の純粋関数の引数に入力することで，処理を記述していきます．これまでのプログラミングといえばやりたいことを逐一丁寧に記述していく手続き型プログラミングといったものを行ってきました．しかし，それとは考え方，アプローチが違ってくるので戸惑う点があるかもしれません．とはいえ，基本的にプログラミングとは何をするかというと，与えられた入力(データ)を加工していく処理，作業に他なりません．その大前提を意識しておけば，どちらもやることがたいして変わりません．以下で具体例を見てみましょう．</p><details><summary>余談</summary><div class=markdown-inner><p>純粋関数とは，ある引数に対して特定の返り値を返す—つまりは引数が同じ時，常に同じ返り値を返すことと，副作用が発生しない関数のことを指します．副作用とは引数以外の入力，返り値以外の出力を伴うことです．具体的には関数の外の変数を参照，変更することであったり，I/O画面やストレージと相互作用をすることを指します．</p><p>例えばprint関数であったり(文字を外部に出力するため), random関数(同じ引数を入力しても出力がランダム)といった関数が非純粋関数となります．</p><p>しかし，Rにおいてそのような関数は大多数を占めますし，本当の意味で純粋関数は少ないのですが，今回は簡単のために上記ような解説となりました．</p></div></details><h3 id=パイプライン演算子を使ってみよう>パイプライン演算子を使ってみよう
+<a class=anchor href=#%e3%83%91%e3%82%a4%e3%83%97%e3%83%a9%e3%82%a4%e3%83%b3%e6%bc%94%e7%ae%97%e5%ad%90%e3%82%92%e4%bd%bf%e3%81%a3%e3%81%a6%e3%81%bf%e3%82%88%e3%81%86>#</a></h3><p>初めに手続きプログラミング的にコードを書いてみます．以下のコードは，データフレームdfを宣言し，value列の値が20より大きいものを選別し，groupごとに集計し，groupごとの平均値を算出したものを出力するコードです．</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-R data-lang=R><span style=display:flex><span><span style=color:#a6e22e>library</span>(dplyr)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>df <span style=color:#f92672>&lt;-</span> <span style=color:#a6e22e>data.frame</span>(
+</span></span><span style=display:flex><span>    group <span style=color:#f92672>=</span> <span style=color:#a6e22e>c</span>(<span style=color:#e6db74>&#34;A&#34;</span>, <span style=color:#e6db74>&#34;B&#34;</span>, <span style=color:#e6db74>&#34;A&#34;</span>, <span style=color:#e6db74>&#34;B&#34;</span>, <span style=color:#e6db74>&#34;A&#34;</span>),
+</span></span><span style=display:flex><span>    value <span style=color:#f92672>=</span> <span style=color:#a6e22e>c</span>(<span style=color:#ae81ff>10</span>, <span style=color:#ae81ff>20</span>, <span style=color:#ae81ff>30</span>, <span style=color:#ae81ff>40</span>, <span style=color:#ae81ff>50</span>)
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>temp1 <span style=color:#f92672>&lt;-</span> <span style=color:#a6e22e>filter</span>(df, value <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>20</span>)  <span style=color:#75715e># 20より大きい値をフィルタ</span>
+</span></span><span style=display:flex><span>temp2 <span style=color:#f92672>&lt;-</span> <span style=color:#a6e22e>group_by</span>(temp1, group)  <span style=color:#75715e># &#34;group&#34; でグループ化</span>
+</span></span><span style=display:flex><span>result <span style=color:#f92672>&lt;-</span> <span style=color:#a6e22e>summarise</span>(temp2, mean_value <span style=color:#f92672>=</span> <span style=color:#a6e22e>mean</span>(value))  <span style=color:#75715e># &#34;group&#34;ごとの平均値を計算</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>print</span>(result)
+</span></span></code></pre></div><p>このようなコードでは，変数temp1, temp2のように演算結果を一時的に保存するためだけの変数を宣言したりと無駄が多いです．無駄が多くなると，論理を追いづらくなったり，コードを手直しするにも大変です．</p><p>次の例では一時的な変数を作成しないようにコードを書き直してみます．</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-R data-lang=R><span style=display:flex><span>result <span style=color:#f92672>&lt;-</span> <span style=color:#a6e22e>summarise</span>(
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>group_by</span>(<span style=color:#a6e22e>filter</span>(df, value <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>20</span>), group),
+</span></span><span style=display:flex><span>    mean_value <span style=color:#f92672>=</span> <span style=color:#a6e22e>mean</span>(value)
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>print</span>(result)
+</span></span></code></pre></div><p>この書き方では，余計な変数はありませんが，関数の中に関数を書き込んだ形になってしまい，非常に可読性が悪いです．私たちは右から左，外から内に文字を読むのに，処理の流れは左から右に，内から外の順番になってしまっています．
+ここでパイプライン演算子の出番です．Rのパイプライン演算子<code>|></code>は<strong>ある関数の返り値をそのまま，次の関数の第一引数</strong>にしてしまいます．</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-R data-lang=R><span style=display:flex><span><span style=color:#a6e22e>library</span>(dplyr)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>df <span style=color:#f92672>|&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>filter</span>(value <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>20</span>) <span style=color:#f92672>|&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>group_by</span>(group) <span style=color:#f92672>|&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>summarise</span>(mean_value <span style=color:#f92672>=</span> <span style=color:#a6e22e>mean</span>(value)) <span style=color:#f92672>|&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>print</span>()
+</span></span></code></pre></div><p>こうすることによって，処理の流れと記述の流れが同じになりました．純粋関数を用いると同じ引数に対し，同じ返り値が帰ってくるので，このような記述が可能になります．</p><details><summary>Advanced</summary><div class=markdown-inner><p>やや発展的な内容になりますが，パイプライン演算子にはRで定義されたnative pipelineと呼ばれる<code>|></code>とTidyverseのmagrittrパッケージによって提供されている<code>%>%</code>の2種類があります．</p><p>これらの使い分けとしては，返り値を第一引数ではない場所に用いたい時に，やり方が異なります．<code>%>%</code>では第二引数などに値を渡す時<code>.</code>を使うことで可能になります(place holderといいます)．<code>|></code>では<code>_</code>を使用しますが，<code>x |> f(100, y=_)</code>のように名前付き引数の時だけ使用できます．</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-R data-lang=R><span style=display:flex><span><span style=color:#75715e># place holderは`.`。引数名を指定しなくても良い。</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>c</span>(<span style=color:#e6db74>&#34;apple&#34;</span>, <span style=color:#e6db74>&#34;pineapple&#34;</span>, <span style=color:#e6db74>&#34;banana&#34;</span>) <span style=color:#f92672>%&gt;%</span> <span style=color:#a6e22e>grepl</span>(<span style=color:#e6db74>&#34;apple&#34;</span>, .)
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt; TRUE  TRUE FALSE</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># place holderは`_`。引数名を指定しなければいけない。</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>c</span>(<span style=color:#e6db74>&#34;apple&#34;</span>, <span style=color:#e6db74>&#34;pineapple&#34;</span>, <span style=color:#e6db74>&#34;banana&#34;</span>) <span style=color:#f92672>|&gt;</span> <span style=color:#a6e22e>grepl</span>(<span style=color:#e6db74>&#34;apple&#34;</span>, x <span style=color:#f92672>=</span> _)
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt; TRUE  TRUE FALSE</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 引数名を指定しないとエラーになる。</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>c</span>(<span style=color:#e6db74>&#34;apple&#34;</span>, <span style=color:#e6db74>&#34;pineapple&#34;</span>, <span style=color:#e6db74>&#34;banana&#34;</span>) <span style=color:#f92672>|&gt;</span> <span style=color:#a6e22e>grepl</span>(<span style=color:#e6db74>&#34;apple&#34;</span>, _)
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt; Error: pipe placeholder can only be used as a named argument</span>
+</span></span></code></pre></div><p>また複数箇所にplace holderを使用したい場合,<code>%>%</code>しか選択肢はありません．
+とはいえ，基本的には<code>|></code>の方が高速に動作し，何よりパッケージではなく，R言語そのもので定義されているので，<code>|></code>を使用するのを個人的には推奨します．</p></div></details><h2 id=tidyverseで遊んでみよう>Tidyverseで遊んでみよう
+<a class=anchor href=#tidyverse%e3%81%a7%e9%81%8a%e3%82%93%e3%81%a7%e3%81%bf%e3%82%88%e3%81%86>#</a></h2><p>お待たせしました．ここからは実際にcsvデータを加工して，Tidyverseの凄さを思い知りましょう．Tidyverseには多くのパッケージが含まれますが，ここではよく使う，dplyrを中心に使っていきます．</p><p>ここで加工していくデータは,dplyr内に練習用として定義されているstarwarsのデータを用います．スターウォーズのキャラクターについての情報が詰まれたデータフレームです．
+glimpse関数を使用することで，データフレームの概観を知ることができます．(そのままstarwarsと入力するだけでもいいです)</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-R data-lang=R><span style=display:flex><span>starwars <span style=color:#f92672>|&gt;</span> <span style=color:#a6e22e>glimpse</span>()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt; Rows: 87</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt; Columns: 14</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt; $ name       &lt;chr&gt; &#34;Luke Skywalker&#34;, &#34;C-3PO&#34;, &#34;R2-D2&#34;, &#34;Darth Vader&#34;, &#34;L…</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt; $ height     &lt;int&gt; 172, 167, 96, 202, 150, 178, 165, 97, 183, 182, 188, …</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt; $ mass       &lt;dbl&gt; 77.0, 75.0, 32.0, 136.0, 49.0, 120.0, 75.0, 32.0, 84.…</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt; $ hair_color &lt;chr&gt; &#34;blond&#34;, NA, NA, &#34;none&#34;, &#34;brown&#34;, &#34;brown, grey&#34;, &#34;bro…</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt; $ skin_color &lt;chr&gt; &#34;fair&#34;, &#34;gold&#34;, &#34;white, blue&#34;, &#34;white&#34;, &#34;light&#34;, &#34;lig…</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt; $ eye_color  &lt;chr&gt; &#34;blue&#34;, &#34;yellow&#34;, &#34;red&#34;, &#34;yellow&#34;, &#34;brown&#34;, &#34;blue&#34;, &#34;…</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt; $ birth_year &lt;dbl&gt; 19.0, 112.0, 33.0, 41.9, 19.0, 52.0, 47.0, NA, 24.0, …</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt; $ sex        &lt;chr&gt; &#34;male&#34;, &#34;none&#34;, &#34;none&#34;, &#34;male&#34;, &#34;female&#34;, &#34;male&#34;, &#34;fe…</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt; $ gender     &lt;chr&gt; &#34;masculine&#34;, &#34;masculine&#34;, &#34;masculine&#34;, &#34;masculine&#34;, &#34;…</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt; $ homeworld  &lt;chr&gt; &#34;Tatooine&#34;, &#34;Tatooine&#34;, &#34;Naboo&#34;, &#34;Tatooine&#34;, &#34;Alderaa…</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt; $ species    &lt;chr&gt; &#34;Human&#34;, &#34;Droid&#34;, &#34;Droid&#34;, &#34;Human&#34;, &#34;Human&#34;, &#34;Human&#34;,…</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt; $ films      &lt;list&gt; &lt;&#34;A New Hope&#34;, &#34;The Empire Strikes Back&#34;, &#34;Return of…</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt; $ vehicles   &lt;list&gt; &lt;&#34;Snowspeeder&#34;, &#34;Imperial Speeder Bike&#34;&gt;, &lt;&gt;, &lt;&gt;, &lt;&gt;…</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt; $ starships  &lt;list&gt; &lt;&#34;X-wing&#34;, &#34;Imperial shuttle&#34;&gt;, &lt;&gt;, &lt;&gt;, &#34;TIE Advance…</span>
+</span></span></code></pre></div><p>glimpse()を適用すると,行と列がひっくり返ってしまうので注意が必要です．しかし，これでstarwarsが87×14のtibbleで，それぞれの列がどのようなデータを保持しているがわかりました．例えばname列はcharacter(文字列)を保持している列ですね．</p><h3 id=列の操作>列の操作
+<a class=anchor href=#%e5%88%97%e3%81%ae%e6%93%8d%e4%bd%9c>#</a></h3><p>まず初めに列に対する操作です．パイプ演算子<code>|></code>を使って<code>select</code>関数を適用することで，列を抽出できます．<code>rename</code>関数では列名を新しく付け替えることができます．</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-R data-lang=R><span style=display:flex><span>starwars <span style=color:#f92672>|&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>select</span>(name, height, homeworld) <span style=color:#75715e>#name, height, homeworld列だけを抽出</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt; # A tibble: 87 × 3</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt;    name               height homeworld</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt;    &lt;chr&gt;               &lt;int&gt; &lt;chr&gt;    </span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt;  1 Luke Skywalker        172 Tatooine </span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt;  2 C-3PO                 167 Tatooine </span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt;  3 R2-D2                  96 Naboo    </span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt;  4 Darth Vader           202 Tatooine </span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>starwars <span style=color:#f92672>|&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>select</span>(<span style=color:#f92672>!</span>starships) <span style=color:#75715e># starships以外の列を抽出</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt; # A tibble: 87 × 13</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt;    name     height  mass hair_color skin_color eye_color birth_year sex   gender</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt;    &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; </span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt;  1 Luke Sk…    172    77 blond      fair       blue            19   male  mascu…</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt;  2 C-3PO       167    75 NA         gold       yellow         112   none  mascu…</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt;  3 R2-D2        96    32 NA         white, bl… red             33   none  mascu…</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt;  4 Darth V…    202   136 none       white      yellow          41.9 male  mascu…</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>starwars <span style=color:#f92672>|&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>select</span>(<span style=color:#a6e22e>ends_with</span>(<span style=color:#e6db74>&#34;color&#34;</span>)) <span style=color:#75715e>#末尾がcolorで終わる列(hair_color, skin_color, eye_color)を抽出</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt; # A tibble: 87 × 3</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt;    hair_color    skin_color  eye_color</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt;    &lt;chr&gt;         &lt;chr&gt;       &lt;chr&gt;    </span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt;  1 blond         fair        blue     </span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt;  2 NA            gold        yellow   </span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt;  3 NA            white, blue red      </span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt;  4 none          white       yellow   </span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>starwars <span style=color:#f92672>|&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>select</span>(<span style=color:#a6e22e>where</span>(is.character)) <span style=color:#75715e>#値が文字列(chr)である列を抽出</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt; # A tibble: 87 × 8</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt;    name           hair_color skin_color eye_color sex   gender homeworld species</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt;    &lt;chr&gt;          &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;  </span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt;  1 Luke Skywalker blond      fair       blue      male  mascu… Tatooine  Human  </span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt;  2 C-3PO          NA         gold       yellow    none  mascu… Tatooine  Droid  </span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt;  3 R2-D2          NA         white, bl… red       none  mascu… Naboo     Droid  </span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt;  4 Darth Vader    none       white      yellow    male  mascu… Tatooine  Human </span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>starwars <span style=color:#f92672>|&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>select</span>(homeworld) <span style=color:#f92672>|&gt;</span> <span style=color:#75715e># homeworld列を抽出</span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>rename</span>(home_planet <span style=color:#f92672>=</span> homeworld) <span style=color:#75715e># 列名homeworldをhome_planetに変更</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt; # A tibble: 87 × 1</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt;    home_planet</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt;    &lt;chr&gt;      </span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt;  1 Tatooine   </span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt;  2 Tatooine   </span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt;  3 Naboo      </span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt;  4 Tatooine   </span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt;  5 Alderaan   </span>
+</span></span></code></pre></div><h3 id=行の操作>行の操作
+<a class=anchor href=#%e8%a1%8c%e3%81%ae%e6%93%8d%e4%bd%9c>#</a></h3><p><code>slice_*</code>系の関数は行の操作に使います．<code>slice</code>関数は指定した行番号の列を，<code>slice_head</code>,<code>slice_tail</code>はそれぞれ最初のn行と最後のn行を，<code>slice_min</code>, <code>slice_max</code>は指定して列の値が小さい順ないし大きい順にn行抽出します．</p><p><code>filter</code>関数は何かの条件と合致する(あるいは合致しない)行のみ抽出する関数です． <code>arrange</code>関数はソート関数です．</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-R data-lang=R><span style=display:flex><span>starwars <span style=color:#f92672>|&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>select</span>(name, homeworld) <span style=color:#f92672>|&gt;</span> <span style=color:#75715e># name, homeworld列だけ抽出</span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>filter</span>(homeworld <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;Tatooine&#34;</span>) <span style=color:#f92672>|&gt;</span> <span style=color:#75715e># homeworldがTatooineの行のみを抽出</span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>slice_head</span>(n <span style=color:#f92672>=</span> <span style=color:#ae81ff>4</span>) <span style=color:#75715e># そのうち先頭4行だけ抽出</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt; # A tibble: 4 × 2</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt;   name               homeworld</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt;   &lt;chr&gt;              &lt;chr&gt;    </span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt; 1 Luke Skywalker     Tatooine </span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt; 2 C-3PO              Tatooine </span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt; 3 Darth Vader        Tatooine </span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt; 4 Owen Lars          Tatooine </span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>starwars <span style=color:#f92672>|&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>select</span>(name, height, homeworld) <span style=color:#f92672>|&gt;</span> <span style=color:#75715e># name,height,homeworld列だけ抽出</span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>filter</span>(homeworld <span style=color:#f92672>!=</span> <span style=color:#e6db74>&#34;Tatooine&#34;</span>) <span style=color:#f92672>|&gt;</span> <span style=color:#75715e># homeworldがTatooineでない行を抽出</span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>slice_max</span>(height, n <span style=color:#f92672>=</span> <span style=color:#ae81ff>3</span>) <span style=color:#75715e># そのうちheightが大きい順に3行抽出</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt; # A tibble: 3 × 3</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt;   name        height homeworld</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt;   &lt;chr&gt;        &lt;int&gt; &lt;chr&gt;    </span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt; 1 Yarael Poof    264 Quermia  </span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt; 2 Tarfful        234 Kashyyyk </span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt; 3 Lama Su        229 Kamino   </span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>starwars <span style=color:#f92672>|&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>select</span>(name, hair_color, height, mass) <span style=color:#f92672>|&gt;</span> <span style=color:#75715e># name, height, sex, homeworld列を抽出</span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>filter</span>(<span style=color:#f92672>!</span><span style=color:#a6e22e>is.na</span>(mass), height <span style=color:#f92672>&gt;=</span> <span style=color:#ae81ff>100</span>, hair_color <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;blond&#34;</span>) <span style=color:#f92672>|&gt;</span> <span style=color:#75715e># massが欠損値がなくて，尚且つheightが100以上かつ，hair_colorがblondの行を抽出</span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>arrange</span>(mass) <span style=color:#75715e># massが昇順になるようにソート</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>#&gt; # A tibble: 2 × 4</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>#&gt;   name             hair_color height  mass</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt;   &lt;chr&gt;            &lt;chr&gt;       &lt;int&gt; &lt;dbl&gt;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt; 1 Luke Skywalker   blond         172    77</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt; 2 Anakin Skywalker blond         188    84</span>
+</span></span></code></pre></div><h3 id=データの要約>データの要約
+<a class=anchor href=#%e3%83%87%e3%83%bc%e3%82%bf%e3%81%ae%e8%a6%81%e7%b4%84>#</a></h3><p><code>summarise</code>関数を使うと変数の平均値や標準偏差などの記述統計量(要約統計量)を計算できます. <code>group_by</code>関数と組み合わせることで値ごとの記述統計量を出すことができます．</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-R data-lang=R><span style=display:flex><span>starwars <span style=color:#f92672>|&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>group_by</span>(homeworld) <span style=color:#f92672>|&gt;</span> <span style=color:#75715e># homeworldごとに集計</span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>summarise</span>(
+</span></span><span style=display:flex><span>        height_mean <span style=color:#f92672>=</span> <span style=color:#a6e22e>mean</span>(height, na.rm <span style=color:#f92672>=</span> <span style=color:#66d9ef>TRUE</span>), <span style=color:#75715e>#欠損値を除外してheightの平均を計算</span>
+</span></span><span style=display:flex><span>        mass_mean <span style=color:#f92672>=</span> <span style=color:#a6e22e>mean</span>(mass, na.rm <span style=color:#f92672>=</span> <span style=color:#66d9ef>TRUE</span>), <span style=color:#75715e>#欠損値を除外してmassの平均を計算</span>
+</span></span><span style=display:flex><span>    )
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt; # A tibble: 49 × 3</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt;    homeworld      height_mean mass_mean</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt;    &lt;chr&gt;                &lt;dbl&gt;     &lt;dbl&gt;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt;  1 Alderaan              176.      64  </span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt;  2 Aleen Minor            79       15  </span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt;  3 Bespin                175       79  </span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt;  4 Bestine IV            180      110  </span>
+</span></span></code></pre></div><h3 id=データの拡張>データの拡張
+<a class=anchor href=#%e3%83%87%e3%83%bc%e3%82%bf%e3%81%ae%e6%8b%a1%e5%bc%b5>#</a></h3><p><code>mutate</code>関数はtibble内の変数を用いて計算を行い，その結果を新しい列として追加する関数です．</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-R data-lang=R><span style=display:flex><span>starwars <span style=color:#f92672>|&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>select</span>(name, height) <span style=color:#f92672>|&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>mutate</span>(height_M <span style=color:#f92672>=</span> height <span style=color:#f92672>/</span> <span style=color:#ae81ff>100</span>) <span style=color:#75715e># heightを100でわりm換算したものをheight_in_mとした</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt; # A tibble: 87 × 3</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt;    name               height       height_M</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt;    &lt;chr&gt;               &lt;int&gt;       &lt;dbl&gt;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt;  1 Luke Skywalker        172        1.72</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt;  2 C-3PO                 167        1.67</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt;  3 R2-D2                  96        0.96</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt;  4 Darth Vader           202        2.02</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>starwars <span style=color:#f92672>|&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>select</span>(name, height, mass) <span style=color:#f92672>|&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>mutate</span>(height_M <span style=color:#f92672>=</span> height <span style=color:#f92672>/</span> <span style=color:#ae81ff>100</span>, BMI <span style=color:#f92672>=</span> mass <span style=color:#f92672>/</span> height_M <span style=color:#f92672>/</span> height_M) <span style=color:#f92672>|&gt;</span> <span style=color:#75715e># heightを100でわりm換算したものをheight_in_mとした</span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>mutate</span>(is_obesity <span style=color:#f92672>=</span> <span style=color:#a6e22e>if_else</span>(BMI <span style=color:#f92672>&gt;=</span> <span style=color:#ae81ff>25</span>, true<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;obesity&#34;</span>, false<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;not_obesity&#34;</span>)) <span style=color:#75715e># if_else関数を用いると,条件を指定して値を指定できる</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt; # A tibble: 87 × 6</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt;    name               height  mass height_M   BMI is_obesity </span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt;    &lt;chr&gt;               &lt;int&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;      </span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt;  1 Luke Skywalker        172    77     1.72  26.0 obesity    </span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt;  2 C-3PO                 167    75     1.67  26.9 obesity    </span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt;  3 R2-D2                  96    32     0.96  34.7 obesity    </span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt;  4 Darth Vader           202   136     2.02  33.3 obesity    </span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#&gt;  5 Leia Organa           150    49     1.5   21.8 not_obesity</span>
+</span></span></code></pre></div><h2 id=練習問題>練習問題
+<a class=anchor href=#%e7%b7%b4%e7%bf%92%e5%95%8f%e9%a1%8c>#</a></h2><p>以下は練習問題です．これまで学習してきたこと＋αな内容ですので，適宜，chatGPTに聞いてみたり調べたりしながら解いてみてください．</p><h3 id=問題1>問題1
+<a class=anchor href=#%e5%95%8f%e9%a1%8c1>#</a></h3><p><code>starwars</code> データセットの構造を確認せよ。</p><blockquote class="book-hint info"><p>💡 ヒント: glimpse(), head(), dim() などを使う</p></blockquote><details><summary>Answer</summary><div class=markdown-inner><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-R data-lang=R><span style=display:flex><span>starwars <span style=color:#f92672>|&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>glimpse</span>()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>starwars <span style=color:#f92672>|&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>head</span>()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>starwars <span style=color:#f92672>|&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>dim</span>()
+</span></span></code></pre></div></div></details><h3 id=問題2>問題2
+<a class=anchor href=#%e5%95%8f%e9%a1%8c2>#</a></h3><p><code>starwars</code>データセットのうち，<code>gender</code> が &ldquo;male&rdquo; かつ <code>mass</code> (体重) が 80kg 以上のキャラクターを抽出せよ</p><details><summary>Answer</summary><div class=markdown-inner><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-R data-lang=R><span style=display:flex><span>starwars <span style=color:#f92672>|&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>filter</span>(gender <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;male&#34;</span>, mass <span style=color:#f92672>&gt;=</span> <span style=color:#ae81ff>80</span>)
+</span></span></code></pre></div></div></details><h3 id=問題3>問題3
+<a class=anchor href=#%e5%95%8f%e9%a1%8c3>#</a></h3><p><code>name</code>, <code>height</code>, <code>mass</code>, <code>homeworld</code> の4列のみを選択し，キャラクターを <code>mass</code> の降順で並べ替えよ．</p><blockquote class="book-hint info"><p>💡 ヒント: <code>arrange</code>関数と，<code>desc</code>関数について調べてみよう</p></blockquote><details><summary>Answer</summary><div class=markdown-inner><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-R data-lang=R><span style=display:flex><span>starwars <span style=color:#f92672>|&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>select</span>(name, heightm, mass, homeworld) <span style=color:#f92672>|&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>arrange</span>(<span style=color:#a6e22e>desc</span>(mass))
+</span></span></code></pre></div></div></details><h3 id=問題4>問題4
+<a class=anchor href=#%e5%95%8f%e9%a1%8c4>#</a></h3><p><code>name</code>と列名にアンダーバー <code>_</code>を含む列のみを選択せよ</p><blockquote class="book-hint info"><p>💡 ヒント: <code>select</code>, <code>contains</code>関数の使い方を調べてみよう</p></blockquote><details><summary>Answer</summary><div class=markdown-inner><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-R data-lang=R><span style=display:flex><span>starwars <span style=color:#f92672>|&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>select</span>(name, <span style=color:#a6e22e>contains</span>(<span style=color:#e6db74>&#34;_&#34;</span>))
+</span></span></code></pre></div></div></details><h3 id=問題5>問題5
+<a class=anchor href=#%e5%95%8f%e9%a1%8c5>#</a></h3><p><code>birth_year</code> が 100 より大きい場合は &ldquo;Old&rdquo;、それ以外は &ldquo;Young&rdquo; とする <code>age_category</code> という新しい列を作成せよ</p><blockquote class="book-hint info"><p>💡 ヒント: <code>if_else</code>関数の使い方を調べてみよう</p></blockquote><details><summary>Answer</summary><div class=markdown-inner><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-R data-lang=R><span style=display:flex><span>starwars <span style=color:#f92672>|&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>mutate</span>(age_category <span style=color:#f92672>=</span> <span style=color:#a6e22e>if_else</span>(birth_year <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>100</span>, <span style=color:#e6db74>&#34;Old&#34;</span>, <span style=color:#e6db74>&#34;Young&#34;</span>))
+</span></span></code></pre></div></div></details><h3 id=問題6>問題6
+<a class=anchor href=#%e5%95%8f%e9%a1%8c6>#</a></h3><p>以下のルールに基づいて <code>weight_category</code> という新しい列を作成せよ。</p><ul><li><code>mass</code> が 100 kg 以上なら &ldquo;Heavy&rdquo;</li><li><code>mass</code> が 50 以上 100 未満なら &ldquo;Medium&rdquo;</li><li><code>mass</code> が 50 未満なら &ldquo;Light&rdquo;</li><li><code>mass</code> が NA の場合は &ldquo;Unknown&rdquo;</li></ul><blockquote class="book-hint info"><p>💡 ヒント: <code>case_when</code>関数の使い方を調べてみよう</p></blockquote><details><summary>Answer</summary><div class=markdown-inner><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-R data-lang=R><span style=display:flex><span>starwars <span style=color:#f92672>|&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>mutate</span>(weight_category <span style=color:#f92672>=</span> <span style=color:#a6e22e>case_when</span>(
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>is.na</span>(mass) <span style=color:#f92672>~</span> <span style=color:#e6db74>&#34;Unknown&#34;</span>,
+</span></span><span style=display:flex><span>        mass <span style=color:#f92672>&gt;=</span> <span style=color:#ae81ff>100</span> <span style=color:#f92672>~</span> <span style=color:#e6db74>&#34;Heavy&#34;</span>,
+</span></span><span style=display:flex><span>        mass <span style=color:#f92672>&gt;=</span> <span style=color:#ae81ff>50</span> <span style=color:#f92672>~</span> <span style=color:#e6db74>&#34;Medium&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>TRUE</span> <span style=color:#f92672>~</span> <span style=color:#e6db74>&#34;Lignt&#34;</span>
+</span></span><span style=display:flex><span>    ))
+</span></span></code></pre></div></div></details><h3 id=問題7>問題7
+<a class=anchor href=#%e5%95%8f%e9%a1%8c7>#</a></h3><p>species ごとに、</p><ul><li>キャラクター数 (n())</li><li>height の平均 (mean(height, na.rm = TRUE))</li><li>mass の平均 (mean(mass, na.rm = TRUE))
+を求めよ。</li></ul><p>ただし、キャラクター数が 3 人未満の種族は除外せよ。</p><blockquote class="book-hint info"><p>💡 ヒント: <code>group_by</code>, <code>summarise</code>, <code>filter</code>関数の使い方を調べてみよう</p></blockquote><details><summary>Answer</summary><div class=markdown-inner><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-R data-lang=R><span style=display:flex><span>starwars <span style=color:#f92672>|&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>group_by</span>(species) <span style=color:#f92672>|&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>summarise</span>(
+</span></span><span style=display:flex><span>        N <span style=color:#f92672>=</span> <span style=color:#a6e22e>n</span>(),
+</span></span><span style=display:flex><span>        height_mean <span style=color:#f92672>=</span> <span style=color:#a6e22e>mean</span>(height, na.rm <span style=color:#f92672>=</span> <span style=color:#66d9ef>TRUE</span>),
+</span></span><span style=display:flex><span>        mass_mean <span style=color:#f92672>=</span> <span style=color:#a6e22e>mean</span>(mass, na.rm <span style=color:#f92672>=</span> <span style=color:#66d9ef>TRUE</span>)
+</span></span><span style=display:flex><span>    ) <span style=color:#f92672>|&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>filter</span>(N <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>3</span>)
+</span></span></code></pre></div></div></details><h3 id=問題8>問題8
+<a class=anchor href=#%e5%95%8f%e9%a1%8c8>#</a></h3><p>NA を含む数値型の列をすべて選択し、それらの NA を 0 に置き換えよ。</p><blockquote class="book-hint info"><p>💡 ヒント: <code>mutate</code>, <code>across</code>, <code>where</code>関数の使い方を調べてみよう. Rにおける<strong>無名関数</strong>について調べてみよう</p></blockquote><details><summary>Answer</summary><div class=markdown-inner><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-R data-lang=R><span style=display:flex><span>starwars <span style=color:#f92672>|&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>mutate</span>(<span style=color:#a6e22e>across</span>(<span style=color:#a6e22e>where</span>(is.numeric), <span style=color:#f92672>~</span> <span style=color:#a6e22e>replace</span>(., <span style=color:#a6e22e>is.na</span>(.), <span style=color:#ae81ff>0</span>)))
+</span></span></code></pre></div></div></details></article><footer class=book-footer><div class="flex flex-wrap justify-between"></div><script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><div class=book-comments></div><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#tidyverseってなんぞや>Tidyverseってなんぞや</a></li><li><a href=#tidy-data>Tidy Data</a><ul><li><a href=#一つの変数は一つの列にeach-variable-must-have-its-own-column>一つの変数は一つの列に（Each variable must have its own column.）</a></li><li><a href=#一つの観測は一つの行にeach-observation-must-have-its-own-row>一つの観測は一つの行に（Each observation must have its own row.）</a></li><li><a href=#一つの値は一つのセルにeach-value-must-have-its-own-cell>一つの値は一つのセルに（Each value must have its own cell.）</a></li></ul></li><li><a href=#パイプライン演算子->パイプライン演算子 <code>|></code></a><ul><li><a href=#関数>関数</a></li><li><a href=#パイプライン演算子を使ってみよう>パイプライン演算子を使ってみよう</a></li></ul></li><li><a href=#tidyverseで遊んでみよう>Tidyverseで遊んでみよう</a><ul><li><a href=#列の操作>列の操作</a></li><li><a href=#行の操作>行の操作</a></li><li><a href=#データの要約>データの要約</a></li><li><a href=#データの拡張>データの拡張</a></li></ul></li><li><a href=#練習問題>練習問題</a><ul><li><a href=#問題1>問題1</a></li><li><a href=#問題2>問題2</a></li><li><a href=#問題3>問題3</a></li><li><a href=#問題4>問題4</a></li><li><a href=#問題5>問題5</a></li><li><a href=#問題6>問題6</a></li><li><a href=#問題7>問題7</a></li><li><a href=#問題8>問題8</a></li></ul></li></ul></nav></div></aside></main></body></html>
