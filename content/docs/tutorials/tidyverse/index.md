@@ -391,27 +391,145 @@ starwars |>
 
 ### 問題1
 
-Tidyverseを用いてcsvファイルを読み込み，変数名dfに代入せよ．dfはどのようなデータ形式をしているか確認してください．
+`starwars` データセットの構造を確認せよ。
+{{% hint info %}}
+💡 ヒント: glimpse(), head(), dim() などを使う
+{{% /hint %}}
 
 {{% details title="Answer" open=false %}}
 
-### 解答1
+
 ```R
-df <- read_csv("src/sample.csv")
-df |> summary()
+starwars |>
+    glimpse()
+
+starwars |>
+    head()
+
+starwars |>
+    dim()
+```
+
+{{% /details %}}
+### 問題2
+
+`starwars`データセットのうち，`gender` が "male" かつ `mass` (体重) が 80kg 以上のキャラクターを抽出せよ
+
+
+{{% details title="Answer" open=false %}}
+
+```R
+starwars |>
+    filter(gender == "male", mass >= 80)
 ```
 
 {{% /details %}}
 
-### 問題2
+### 問題3
 
-Tidyverseを用いてcsvファイルを読み込み，変数名dfに代入せよ
+`name`, `height`, `mass`, `homeworld` の4列のみを選択し，キャラクターを `mass` の降順で並べ替えよ．
+
+{{% hint info %}}
+💡 ヒント: `arrange`関数と，`desc`関数について調べてみよう
+{{% /hint %}}
 
 {{% details title="Answer" open=false %}}
 
-### 解答2
 ```R
-df <- read_csv("src/sample.csv")
+starwars |>
+    select(name, heightm, mass, homeworld) |>
+    arrange(desc(mass))
 ```
+{{% /details %}}
 
+### 問題4
+`name`と列名にアンダーバー `_`を含む列のみを選択せよ
+
+{{% hint info %}}
+💡 ヒント: `select`, `contains`関数の使い方を調べてみよう
+{{% /hint %}}
+
+{{% details title="Answer" open=false %}}
+```R
+starwars |>
+    select(name, contains("_"))
+```
+{{% /details %}}
+
+### 問題5
+
+`birth_year` が 100 より大きい場合は "Old"、それ以外は "Young" とする `age_category` という新しい列を作成せよ
+{{% hint info %}}
+💡 ヒント: `if_else`関数の使い方を調べてみよう
+{{% /hint %}}
+
+{{% details title="Answer" open=false %}}
+```R
+starwars |>
+    mutate(age_category = if_else(birth_year > 100, "Old", "Young"))
+```
+{{% /details %}}
+
+### 問題6
+
+以下のルールに基づいて `weight_category` という新しい列を作成せよ。
+
+* `mass` が 100 kg 以上なら "Heavy"
+* `mass` が 50 以上 100 未満なら "Medium"
+* `mass` が 50 未満なら "Light"
+* `mass` が NA の場合は "Unknown"
+
+{{% hint info %}}
+💡 ヒント: `case_when`関数の使い方を調べてみよう
+{{% /hint %}}
+
+{{% details title="Answer" open=false %}}
+```R
+starwars |>
+    mutate(weight_category = case_when(
+        is.na(mass) ~ "Unknown",
+        mass >= 100 ~ "Heavy",
+        mass >= 50 ~ "Medium",
+        TRUE ~ "Lignt"
+    ))
+```
+{{% /details %}}
+
+### 問題7
+species ごとに、
+* キャラクター数 (n())
+* height の平均 (mean(height, na.rm = TRUE))
+* mass の平均 (mean(mass, na.rm = TRUE))
+を求めよ。ただし、キャラクター数が 3 人未満の種族は除外せよ。
+
+{{% hint info %}}
+💡 ヒント: `group_by`, `summarise`, `filter`関数の使い方を調べてみよう
+{{% /hint %}}
+
+{{% details title="Answer" open=false %}}
+```R
+starwars |>
+    group_by(species) |>
+    summarise(
+        N = n(),
+        height_mean = mean(height, na.rm = TRUE),
+        mass_mean = mean(mass, na.rm = TRUE)
+    ) |>
+    filter(N > 3)
+```
+{{% /details %}}
+
+
+### 問題8
+NA を含む数値型の列をすべて選択し、それらの NA を 0 に置き換えよ。
+
+{{% hint info %}}
+💡 ヒント: `mutate`, `across`, `where`関数の使い方を調べてみよう. Rにおける**無名関数**について調べてみよう
+{{% /hint %}}
+
+{{% details title="Answer" open=false %}}
+```R
+starwars |>
+    mutate(across(where(is.numeric), ~ replace(., is.na(.), 0)))
+```
 {{% /details %}}
