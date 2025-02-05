@@ -361,6 +361,29 @@ starwars |>
 `mutate`関数はtibble内の変数を用いて計算を行い，その結果を新しい列として追加する関数です．
 
 ```R
+starwars |>
+    select(name, height) |>
+    mutate(height_M = height / 100) # heightを100でわりm換算したものをheight_in_mとした
+#> # A tibble: 87 × 3
+#>    name               height       height_M
+#>    <chr>               <int>       <dbl>
+#>  1 Luke Skywalker        172        1.72
+#>  2 C-3PO                 167        1.67
+#>  3 R2-D2                  96        0.96
+#>  4 Darth Vader           202        2.02
+
+starwars |>
+    select(name, height, mass) |>
+    mutate(height_M = height / 100, BMI = mass / height_M / height_M) |> # heightを100でわりm換算したものをheight_in_mとした
+    mutate(is_obesity = if_else(BMI >= 25, true="obesity", false="not_obesity")) # if_else関数を用いると,条件を指定して値を指定できる
+#> # A tibble: 87 × 6
+#>    name               height  mass height_M   BMI is_obesity 
+#>    <chr>               <int> <dbl>    <dbl> <dbl> <chr>      
+#>  1 Luke Skywalker        172    77     1.72  26.0 obesity    
+#>  2 C-3PO                 167    75     1.67  26.9 obesity    
+#>  3 R2-D2                  96    32     0.96  34.7 obesity    
+#>  4 Darth Vader           202   136     2.02  33.3 obesity    
+#>  5 Leia Organa           150    49     1.5   21.8 not_obesity
 ```
 
 ## 練習問題
