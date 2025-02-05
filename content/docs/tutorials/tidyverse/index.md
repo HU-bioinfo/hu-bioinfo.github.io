@@ -17,7 +17,7 @@ Tidyverseは，データ分析と可視化を効率的に行うために設計�
 このパッケージの思想上の特徴として**Tidy Data**の原則のもと，一貫性のある操作体系により，データ処理の生産性を保つことを特徴としています．
 
 とはいえ含まれる内容や思想も膨大かつ難解なので，この章では，よくする使い方をメインに書いていきます．
-より詳しく知りたい方は，それぞれ詳細のページを見てください．
+より詳しく知りたい方は，それぞれ詳細のページを見てください．(現在製作中です)
 
 {{% details title="Tidyverseのパッケージ群" open=false %}}
 
@@ -47,7 +47,7 @@ Tidyverseは，データ分析と可視化を効率的に行うために設計�
 上記3つを満たした表形式のデータを **Tidy Data(整列データ)** といいます．
 
 ### 一つの変数は一つの列に（Each variable must have its own column.）
-この原則における変数とは，データの特徴を表すものです．人を対象にしたデータだとすると名前，身長，体重，年齢などが該当します．
+この原則における変数とは，データの特徴を表すものです．人を対象にしたデータだとすると名前，身長，体重，年齢などが該当します．考え方として列では，単位が揃うようなデータにするようにします．例えば，一つの列でcmやkgが同時に登場しないようにします．
 
 {{% tabs "1st_principle" %}}
 {{% tab "良い例" %}}
@@ -69,7 +69,7 @@ Tidyverseは，データ分析と可視化を効率的に行うために設計�
 {{% /tabs %}}
 
 ### 一つの観測は一つの行に（Each observation must have its own row.）
-観測とは、一つのデータのまとまりのことを指します．人を対象にしたデータだとすると名前がAlice,身長160cm，体重50kg，年齢20歳という一人のデータのことを指します．
+観測とは、一つのデータのまとまりのことを指します．人を対象にしたデータだとすると名前がAlice,身長160cm，体重50kg，年齢20歳という一人のデータのことを指します．これらをまとめて一つのデータとして，行単位で追加していきます．
 
 {{% tabs "2st_principle" %}}
 {{% tab "良い例" %}}
@@ -104,7 +104,6 @@ Tidyverseは，データ分析と可視化を効率的に行うために設計�
 | 花子  | パスタ   |
 {{% /tab %}}
 {{% tab "悪い例" %}}
-
 | 名前  | 好きな食べ物        |
 |------|----------------|
 | 太郎  | 寿司, ラーメン    |
@@ -148,7 +147,7 @@ Tidyverseを使用していく上でパイプライン演算子`|>` を活用す
 
 ### パイプライン演算子を使ってみよう
 
-初めに手続きプログラミング的にコードを書いてみます．以下のコードは，データフレームdfを宣言し，value列の値が20より大きいものを選別し，groupごとに集計し，平均値を算出したものを出力するコードです．
+初めに手続きプログラミング的にコードを書いてみます．以下のコードは，データフレームdfを宣言し，value列の値が20より大きいものを選別し，groupごとに集計し，groupごとの平均値を算出したものを出力するコードです．
 ```R
 library(dplyr)
 
@@ -157,10 +156,9 @@ df <- data.frame(
     value = c(10, 20, 30, 40, 50)
 )
 
-# 一時変数を使った処理
 temp1 <- filter(df, value > 20)  # 20より大きい値をフィルタ
 temp2 <- group_by(temp1, group)  # "group" でグループ化
-result <- summarise(temp2, mean_value = mean(value))  # 平均値を計算
+result <- summarise(temp2, mean_value = mean(value))  # "group"ごとの平均値を計算
 
 print(result)
 ```
@@ -178,7 +176,7 @@ print(result)
 ```
 
 この書き方では，余計な変数はありませんが，関数の中に関数を書き込んだ形になってしまい，非常に可読性が悪いです．私たちは右から左，外から内に文字を読むのに，処理の流れは左から右に，内から外の順番になってしまっています．
-ここでパイプライン演算子の出番です．Rのパイプライン演算子は**ある関数の返り値をそのまま，次の関数の第一引数**にしてしまいます．
+ここでパイプライン演算子の出番です．Rのパイプライン演算子`|>`は**ある関数の返り値をそのまま，次の関数の第一引数**にしてしまいます．
 ```R
 library(dplyr)
 
@@ -194,9 +192,23 @@ df |>
 
 やや発展的な内容になりますが，パイプライン演算子にはRで定義されたnative pipelineと呼ばれる`|>`とTidyverseのmagrittrパッケージによって提供されている`%>%`の2種類があります．
 
-これらの使い分けとしては，返り値を第一引数ではない場所に用いたい時に，やり方が異なります．
+これらの使い分けとしては，返り値を第一引数ではない場所に用いたい時に，やり方が異なります．`%>%`では第二引数などに値を渡す時`.`を使うことで可能になります(place holderといいます)．`|>`では`_`を使用しますが，`x |> f(100, y=_)`のように名前付き引数の時だけ使用できます．
+```R
+# place holderは`.`。引数名を指定しなくても良い。
+c("apple", "pineapple", "banana") %>% grepl("apple", .)
+#> TRUE  TRUE FALSE
 
-基本的には`|>`の方が速度も早く，何よりパッケージではなく，R言語そのもので定義されているので，`|>`を使用するのを個人的には推奨します．
+# place holderは`_`。引数名を指定しなければいけない。
+c("apple", "pineapple", "banana") |> grepl("apple", x = _)
+#> TRUE  TRUE FALSE
+
+# 引数名を指定しないとエラーになる。
+c("apple", "pineapple", "banana") |> grepl("apple", _)
+#> Error: pipe placeholder can only be used as a named argument
+```
+
+また複数箇所にplace holderを使用したい場合,`%>%`しか選択肢はありません．
+とはいえ，基本的には`|>`の方が高速に動作し，何よりパッケージではなく，R言語そのもので定義されているので，`|>`を使用するのを個人的には推奨します．
 
 {{% /details %}}
 
@@ -229,7 +241,109 @@ starwars |> glimpse()
 
 glimpse()を適用すると,行と列がひっくり返ってしまうので注意が必要です．しかし，これでstarwarsが87×14のtibbleで，それぞれの列がどのようなデータを保持しているがわかりました．例えばname列はcharacter(文字列)を保持している列ですね．
 
-次に
+### 列の操作
+まず初めに列に対する操作です．パイプ演算子`|>`を使って`select`関数を適用することで，列を抽出できます．`rename`関数では列名を新しく付け替えることができます．
+
+```R
+starwars |>
+    select(name, height, homeworld) #name, height, homeworld列だけを抽出
+#> # A tibble: 87 × 3
+#>    name               height homeworld
+#>    <chr>               <int> <chr>    
+#>  1 Luke Skywalker        172 Tatooine 
+#>  2 C-3PO                 167 Tatooine 
+#>  3 R2-D2                  96 Naboo    
+#>  4 Darth Vader           202 Tatooine 
+
+starwars |>
+    select(!starships) # starships以外の列を抽出
+#> # A tibble: 87 × 13
+#>    name     height  mass hair_color skin_color eye_color birth_year sex   gender
+#>    <chr>     <int> <dbl> <chr>      <chr>      <chr>          <dbl> <chr> <chr> 
+#>  1 Luke Sk…    172    77 blond      fair       blue            19   male  mascu…
+#>  2 C-3PO       167    75 NA         gold       yellow         112   none  mascu…
+#>  3 R2-D2        96    32 NA         white, bl… red             33   none  mascu…
+#>  4 Darth V…    202   136 none       white      yellow          41.9 male  mascu…
+
+starwars |>
+    select(ends_with("color")) #末尾がcolorで終わる列(hair_color, skin_color, eye_color)を抽出
+#> # A tibble: 87 × 3
+#>    hair_color    skin_color  eye_color
+#>    <chr>         <chr>       <chr>    
+#>  1 blond         fair        blue     
+#>  2 NA            gold        yellow   
+#>  3 NA            white, blue red      
+#>  4 none          white       yellow   
+
+starwars |>
+    select(where(is.character)) #値が文字列(chr)である列を抽出
+#> # A tibble: 87 × 8
+#>    name           hair_color skin_color eye_color sex   gender homeworld species
+#>    <chr>          <chr>      <chr>      <chr>     <chr> <chr>  <chr>     <chr>  
+#>  1 Luke Skywalker blond      fair       blue      male  mascu… Tatooine  Human  
+#>  2 C-3PO          NA         gold       yellow    none  mascu… Tatooine  Droid  
+#>  3 R2-D2          NA         white, bl… red       none  mascu… Naboo     Droid  
+#>  4 Darth Vader    none       white      yellow    male  mascu… Tatooine  Human 
+
+starwars |>
+    select(homeworld) |> # homeworld列を抽出
+    rename(home_planet = homeworld) # 列名homeworldをhome_planetに変更
+#> # A tibble: 87 × 1
+#>    home_planet
+#>    <chr>      
+#>  1 Tatooine   
+#>  2 Tatooine   
+#>  3 Naboo      
+#>  4 Tatooine   
+#>  5 Alderaan   
+```
+
+### 行の操作
+`slice_*`系の関数は行の操作に使います．`slice`関数は指定した行番号の列を，`slice_head`,`slice_tail`はそれぞれ最初のn行と最後のn行を，`slice_min`, `slice_max`は指定して列の値が小さい順ないし大きい順にn行抽出します．
+
+`filter`関数は何かの条件と合致する(あるいは合致しない)行のみ抽出する関数です． `arrange`関数はソート関数です．
+
+```R
+starwars |>
+    select(name, homeworld) |> # name, homeworld列だけ抽出
+    filter(homeworld == "Tatooine") |> # homeworldがTatooineの行のみを抽出
+    slice_head(n = 4) # そのうち先頭4行だけ抽出
+#> # A tibble: 4 × 2
+#>   name               homeworld
+#>   <chr>              <chr>    
+#> 1 Luke Skywalker     Tatooine 
+#> 2 C-3PO              Tatooine 
+#> 3 Darth Vader        Tatooine 
+#> 4 Owen Lars          Tatooine 
+
+starwars |>
+    select(name, height, homeworld) |> # name,height,homeworld列だけ抽出
+    filter(homeworld != "Tatooine") |> # homeworldがTatooineでない行を抽出
+    slice_max(height, n = 3) # そのうちheightが大きい順に3行抽出
+#> # A tibble: 3 × 3
+#>   name        height homeworld
+#>   <chr>        <int> <chr>    
+#> 1 Yarael Poof    264 Quermia  
+#> 2 Tarfful        234 Kashyyyk 
+#> 3 Lama Su        229 Kamino   
+
+starwars |>
+    select(name, hair_color, height, mass) |> # name, height, sex, homeworld列を抽出
+    filter(!is.na(mass), height >= 100, hair_color == "blond") |> # massが欠損値がなくて，尚且つheightが100以上かつ，hair_colorがblondの行を抽出
+    arrange(mass) # massが昇順になるようにソート
+#> # A tibble: 2 × 4
+#>   name             hair_color height  mass
+#>   <chr>            <chr>       <int> <dbl>
+#> 1 Luke Skywalker   blond         172    77
+#> 2 Anakin Skywalker blond         188    84
+```
+
+### データの要約
+`summarise`関数を使うと変数の平均値や標準偏差などの記述統計量(要約統計量)を計算できます. `group_by`関数と組み合わせることで値ごとの記述統計量を出すことができます．
+
+```R
+
+```
 
 ## 練習問題
 
