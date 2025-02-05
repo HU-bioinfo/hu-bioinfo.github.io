@@ -331,8 +331,8 @@ starwars |>
     select(name, hair_color, height, mass) |> # name, height, sex, homeworld列を抽出
     filter(!is.na(mass), height >= 100, hair_color == "blond") |> # massが欠損値がなくて，尚且つheightが100以上かつ，hair_colorがblondの行を抽出
     arrange(mass) # massが昇順になるようにソート
-#> # A tibble: 2 × 4
-#>   name             hair_color height  mass
+    #> # A tibble: 2 × 4
+    #>   name             hair_color height  mass
 #>   <chr>            <chr>       <int> <dbl>
 #> 1 Luke Skywalker   blond         172    77
 #> 2 Anakin Skywalker blond         188    84
@@ -342,10 +342,29 @@ starwars |>
 `summarise`関数を使うと変数の平均値や標準偏差などの記述統計量(要約統計量)を計算できます. `group_by`関数と組み合わせることで値ごとの記述統計量を出すことができます．
 
 ```R
+starwars |>
+    group_by(homeworld) |> # homeworldごとに集計
+    summarise(
+        height_mean = mean(height, na.rm = TRUE), #欠損値を除外してheightの平均を計算
+        mass_mean = mean(mass, na.rm = TRUE), #欠損値を除外してmassの平均を計算
+    )
+#> # A tibble: 49 × 3
+#>    homeworld      height_mean mass_mean
+#>    <chr>                <dbl>     <dbl>
+#>  1 Alderaan              176.      64  
+#>  2 Aleen Minor            79       15  
+#>  3 Bespin                175       79  
+#>  4 Bestine IV            180      110  
+```
 
+### データの拡張
+`mutate`関数はtibble内の変数を用いて計算を行い，その結果を新しい列として追加する関数です．
+
+```R
 ```
 
 ## 練習問題
+以下は練習問題です．これまで学習してきたこと＋αな内容ですので，適宜，chatGPTに聞いてみたり調べたりしながら解いてみてください．
 
 ### 問題1
 
