@@ -444,7 +444,7 @@ starwars |>
 
 ### 問題3
 
-`starwars`データセットのうち，`gender` が "male" かつ `mass` (体重) が 80kg 以上のキャラクターを抽出せよ
+`starwars`データセットのうち，`gender` が "masculine" かつ `mass` (体重) が 80kg 以上のキャラクターを抽出せよ
 
 {{% hint info %}}
 💡 ヒント: `filter`関数について調べてみよう
@@ -457,7 +457,7 @@ starwars |>
 
 ```R
 starwars |>
-    filter(gender == "male", mass >= 80)
+    filter(gender == "masculine", mass >= 80)
 ```
 
 {{% /details %}}
