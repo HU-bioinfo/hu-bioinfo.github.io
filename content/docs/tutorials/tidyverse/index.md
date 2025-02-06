@@ -241,6 +241,8 @@ starwars |> glimpse()
 
 glimpse()を適用すると,行と列がひっくり返ってしまうので注意が必要です．しかし，これでstarwarsが87×14のtibbleで，それぞれの列がどのようなデータを保持しているがわかりました．例えばname列はcharacter(文字列)を保持している列ですね．
 
+{{< button relref="/docs/tutorials/tidyverse/#問題1" >}}問題1へ{{< /button >}}
+
 ### 列の操作
 まず初めに列に対する操作です．パイプ演算子`|>`を使って`select`関数を適用することで，列を抽出できます．`rename`関数では列名を新しく付け替えることができます．
 
@@ -297,6 +299,8 @@ starwars |>
 #>  4 Tatooine   
 #>  5 Alderaan   
 ```
+{{< button relref="/docs/tutorials/tidyverse/#問題2" >}}問題2へ{{< /button >}}
+{{< button relref="/docs/tutorials/tidyverse/#問題4" >}}問題4へ{{< /button >}}
 
 ### 行の操作
 `slice_*`系の関数は行の操作に使います．`slice`関数は指定した行番号の列を，`slice_head`,`slice_tail`はそれぞれ最初のn行と最後のn行を，`slice_min`, `slice_max`は指定して列の値が小さい順ないし大きい順にn行抽出します．
@@ -338,6 +342,8 @@ starwars |>
 #> 2 Anakin Skywalker blond         188    84
 ```
 
+{{< button relref="/docs/tutorials/tidyverse/#問題3" >}}問題3へ{{< /button >}}
+
 ### データの要約
 `summarise`関数を使うと変数の平均値や標準偏差などの記述統計量(要約統計量)を計算できます. `group_by`関数と組み合わせることで値ごとの記述統計量を出すことができます．
 
@@ -356,6 +362,7 @@ starwars |>
 #>  3 Bespin                175       79  
 #>  4 Bestine IV            180      110  
 ```
+{{< button relref="/docs/tutorials/tidyverse/#問題7" >}}問題7へ{{< /button >}}
 
 ### データの拡張
 `mutate`関数はtibble内の変数を用いて計算を行い，その結果を新しい列として追加する関数です．
@@ -385,6 +392,7 @@ starwars |>
 #>  4 Darth Vader           202   136     2.02  33.3 obesity    
 #>  5 Leia Organa           150    49     1.5   21.8 not_obesity
 ```
+{{< button relref="/docs/tutorials/tidyverse/#問題5" >}}問題5へ{{< /button >}}
 
 ## 練習問題
 以下は練習問題です．これまで学習してきたこと＋αな内容ですので，適宜，chatGPTに聞いてみたり調べたりしながら解いてみてください．
@@ -394,6 +402,8 @@ starwars |>
 `starwars` データセットの構造を確認せよ。
 {{% hint info %}}
 💡 ヒント: glimpse(), head(), dim() などを使う
+
+{{< button relref="/docs/tutorials/tidyverse/#tidyverseで遊んでみよう" >}}参考{{< /button >}}
 {{% /hint %}}
 
 {{% details title="Answer" open=false %}}
@@ -413,24 +423,12 @@ starwars |>
 {{% /details %}}
 ### 問題2
 
-`starwars`データセットのうち，`gender` が "male" かつ `mass` (体重) が 80kg 以上のキャラクターを抽出せよ
-
-
-{{% details title="Answer" open=false %}}
-
-```R
-starwars |>
-    filter(gender == "male", mass >= 80)
-```
-
-{{% /details %}}
-
-### 問題3
-
 `name`, `height`, `mass`, `homeworld` の4列のみを選択し，キャラクターを `mass` の降順で並べ替えよ．
 
 {{% hint info %}}
 💡 ヒント: `arrange`関数と，`desc`関数について調べてみよう
+
+{{< button relref="/docs/tutorials/tidyverse/#列の操作" >}}列の操作{{< /button >}}
 {{% /hint %}}
 
 {{% details title="Answer" open=false %}}
@@ -442,11 +440,34 @@ starwars |>
 ```
 {{% /details %}}
 
+### 問題3
+
+`starwars`データセットのうち，`gender` が "male" かつ `mass` (体重) が 80kg 以上のキャラクターを抽出せよ
+
+{{% hint info %}}
+💡 ヒント: `filter`関数について調べてみよう
+
+{{< button relref="/docs/tutorials/tidyverse/#行の操作" >}}行の操作{{< /button >}}
+
+{{% /hint %}}
+
+{{% details title="Answer" open=false %}}
+
+```R
+starwars |>
+    filter(gender == "male", mass >= 80)
+```
+
+{{% /details %}}
+
+
 ### 問題4
 `name`と列名にアンダーバー `_`を含む列のみを選択せよ
 
 {{% hint info %}}
 💡 ヒント: `select`, `contains`関数の使い方を調べてみよう
+
+{{< button relref="/docs/tutorials/tidyverse/#列の操作" >}}列の操作{{< /button >}}
 {{% /hint %}}
 
 {{% details title="Answer" open=false %}}
@@ -461,6 +482,9 @@ starwars |>
 `birth_year` が 100 より大きい場合は "Old"、それ以外は "Young" とする `age_category` という新しい列を作成せよ
 {{% hint info %}}
 💡 ヒント: `if_else`関数の使い方を調べてみよう
+
+{{< button relref="/docs/tutorials/tidyverse/#データの拡張" >}}データの拡張{{< /button >}}
+{{< button href="https://dplyr.tidyverse.org/reference/if_else.html" >}}if_else関数{{< /button >}}
 {{% /hint %}}
 
 {{% details title="Answer" open=false %}}
@@ -481,6 +505,8 @@ starwars |>
 
 {{% hint info %}}
 💡 ヒント: `case_when`関数の使い方を調べてみよう
+
+{{< button href="https://dplyr.tidyverse.org/reference/case_when.html" >}}case_when関数{{< /button >}}
 {{% /hint %}}
 
 {{% details title="Answer" open=false %}}
@@ -506,6 +532,8 @@ species ごとに、
 
 {{% hint info %}}
 💡 ヒント: `group_by`, `summarise`, `filter`関数の使い方を調べてみよう
+
+{{< button relref="/docs/tutorials/tidyverse/#データの要約" >}}データの要約{{< /button >}}
 {{% /hint %}}
 
 {{% details title="Answer" open=false %}}
