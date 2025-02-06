@@ -241,6 +241,8 @@ starwars |> glimpse()
 
 glimpse()を適用すると,行と列がひっくり返ってしまうので注意が必要です．しかし，これでstarwarsが87×14のtibbleで，それぞれの列がどのようなデータを保持しているがわかりました．例えばname列はcharacter(文字列)を保持している列ですね．
 
+このようなデータが与えられたときに概観をざっくり知るのは重要です．具体的には行数(レコード数)，列数(特徴量数)，それぞれの列は何を内蔵しているデータなのか，列名と列のデータ型(数値型，文字列型など)に矛盾はないか，データに欠損値はないか，解析の目的にあったデータの内容かといったことを確認するのが重要になります．
+
 {{< button relref="/docs/tutorials/tidyverse/#問題1" >}}問題1へ{{< /button >}}
 
 ### 列の操作
@@ -442,7 +444,7 @@ starwars |>
 
 ### 問題3
 
-`starwars`データセットのうち，`gender` が "male" かつ `mass` (体重) が 80kg 以上のキャラクターを抽出せよ
+`starwars`データセットのうち，`gender` が "masculine" かつ `mass` (体重) が 80kg 以上のキャラクターを抽出せよ
 
 {{% hint info %}}
 💡 ヒント: `filter`関数について調べてみよう
@@ -455,7 +457,7 @@ starwars |>
 
 ```R
 starwars |>
-    filter(gender == "male", mass >= 80)
+    filter(gender == "masculine", mass >= 80)
 ```
 
 {{% /details %}}
