@@ -1,9 +1,91 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>北海道大学医学部 Bioinfo研究会</title><link>https://hu-bioinfo.github.io/</link><description>Recent content on 北海道大学医学部 Bioinfo研究会</description><generator>Hugo</generator><language>ja</language><lastBuildDate>Mon, 01 Jan 0001 00:00:00 +0000</lastBuildDate><atom:link href="https://hu-bioinfo.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>About</title><link>https://hu-bioinfo.github.io/docs/about/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hu-bioinfo.github.io/docs/about/</guid><description>&lt;p>私たちは北海道大学医学部に在学する学生によって構成されている学生団体です.
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>北海道大学医学部 Bioinfo研究会</title><link>https://hu-bioinfo.github.io/</link><description>Recent content on 北海道大学医学部 Bioinfo研究会</description><generator>Hugo</generator><language>ja</language><lastBuildDate>Mon, 01 Jan 0001 00:00:00 +0000</lastBuildDate><atom:link href="https://hu-bioinfo.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Tidyverse</title><link>https://hu-bioinfo.github.io/docs/tutorials/tidyverse/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hu-bioinfo.github.io/docs/tutorials/tidyverse/</guid><description>&lt;h1 id="tidyverse">
+ Tidyverse
+ &lt;a class="anchor" href="#tidyverse">#&lt;/a>
+&lt;/h1>
+&lt;h2 id="tidyverseってなんぞや">
+ Tidyverseってなんぞや
+ &lt;a class="anchor" href="#tidyverse%e3%81%a3%e3%81%a6%e3%81%aa%e3%82%93%e3%81%9e%e3%82%84">#&lt;/a>
+&lt;/h2>
+&lt;p>Tidyverseは，データ分析と可視化を効率的に行うために設計されたR言語のパッケージ群です．
+このパッケージの思想上の特徴として&lt;strong>Tidy Data&lt;/strong>の原則のもと，一貫性のある操作体系により，データ処理の生産性を保つことを特徴としています．&lt;/p>
+&lt;p>とはいえ含まれる内容や思想も膨大かつ難解なので，この章では，よくする使い方をメインに書いていきます．
+より詳しく知りたい方は，それぞれ詳細のページを見てください．(現在製作中です)&lt;/p>
+&lt;details >&lt;summary>Tidyverseのパッケージ群&lt;/summary>
+ &lt;div class="markdown-inner">
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>パッケージ名&lt;/th>
+ &lt;th>役割&lt;/th>
+ &lt;th>主な機能&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>ggplot2&lt;/td>
+ &lt;td>データ可視化&lt;/td>
+ &lt;td>グラフィックスの文法に基づいて、グラフを宣言的に作成できる&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>dplyr&lt;/td>
+ &lt;td>データ操作&lt;/td>
+ &lt;td>フィルタリング，要約，並べ替え，結合といったデータ操作&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>tidyr&lt;/td>
+ &lt;td>データ整理&lt;/td>
+ &lt;td>&lt;strong>Tidy data&lt;/strong>作成&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>readr&lt;/td>
+ &lt;td>データ読み込み&lt;/td>
+ &lt;td>矩形データ（csv、tsv、fwfなど）の高速読み込み&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>purrr&lt;/td>
+ &lt;td>関数型プログラミング&lt;/td>
+ &lt;td>ベクトルやリストの操作（map関数など）&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>tibble&lt;/td>
+ &lt;td>データフレームの現代的な再構築&lt;/td>
+ &lt;td>モダンなデータフレーム構造&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>stringr&lt;/td>
+ &lt;td>文字列操作&lt;/td>
+ &lt;td>パターンマッチングや文字列の処理&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>forcats&lt;/td>
+ &lt;td>因子型操作&lt;/td>
+ &lt;td>因子データのレベルの順序や値の変更など&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>lubridate&lt;/td>
+ &lt;td>日付・時刻データ操作&lt;/td>
+ &lt;td>日付や時間の解析と処理&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+ &lt;/div>
+&lt;/details>
+&lt;h2 id="tidy-data">
+ Tidy Data
+ &lt;a class="anchor" href="#tidy-data">#&lt;/a>
+&lt;/h2>
+&lt;p>基本的にデータはExcelのように表形式となったデータを扱います．この時，ただ漫然と表を作成するのではなく，一定のルールの下に作成，加工していくことで効率や安全性が増します．具体的なルールとは以下の三つのことです.&lt;/p>
+&lt;ol>
+&lt;li>一つの変数は一つの列に（Each variable must have its own column.）&lt;/li>
+&lt;li>一つの観測は一つの行に（Each observation must have its own row.）&lt;/li>
+&lt;li>一つの値は一つのセルに（Each value must have its own cell.）&lt;/li>
+&lt;/ol>
+&lt;p>上記3つを満たした表形式のデータを &lt;strong>Tidy Data(整列データ)&lt;/strong> といいます．&lt;/p></description></item><item><title>About</title><link>https://hu-bioinfo.github.io/docs/about/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hu-bioinfo.github.io/docs/about/</guid><description>&lt;p>私たちは北海道大学医学部に在学する学生によって構成されている学生団体です.
 バイオインフォマティクスや広く情報科学ついて学習し合っている団体です．&lt;/p></description></item><item><title>Members</title><link>https://hu-bioinfo.github.io/docs/members/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hu-bioinfo.github.io/docs/members/</guid><description>&lt;p>Comming soon&amp;hellip;&lt;/p></description></item><item><title>Example</title><link>https://hu-bioinfo.github.io/docs/tutorials/example/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hu-bioinfo.github.io/docs/tutorials/example/</guid><description>&lt;h1 id="example">
  Example
  &lt;a class="anchor" href="#example">#&lt;/a>
 &lt;/h1>
-&lt;p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&lt;/p></description></item><item><title>How to Write Article</title><link>https://hu-bioinfo.github.io/docs/how_to_write_article/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hu-bioinfo.github.io/docs/how_to_write_article/</guid><description>&lt;h1 id="記事の投稿方法">
+&lt;p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&lt;/p></description></item><item><title>How to Write Articles</title><link>https://hu-bioinfo.github.io/docs/how_to_write_articles/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hu-bioinfo.github.io/docs/how_to_write_articles/</guid><description>&lt;h1 id="記事の投稿方法">
  記事の投稿方法
  &lt;a class="anchor" href="#%e8%a8%98%e4%ba%8b%e3%81%ae%e6%8a%95%e7%a8%bf%e6%96%b9%e6%b3%95">#&lt;/a>
 &lt;/h1>
