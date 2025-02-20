@@ -3,15 +3,123 @@
   #
 
 
-  制御文
+  プログラミング言語
   #
 
+コンピュータは字のごとく，計算をしてくれる便利な機械です．極端な話，代入と四則演算，制御構文さえあれば，理論上はどんな計算でもできるらしいです．そして，便利な計算は他の誰かがすでに作ってくれてます．(著作権とか権利の問題はあるけどな)
+てなわけで，こいつらをうまく組み合わせてやればいいんです．俺らがやる程度のプログラミングつったってやることはそんなとこ．
+
+  変数と代入，そして型
+  #
+
+代入なんて，これまでの数学の勉強で耳にタコができるほど聞いてきたと思います．適当な変数に適当な値を入れるあれです．Rではx <- 10みたいに書きます．これで変数xに10が代入されたことを意味します．x + 20は30ですね．
+代入する時，変数名は自由につけることができます．原則として，代入するものがなんなのか明示的に命名するのが大事です．例えば，BMIを計算するプログラムを書いているとすると，体重60kgを変数body_weightに代入するのはbody_weight <- 60と書くようにします．適切な名前を考えるのはプログラミングをする上で肝中の肝です．
+別にxに代入するのは整数じゃなくても小数でも，文字列でも，なんでもありです．とはいえなんでもって言われても困るので，そのなんでもについてもう少し詳しく教えます．
+
+  型
+  #
+
+変数になんでも入れていいにおけるなんでもとは型といいます．型とは数学における集合のことです．例えば，実数の集合だったり，小数点の集合だったりします．なぜ型なんて言い方をするかというと，コンピュータ独特の都合があります．コンピュータの計算資源には限りがあります．いくら実数の集合と言ったって無限に続く数字を扱うのは無理ですよね，コンピュータのストレージに限界が来てしまいます．無限に大きい数字を扱わなくても，コンピュータは2進数で計算をしているというのは聞いたことがあると思います．3.14でも0.45でも，ある小数を2進数で表そうとすると，結構な確率で無限に続く小数になってしまいます．そんなわけで，その時々の計算に適した実数の集合(例えば，0から255までという限界を定めた実数の集合)や，小数の集合を型として扱い，計算していきます．また，違う型どうしの計算も面倒臭いです．文字列という型と実数の型の足し算を求めてくださいと言われても困ってしまいます．ある型同士の計算には，それに適した計算，演算が定義されています．
+要するに似た性質を持つもの，振る舞いが決まっているものの集合を型とよび，これらを意識してコードを書いていくことになります．自分で型を定義することもできますが，基本となる型を組み合わせることが多く，そもそも自作しなくても，出来合いのものを使うのがいいと思います．てなわけで基本的な型を紹介していきます．
+
+  Rにおける具体的な型と演算子
+  #
+
+Rは便利なプログラミング言語なので，型といっても厳密なものではなく，ざっくりとした直感的にわかりやすいものになっています．
+また，ある型には，それぞれ演算が定義されていると説明しましたが，そのような演算を示す演算子というものがあります．そんな難しいものではなく，足し算という演算における演算子は+です．
+
+  Numeric(数値)型
+  #
+
+数値を表す型です．こいつら同士は四則演算ができたりと，皆さんが想像する実数の集合そのものです．実は，さらにinteger(整数)型とdouble(倍精度浮動小数点, 要するに小数)型に分けることができますが別に無視でもいいです．
+この型に定義されている演算は以下のとおりです．ちなみに，この演算子らを算術演算子といいます．(覚えなくていいです)
 
   
+      
+          演算子
+          意味
+          コード例
+          結果
+      
+  
+  
+      
+          +
+          和
+          3 + 6
+          9
+      
+      
+          -
+          差
+          4 - 1
+          3
+      
+      
+          *
+          積
+          19 * 8
+          152
+      
+      
+          /
+          商
+          9 / 2
+          4.5
+      
+      
+          %/%
+          整数商 (あまりを無視した商)
+          9 %/% 2
+          4
+      
+      
+          %%
+          剰余 (余り)
+          9 %% 2
+          1
+      
+      
+          ^
+          累乗
+          2^4
+          16
+      
+  
+
+
+  Logical(bool, 論理)型
   #
-"><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://hu-bioinfo.github.io/docs/tutorials/r_basic_grammar/"><meta property="og:site_name" content="北海道大学医学部 Bioinfo研究会"><meta property="og:title" content="R Basic Grammar"><meta property="og:description" content="Rの基本文法 # 制御文 # #"><meta property="og:locale" content="ja"><meta property="og:type" content="article"><meta property="article:section" content="docs"><title>R Basic Grammar | 北海道大学医学部 Bioinfo研究会</title>
-<link rel=icon href=https://hu-bioinfo.github.io/favicon.png><link rel=manifest href=https://hu-bioinfo.github.io/manifest.json><link rel=canonical href=https://hu-bioinfo.github.io/docs/tutorials/r_basic_grammar/><link rel=stylesheet href=https://hu-bioinfo.github.io/book.min.434035e7885c7f5d12818bd9f111cf1a0925c6fb78382667381c3d5eda3fb4f1.css integrity="sha256-Q0A154hcf10SgYvZ8RHPGgklxvt4OCZnOBw9Xto/tPE=" crossorigin=anonymous><script defer src=https://hu-bioinfo.github.io/fuse.min.js></script><script defer src=https://hu-bioinfo.github.io/ja.search.min.d13654dc4318f9cf7a576e8096ae66f7df8f087e7a53f66a0ef6c52c7fb601eb.js integrity="sha256-0TZU3EMY+c96V26Alq5m99+PCH56U/ZqDvbFLH+2Aes=" crossorigin=anonymous></script></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
+
+TRUE,FALSEの二つだけからなる型です．こいつらには論理演算が定義されてます．論理演算ってかつとかまたはとかいうやつです．"><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://hu-bioinfo.github.io/docs/tutorials/r_basic_grammar/"><meta property="og:site_name" content="北海道大学医学部 Bioinfo研究会"><meta property="og:title" content="R Basic Grammar"><meta property="og:description" content="Rの基本文法 # プログラミング言語 # コンピュータは字のごとく，計算をしてくれる便利な機械です．極端な話，代入と四則演算，制御構文さえあれば，理論上はどんな計算でもできるらしいです．そして，便利な計算は他の誰かがすでに作ってくれてます．(著作権とか権利の問題はあるけどな)
+てなわけで，こいつらをうまく組み合わせてやればいいんです．俺らがやる程度のプログラミングつったってやることはそんなとこ．
+変数と代入，そして型 # 代入なんて，これまでの数学の勉強で耳にタコができるほど聞いてきたと思います．適当な変数に適当な値を入れるあれです．Rではx <- 10みたいに書きます．これで変数xに10が代入されたことを意味します．x + 20は30ですね．
+代入する時，変数名は自由につけることができます．原則として，代入するものがなんなのか明示的に命名するのが大事です．例えば，BMIを計算するプログラムを書いているとすると，体重60kgを変数body_weightに代入するのはbody_weight <- 60と書くようにします．適切な名前を考えるのはプログラミングをする上で肝中の肝です．
+別にxに代入するのは整数じゃなくても小数でも，文字列でも，なんでもありです．とはいえなんでもって言われても困るので，そのなんでもについてもう少し詳しく教えます．
+型 # 変数になんでも入れていいにおけるなんでもとは型といいます．型とは数学における集合のことです．例えば，実数の集合だったり，小数点の集合だったりします．なぜ型なんて言い方をするかというと，コンピュータ独特の都合があります．コンピュータの計算資源には限りがあります．いくら実数の集合と言ったって無限に続く数字を扱うのは無理ですよね，コンピュータのストレージに限界が来てしまいます．無限に大きい数字を扱わなくても，コンピュータは2進数で計算をしているというのは聞いたことがあると思います．3.14でも0.45でも，ある小数を2進数で表そうとすると，結構な確率で無限に続く小数になってしまいます．そんなわけで，その時々の計算に適した実数の集合(例えば，0から255までという限界を定めた実数の集合)や，小数の集合を型として扱い，計算していきます．また，違う型どうしの計算も面倒臭いです．文字列という型と実数の型の足し算を求めてくださいと言われても困ってしまいます．ある型同士の計算には，それに適した計算，演算が定義されています．
+要するに似た性質を持つもの，振る舞いが決まっているものの集合を型とよび，これらを意識してコードを書いていくことになります．自分で型を定義することもできますが，基本となる型を組み合わせることが多く，そもそも自作しなくても，出来合いのものを使うのがいいと思います．てなわけで基本的な型を紹介していきます．
+Rにおける具体的な型と演算子 # Rは便利なプログラミング言語なので，型といっても厳密なものではなく，ざっくりとした直感的にわかりやすいものになっています．
+また，ある型には，それぞれ演算が定義されていると説明しましたが，そのような演算を示す演算子というものがあります．そんな難しいものではなく，足し算という演算における演算子は+です．
+Numeric(数値)型 # 数値を表す型です．こいつら同士は四則演算ができたりと，皆さんが想像する実数の集合そのものです．実は，さらにinteger(整数)型とdouble(倍精度浮動小数点, 要するに小数)型に分けることができますが別に無視でもいいです．
+この型に定義されている演算は以下のとおりです．ちなみに，この演算子らを算術演算子といいます．(覚えなくていいです)
+演算子 意味 コード例 結果 + 和 3 + 6 9 - 差 4 - 1 3 * 積 19 * 8 152 / 商 9 / 2 4.5 %/% 整数商 (あまりを無視した商) 9 %/% 2 4 %% 剰余 (余り) 9 %% 2 1 ^ 累乗 2^4 16 Logical(bool, 論理)型 # TRUE,FALSEの二つだけからなる型です．こいつらには論理演算が定義されてます．論理演算ってかつとかまたはとかいうやつです．"><meta property="og:locale" content="ja"><meta property="og:type" content="article"><meta property="article:section" content="docs"><title>R Basic Grammar | 北海道大学医学部 Bioinfo研究会</title>
+<link rel=icon href=https://hu-bioinfo.github.io/favicon.png><link rel=manifest href=https://hu-bioinfo.github.io/manifest.json><link rel=canonical href=https://hu-bioinfo.github.io/docs/tutorials/r_basic_grammar/><link rel=stylesheet href=https://hu-bioinfo.github.io/book.min.434035e7885c7f5d12818bd9f111cf1a0925c6fb78382667381c3d5eda3fb4f1.css integrity="sha256-Q0A154hcf10SgYvZ8RHPGgklxvt4OCZnOBw9Xto/tPE=" crossorigin=anonymous><script defer src=https://hu-bioinfo.github.io/fuse.min.js></script><script defer src=https://hu-bioinfo.github.io/ja.search.min.2e14e7601b2c79ded1b28bc69f9c89a31e58a3afb51c94bfdca881c13fcd780b.js integrity="sha256-LhTnYBssed7RsovGn5yJox5Yo6+1HJS/3KiBwT/NeAs=" crossorigin=anonymous></script></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
 <input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=https://hu-bioinfo.github.io/><span>北海道大学医学部 Bioinfo研究会</span></a></h2><div class="book-search hidden"><input type=text id=book-search-input placeholder=検索 aria-label=検索 maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><script>document.querySelector(".book-search").classList.remove("hidden")</script><ul><li class=book-section-flat><input type=checkbox id=section-19e3ab56062efc00dcb4ec4cfb280452 class=toggle checked>
-<label for=section-19e3ab56062efc00dcb4ec4cfb280452 class="flex justify-between"><a href=https://hu-bioinfo.github.io/docs/tutorials/>Tutorials</a></label><ul><li><a href=https://hu-bioinfo.github.io/docs/tutorials/linux-command/>linux-command</a></li><li><a href=https://hu-bioinfo.github.io/docs/tutorials/r_basic_grammar/ class=active>R Basic Grammar</a></li><li><a href=https://hu-bioinfo.github.io/docs/tutorials/tidyverse/>Tidyverse</a></li><li><a href=https://hu-bioinfo.github.io/docs/tutorials/ggplot2/>ggplot2</a></li><li><a href=https://hu-bioinfo.github.io/docs/tutorials/example/>Example</a></li></ul></li><li><a href=https://hu-bioinfo.github.io/docs/about/>About</a></li><li><a href=https://hu-bioinfo.github.io/docs/members/>Members</a></li><li><a href=https://hu-bioinfo.github.io/docs/how_to_write_articles/>How to Write Articles</a></li></ul><ul><li><a href=https://github.com/HU-bioinfo/ target=_blank rel=noopener>Github</a></li><li><a href=https://x.com/hokudaiBioinfo target=_blank rel=noopener>X</a></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class=book-header><div class="flex align-center justify-between"><label for=menu-control><img src=https://hu-bioinfo.github.io/svg/menu.svg class=book-icon alt=Menu></label><h3>R Basic Grammar</h3><label for=toc-control><img src=https://hu-bioinfo.github.io/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class="hidden clearfix"><nav id=TableOfContents><ul><li><a href=#制御文>制御文</a></li><li></li></ul></nav></aside></header><article class="markdown book-article"><h1 id=rの基本文法>Rの基本文法
-<a class=anchor href=#r%e3%81%ae%e5%9f%ba%e6%9c%ac%e6%96%87%e6%b3%95>#</a></h1><h2 id=制御文>制御文
-<a class=anchor href=#%e5%88%b6%e5%be%a1%e6%96%87>#</a></h2><h2><a class=anchor href=#>#</a></h2></article><footer class=book-footer><div class="flex flex-wrap justify-between"></div><script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><div class=book-comments></div><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#制御文>制御文</a></li><li></li></ul></nav></div></aside></main></body></html>
+<label for=section-19e3ab56062efc00dcb4ec4cfb280452 class="flex justify-between"><a href=https://hu-bioinfo.github.io/docs/tutorials/>Tutorials</a></label><ul><li><a href=https://hu-bioinfo.github.io/docs/tutorials/linux-command/>linux-command</a></li><li><a href=https://hu-bioinfo.github.io/docs/tutorials/r_basic_grammar/ class=active>R Basic Grammar</a></li><li><a href=https://hu-bioinfo.github.io/docs/tutorials/tidyverse/>Tidyverse</a></li><li><a href=https://hu-bioinfo.github.io/docs/tutorials/ggplot2/>ggplot2</a></li><li><a href=https://hu-bioinfo.github.io/docs/tutorials/example/>Example</a></li></ul></li><li><a href=https://hu-bioinfo.github.io/docs/about/>About</a></li><li><a href=https://hu-bioinfo.github.io/docs/members/>Members</a></li><li><a href=https://hu-bioinfo.github.io/docs/how_to_write_articles/>How to Write Articles</a></li></ul><ul><li><a href=https://github.com/HU-bioinfo/ target=_blank rel=noopener>Github</a></li><li><a href=https://x.com/hokudaiBioinfo target=_blank rel=noopener>X</a></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class=book-header><div class="flex align-center justify-between"><label for=menu-control><img src=https://hu-bioinfo.github.io/svg/menu.svg class=book-icon alt=Menu></label><h3>R Basic Grammar</h3><label for=toc-control><img src=https://hu-bioinfo.github.io/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class="hidden clearfix"><nav id=TableOfContents><ul><li><a href=#プログラミング言語>プログラミング言語</a></li><li><a href=#変数と代入そして型>変数と代入，そして型</a></li><li><a href=#型>型</a></li><li><a href=#rにおける具体的な型と演算子>Rにおける具体的な型と演算子</a><ul><li><a href=#numeric数値型>Numeric(数値)型</a></li><li><a href=#logicalbool-論理型>Logical(bool, 論理)型</a></li><li><a href=#characterstring-文字列型>Character(String, 文字列)型</a></li><li><a href=#function関数型>Function(関数)型</a></li></ul></li><li><a href=#データ構造>データ構造</a><ul><li><a href=#vectorベクター>Vector(ベクター)</a></li></ul></li><li><a href=#制御構文>制御構文</a></li><li><a href=#アルゴリズム>アルゴリズム</a></li><li><a href=#関数>関数</a></li><li><a href=#ライブラリ>ライブラリ</a></li><li><a href=#プログラミングパラダイム>プログラミングパラダイム</a></li></ul></nav></aside></header><article class="markdown book-article"><h1 id=rの基本文法>Rの基本文法
+<a class=anchor href=#r%e3%81%ae%e5%9f%ba%e6%9c%ac%e6%96%87%e6%b3%95>#</a></h1><h2 id=プログラミング言語>プログラミング言語
+<a class=anchor href=#%e3%83%97%e3%83%ad%e3%82%b0%e3%83%a9%e3%83%9f%e3%83%b3%e3%82%b0%e8%a8%80%e8%aa%9e>#</a></h2><p>コンピュータは字のごとく，計算をしてくれる便利な機械です．極端な話，代入と四則演算，制御構文さえあれば，理論上はどんな計算でもできるらしいです．そして，便利な計算は他の誰かがすでに作ってくれてます．(著作権とか権利の問題はあるけどな)</p><p>てなわけで，こいつらをうまく組み合わせてやればいいんです．俺らがやる程度のプログラミングつったってやることはそんなとこ．</p><h2 id=変数と代入そして型>変数と代入，そして型
+<a class=anchor href=#%e5%a4%89%e6%95%b0%e3%81%a8%e4%bb%a3%e5%85%a5%e3%81%9d%e3%81%97%e3%81%a6%e5%9e%8b>#</a></h2><p>代入なんて，これまでの数学の勉強で耳にタコができるほど聞いてきたと思います．適当な変数に適当な値を入れるあれです．Rでは<code>x &lt;- 10</code>みたいに書きます．これで変数<code>x</code>に10が代入されたことを意味します．<code>x + 20</code>は30ですね．</p><p>代入する時，変数名は自由につけることができます．原則として，代入するものがなんなのか明示的に命名するのが大事です．例えば，BMIを計算するプログラムを書いているとすると，体重60kgを変数<code>body_weight</code>に代入するのは<code>body_weight &lt;- 60</code>と書くようにします．適切な名前を考えるのはプログラミングをする上で肝中の肝です．</p><p>別に<code>x</code>に代入するのは整数じゃなくても小数でも，文字列でも，なんでもありです．とはいえなんでもって言われても困るので，そのなんでもについてもう少し詳しく教えます．</p><h2 id=型>型
+<a class=anchor href=#%e5%9e%8b>#</a></h2><p><code>変数になんでも入れていい</code>における<code>なんでも</code>とは型といいます．型とは数学における集合のことです．例えば，実数の集合だったり，小数点の集合だったりします．なぜ型なんて言い方をするかというと，コンピュータ独特の都合があります．コンピュータの計算資源には限りがあります．いくら実数の集合と言ったって無限に続く数字を扱うのは無理ですよね，コンピュータのストレージに限界が来てしまいます．無限に大きい数字を扱わなくても，コンピュータは2進数で計算をしているというのは聞いたことがあると思います．3.14でも0.45でも，ある小数を2進数で表そうとすると，結構な確率で無限に続く小数になってしまいます．そんなわけで，その時々の計算に適した実数の集合(例えば，0から255までという限界を定めた実数の集合)や，小数の集合を型として扱い，計算していきます．また，違う型どうしの計算も面倒臭いです．文字列という型と実数の型の足し算を求めてくださいと言われても困ってしまいます．ある型同士の計算には，それに適した計算，演算が定義されています．</p><p>要するに似た性質を持つもの，振る舞いが決まっているものの集合を型とよび，これらを意識してコードを書いていくことになります．自分で型を定義することもできますが，基本となる型を組み合わせることが多く，そもそも自作しなくても，出来合いのものを使うのがいいと思います．てなわけで基本的な型を紹介していきます．</p><h2 id=rにおける具体的な型と演算子>Rにおける具体的な型と演算子
+<a class=anchor href=#r%e3%81%ab%e3%81%8a%e3%81%91%e3%82%8b%e5%85%b7%e4%bd%93%e7%9a%84%e3%81%aa%e5%9e%8b%e3%81%a8%e6%bc%94%e7%ae%97%e5%ad%90>#</a></h2><p>Rは便利なプログラミング言語なので，型といっても厳密なものではなく，ざっくりとした直感的にわかりやすいものになっています．</p><p>また，ある型には，それぞれ演算が定義されていると説明しましたが，そのような演算を示す演算子というものがあります．そんな難しいものではなく，足し算という演算における演算子は<code>+</code>です．</p><h3 id=numeric数値型>Numeric(数値)型
+<a class=anchor href=#numeric%e6%95%b0%e5%80%a4%e5%9e%8b>#</a></h3><p>数値を表す型です．こいつら同士は四則演算ができたりと，皆さんが想像する実数の集合そのものです．実は，さらにinteger(整数)型とdouble(倍精度浮動小数点, 要するに小数)型に分けることができますが別に無視でもいいです．</p><p>この型に定義されている演算は以下のとおりです．ちなみに，この演算子らを算術演算子といいます．(覚えなくていいです)</p><table><thead><tr><th>演算子</th><th>意味</th><th>コード例</th><th>結果</th></tr></thead><tbody><tr><td><code>+</code></td><td>和</td><td>3 + 6</td><td>9</td></tr><tr><td><code>-</code></td><td>差</td><td>4 - 1</td><td>3</td></tr><tr><td><code>*</code></td><td>積</td><td>19 * 8</td><td>152</td></tr><tr><td><code>/</code></td><td>商</td><td>9 / 2</td><td>4.5</td></tr><tr><td><code>%/%</code></td><td>整数商 (あまりを無視した商)</td><td>9 %/% 2</td><td>4</td></tr><tr><td><code>%%</code></td><td>剰余 (余り)</td><td>9 %% 2</td><td>1</td></tr><tr><td><code>^</code></td><td>累乗</td><td>2^4</td><td>16</td></tr></tbody></table><h3 id=logicalbool-論理型>Logical(bool, 論理)型
+<a class=anchor href=#logicalbool-%e8%ab%96%e7%90%86%e5%9e%8b>#</a></h3><p><code>TRUE</code>,<code>FALSE</code>の二つだけからなる型です．こいつらには論理演算が定義されてます．論理演算って<code>かつ</code>とか<code>または</code>とかいうやつです．</p><table><thead><tr><th>演算子</th><th>意味</th><th>説明</th><th>コード例</th><th>結果</th></tr></thead><tbody><tr><td>|</td><td>論理和</td><td>どちらか一方がTRUEならTRUE</td><td>TRUE | FALSE</td><td>TRUE</td></tr><tr><td>||</td><td>論理和</td><td>どちらか一方がTRUEならTRUE</td><td>FALSE || FALSE</td><td>FALSE</td></tr><tr><td><code>&</code></td><td>論理積</td><td>両方ともTRUEならTRUE</td><td>FALSE & TRUE</td><td>FALSE</td></tr><tr><td><code>&&</code></td><td>論理積</td><td>両方ともTRUEならTRUE</td><td>TRUE && TRUE</td><td>TRUE</td></tr><tr><td><code>!</code></td><td>論理否定</td><td>逆を返す</td><td>!TRUE</td><td>FALSE</td></tr></tbody></table><h3 id=characterstring-文字列型>Character(String, 文字列)型
+<a class=anchor href=#characterstring-%e6%96%87%e5%ad%97%e5%88%97%e5%9e%8b>#</a></h3><p>文字列です．Rでは<code>"</code>で囲んだら文字列です．</p><h3 id=function関数型>Function(関数)型
+<a class=anchor href=#function%e9%96%a2%e6%95%b0%e5%9e%8b>#</a></h3><p>詳しくは後述しますが，関数を表した型です．</p><p>他にも様々な型がありますが，一旦これくらいにしておきます．</p><h2 id=データ構造>データ構造
+<a class=anchor href=#%e3%83%87%e3%83%bc%e3%82%bf%e6%a7%8b%e9%80%a0>#</a></h2><p>これまで型という，値一つ一つが，どの集合に属するかといった話をしてきました．次にデータ構造についてお話しします．値をどのような形式で保管するか，コンピュータ上でデータを扱いやすくするため一定の形式で収納されたデータの構造体のことをデータ構造といいます．何のこっちゃといった感じだと思いますが，実はプログラミングをする上でトップクラスに大事なところです．じっくり勉強しましょう．</p><h3 id=vectorベクター>Vector(ベクター)
+<a class=anchor href=#vector%e3%83%99%e3%82%af%e3%82%bf%e3%83%bc>#</a></h3><p>最も基本的かつ，最重要なデータ構造です．同じ型の値が一つ以上格納されているデータ構造です．要するに，同じ型の値を一列に並べたものです．</p><p>以下の例は変数<code>vec</code>に1,2,3,4,5という値たちを収納したvectorを代入している例です．</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-R data-lang=R><span style=display:flex><span>vec <span style=color:#f92672>&lt;-</span> <span style=color:#a6e22e>c</span>(<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>3</span>, <span style=color:#ae81ff>4</span>, <span style=color:#ae81ff>5</span>)
+</span></span></code></pre></div><h2 id=制御構文>制御構文
+<a class=anchor href=#%e5%88%b6%e5%be%a1%e6%a7%8b%e6%96%87>#</a></h2><h2 id=アルゴリズム>アルゴリズム
+<a class=anchor href=#%e3%82%a2%e3%83%ab%e3%82%b4%e3%83%aa%e3%82%ba%e3%83%a0>#</a></h2><h2 id=関数>関数
+<a class=anchor href=#%e9%96%a2%e6%95%b0>#</a></h2><h2 id=ライブラリ>ライブラリ
+<a class=anchor href=#%e3%83%a9%e3%82%a4%e3%83%96%e3%83%a9%e3%83%aa>#</a></h2><h2 id=プログラミングパラダイム>プログラミングパラダイム
+<a class=anchor href=#%e3%83%97%e3%83%ad%e3%82%b0%e3%83%a9%e3%83%9f%e3%83%b3%e3%82%b0%e3%83%91%e3%83%a9%e3%83%80%e3%82%a4%e3%83%a0>#</a></h2></article><footer class=book-footer><div class="flex flex-wrap justify-between"></div><script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><div class=book-comments></div><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#プログラミング言語>プログラミング言語</a></li><li><a href=#変数と代入そして型>変数と代入，そして型</a></li><li><a href=#型>型</a></li><li><a href=#rにおける具体的な型と演算子>Rにおける具体的な型と演算子</a><ul><li><a href=#numeric数値型>Numeric(数値)型</a></li><li><a href=#logicalbool-論理型>Logical(bool, 論理)型</a></li><li><a href=#characterstring-文字列型>Character(String, 文字列)型</a></li><li><a href=#function関数型>Function(関数)型</a></li></ul></li><li><a href=#データ構造>データ構造</a><ul><li><a href=#vectorベクター>Vector(ベクター)</a></li></ul></li><li><a href=#制御構文>制御構文</a></li><li><a href=#アルゴリズム>アルゴリズム</a></li><li><a href=#関数>関数</a></li><li><a href=#ライブラリ>ライブラリ</a></li><li><a href=#プログラミングパラダイム>プログラミングパラダイム</a></li></ul></nav></div></aside></main></body></html>
