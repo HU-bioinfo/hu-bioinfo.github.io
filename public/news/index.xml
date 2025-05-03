@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>News on 北海道大学医学部 Bioinfo研究会</title><link>http://localhost:1313/news/</link><description>Recent content in News on 北海道大学医学部 Bioinfo研究会</description><generator>Hugo</generator><language>ja</language><lastBuildDate>Sat, 03 May 2025 14:12:10 +0900</lastBuildDate><atom:link href="http://localhost:1313/news/index.xml" rel="self" type="application/rss+xml"/><item><title>Test</title><link>http://localhost:1313/news/test/</link><pubDate>Sat, 03 May 2025 14:12:10 +0900</pubDate><guid>http://localhost:1313/news/test/</guid><description>&lt;p>test&lt;/p>
+&lt;h1 id="テスト">
+ テスト
+ &lt;a class="anchor" href="#%e3%83%86%e3%82%b9%e3%83%88">#&lt;/a>
+&lt;/h1>
+&lt;p>エラーメッセージから、Hugoモジュールの取得に失敗していることがわかりますね。具体的には、github.com/HU-bioinfo/hugo-book を取得しようとした際に、そのモジュールの go.mod ファイルが自身のパスを github.com/alex-shpak/hugo-book と宣言しているため、不一致が起こっています。&lt;/p>
+&lt;p>考えられる原因&lt;/p>
+&lt;p>このエラーの主な原因は、取得しようとしているモジュールのパス (github.com/HU-bioinfo/hugo-book) が、実際にモジュールが自身を宣言しているパス (github.com/alex-shpak/hugo-book) と異なっていることです。&lt;/p>
+&lt;p>考えられる状況としては、以下のものがあります。&lt;/p>
+&lt;pre>&lt;code>リポジトリの移動または名前の変更: 元々 github.com/alex-shpak/hugo-book というパスで公開されていたリポジトリが、何らかの理由で github.com/HU-bioinfo/hugo-book というパスに変更された可能性があります。しかし、go.mod ファイル内の宣言は古いパスのままになっているため、不整合が起きています。
+&lt;/code>&lt;/pre></description></item></channel></rss>

@@ -1,0 +1,164 @@
+<!doctype html><html lang=ja dir=ltr><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content='
+  ggplot2で作る魅力的なグラフ
+  #
+
+このガイドでは、Rのggplot2パッケージを用いて、シンプルかつ柔軟にグラフを作成する方法を紹介します。基本的な使い方から、グラフのカスタマイズ、複数の具体例を通して実際に使えるコードを掲載しています。なお、ここではdplyrの基本的なコマンド（パイプ(|>)、select、filterなど）は既にご存知であるものとして解説します。
+
+
+  1. ggplot2の基本構造
+  #
+
+ggplot2では、まずデータフレームを指定し、aes()関数で美的属性（x軸、y軸、色、サイズなど）を設定します。その後、geom_系列の関数で具体的なグラフの種類を指定します。
+基本構造は以下の通りです。
+library(ggplot2)
+
+ggplot(data = データ, aes(x = x軸, y = y軸)) +
+  geom_○○()
+
+
+  2. 具体例
+  #
+
+
+  2.1 散布図の作成
+  #
+
+irisデータセットを用い、Sepal.LengthとSepal.Widthの散布図を作成。種別（Species）ごとに色分けして表示します。
+library(dplyr)
+library(ggplot2)
+
+iris |> 
+  ggplot(aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +
+  geom_point(size = 3) +
+  labs(title = "Irisデータセットの散布図",
+       x = "がく片の長さ",
+       y = "がく片の幅") +
+  theme_minimal()
+
+
+
+  2.2 ヒストグラムの作成
+  #
+
+irisデータセットのSepal.Lengthの分布をヒストグラムで表示し、Speciesごとに色分けします。
+iris |> 
+  ggplot(aes(x = Sepal.Length, fill = Species)) +
+  geom_histogram(bins = 30, alpha = 0.7, position = "identity") +
+  labs(title = "Iris: Sepal.Lengthのヒストグラム",
+       x = "がく片の長さ",
+       y = "度数") +
+  theme_classic()
+'><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:url" content="http://localhost:1313/docs/tutorials/ggplot2/"><meta property="og:site_name" content="北海道大学医学部 Bioinfo研究会"><meta property="og:title" content="ggplot2"><meta property="og:description" content='ggplot2で作る魅力的なグラフ # このガイドでは、Rのggplot2パッケージを用いて、シンプルかつ柔軟にグラフを作成する方法を紹介します。基本的な使い方から、グラフのカスタマイズ、複数の具体例を通して実際に使えるコードを掲載しています。なお、ここではdplyrの基本的なコマンド（パイプ(|>)、select、filterなど）は既にご存知であるものとして解説します。
+1. ggplot2の基本構造 # ggplot2では、まずデータフレームを指定し、aes()関数で美的属性（x軸、y軸、色、サイズなど）を設定します。その後、geom_系列の関数で具体的なグラフの種類を指定します。
+基本構造は以下の通りです。
+library(ggplot2) ggplot(data = データ, aes(x = x軸, y = y軸)) + geom_○○() 2. 具体例 # 2.1 散布図の作成 # irisデータセットを用い、Sepal.LengthとSepal.Widthの散布図を作成。種別（Species）ごとに色分けして表示します。
+library(dplyr) library(ggplot2) iris |> ggplot(aes(x = Sepal.Length, y = Sepal.Width, color = Species)) + geom_point(size = 3) + labs(title = "Irisデータセットの散布図", x = "がく片の長さ", y = "がく片の幅") + theme_minimal() 2.2 ヒストグラムの作成 # irisデータセットのSepal.Lengthの分布をヒストグラムで表示し、Speciesごとに色分けします。
+iris |> ggplot(aes(x = Sepal.Length, fill = Species)) + geom_histogram(bins = 30, alpha = 0.7, position = "identity") + labs(title = "Iris: Sepal.Lengthのヒストグラム", x = "がく片の長さ", y = "度数") + theme_classic()'><meta property="og:locale" content="ja"><meta property="og:type" content="article"><meta property="article:section" content="docs"><title>ggplot2 | 北海道大学医学部 Bioinfo研究会</title>
+<link rel=icon href=http://localhost:1313/favicon.png><link rel=manifest href=http://localhost:1313/manifest.json><link rel=canonical href=http://localhost:1313/docs/tutorials/ggplot2/><link rel=stylesheet href=http://localhost:1313/book.min.e9f68c3fff3d8236a489d16a9caf6de5e4d1a29c20eb4b5524e42cd30be4d319.css integrity="sha256-6faMP/89gjakidFqnK9t5eTRopwg60tVJOQs0wvk0xk=" crossorigin=anonymous><script defer src=http://localhost:1313/fuse.min.js></script><script defer src=http://localhost:1313/ja.search.min.a0b33f04fff07b42c30e0b22281a68859b7f268155fa9613226909e35223646a.js integrity="sha256-oLM/BP/we0LDDgsiKBpohZt/JoFV+pYTImkJ41IjZGo=" crossorigin=anonymous></script></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=http://localhost:1313/><span>北海道大学医学部 Bioinfo研究会</span></a></h2><div class="book-search hidden"><input type=text id=book-search-input placeholder=検索 aria-label=検索 maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><script>document.querySelector(".book-search").classList.remove("hidden")</script><ul><li class=book-section-flat><input type=checkbox id=section-c16018a090938fd519bb86388a1ca2c2 class=toggle checked>
+<label for=section-c16018a090938fd519bb86388a1ca2c2 class="flex justify-between"><a href=http://localhost:1313/docs/tutorials/>Tutorials</a></label><ul><li><a href=http://localhost:1313/docs/tutorials/linux-command/>linux-command</a></li><li><a href=http://localhost:1313/docs/tutorials/tidyverse/>Tidyverse</a></li><li><a href=http://localhost:1313/docs/tutorials/ggplot2/ class=active>ggplot2</a></li><li><a href=http://localhost:1313/docs/tutorials/example/>Example</a></li></ul></li><li><a href=http://localhost:1313/docs/about/>About</a></li><li><a href=http://localhost:1313/docs/members/>Members</a></li><li><a href=http://localhost:1313/docs/how_to_write_articles/>How to Write Articles</a></li></ul><ul><li><a href=https://github.com/HU-bioinfo/ target=_blank rel=noopener>Github</a></li><li><a href=https://x.com/hokudaiBioinfo target=_blank rel=noopener>X</a></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class=book-header><div class="flex align-center justify-between"><label for=menu-control><img src=http://localhost:1313/svg/menu.svg class=book-icon alt=Menu></label><h3>ggplot2</h3><label for=toc-control><img src=http://localhost:1313/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class="hidden clearfix"><nav id=TableOfContents><ul><li><a href=#1-ggplot2の基本構造>1. ggplot2の基本構造</a></li><li><a href=#2-具体例>2. 具体例</a><ul><li><a href=#21-散布図の作成>2.1 散布図の作成</a></li><li><a href=#22-ヒストグラムの作成>2.2 ヒストグラムの作成</a></li><li><a href=#23-箱ひげ図の作成>2.3 箱ひげ図の作成</a></li><li><a href=#24-線グラフと回帰直線>2.4 線グラフと回帰直線</a></li><li><a href=#25-facetによるパネル分割>2.5 Facetによるパネル分割</a></li></ul></li><li><a href=#3-グラフのカスタマイズ>3. グラフのカスタマイズ</a><ul><li><a href=#31-テーマの変更>3.1 テーマの変更</a></li><li><a href=#32-ラベルやタイトルの追加>3.2 ラベルやタイトルの追加</a></li><li><a href=#33-その他のカスタマイズ>3.3 その他のカスタマイズ</a></li></ul></li><li><a href=#4-まとめ>4. まとめ</a></li></ul></nav></aside></header><article class="markdown book-article"><h1 id=ggplot2で作る魅力的なグラフ>ggplot2で作る魅力的なグラフ
+<a class=anchor href=#ggplot2%e3%81%a7%e4%bd%9c%e3%82%8b%e9%ad%85%e5%8a%9b%e7%9a%84%e3%81%aa%e3%82%b0%e3%83%a9%e3%83%95>#</a></h1><p>このガイドでは、Rの<strong>ggplot2</strong>パッケージを用いて、シンプルかつ柔軟にグラフを作成する方法を紹介します。基本的な使い方から、グラフのカスタマイズ、複数の具体例を通して実際に使えるコードを掲載しています。なお、ここではdplyrの基本的なコマンド（パイプ(|>)、select、filterなど）は既にご存知であるものとして解説します。</p><hr><h2 id=1-ggplot2の基本構造>1. ggplot2の基本構造
+<a class=anchor href=#1-ggplot2%e3%81%ae%e5%9f%ba%e6%9c%ac%e6%a7%8b%e9%80%a0>#</a></h2><p>ggplot2では、まずデータフレームを指定し、<code>aes()</code>関数で美的属性（x軸、y軸、色、サイズなど）を設定します。その後、<code>geom_</code>系列の関数で具体的なグラフの種類を指定します。</p><p>基本構造は以下の通りです。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-r data-lang=r><span style=display:flex><span><span style=color:#a6e22e>library</span>(ggplot2)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>ggplot</span>(data <span style=color:#f92672>=</span> データ, <span style=color:#a6e22e>aes</span>(x <span style=color:#f92672>=</span> x軸, y <span style=color:#f92672>=</span> y軸)) <span style=color:#f92672>+</span>
+</span></span><span style=display:flex><span>  geom_○○()
+</span></span></code></pre></div><hr><h2 id=2-具体例>2. 具体例
+<a class=anchor href=#2-%e5%85%b7%e4%bd%93%e4%be%8b>#</a></h2><h3 id=21-散布図の作成>2.1 散布図の作成
+<a class=anchor href=#21-%e6%95%a3%e5%b8%83%e5%9b%b3%e3%81%ae%e4%bd%9c%e6%88%90>#</a></h3><p>irisデータセットを用い、<code>Sepal.Length</code>と<code>Sepal.Width</code>の散布図を作成。種別（Species）ごとに色分けして表示します。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-r data-lang=r><span style=display:flex><span><span style=color:#a6e22e>library</span>(dplyr)
+</span></span><span style=display:flex><span><span style=color:#a6e22e>library</span>(ggplot2)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>iris <span style=color:#f92672>|&gt;</span> 
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>ggplot</span>(<span style=color:#a6e22e>aes</span>(x <span style=color:#f92672>=</span> Sepal.Length, y <span style=color:#f92672>=</span> Sepal.Width, color <span style=color:#f92672>=</span> Species)) <span style=color:#f92672>+</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>geom_point</span>(size <span style=color:#f92672>=</span> <span style=color:#ae81ff>3</span>) <span style=color:#f92672>+</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>labs</span>(title <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;Irisデータセットの散布図&#34;</span>,
+</span></span><span style=display:flex><span>       x <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;がく片の長さ&#34;</span>,
+</span></span><span style=display:flex><span>       y <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;がく片の幅&#34;</span>) <span style=color:#f92672>+</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>theme_minimal</span>()
+</span></span></code></pre></div><p><img src=iris_scatter.png alt=散布図の例></p><hr><h3 id=22-ヒストグラムの作成>2.2 ヒストグラムの作成
+<a class=anchor href=#22-%e3%83%92%e3%82%b9%e3%83%88%e3%82%b0%e3%83%a9%e3%83%a0%e3%81%ae%e4%bd%9c%e6%88%90>#</a></h3><p>irisデータセットの<code>Sepal.Length</code>の分布をヒストグラムで表示し、Speciesごとに色分けします。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-r data-lang=r><span style=display:flex><span>iris <span style=color:#f92672>|&gt;</span> 
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>ggplot</span>(<span style=color:#a6e22e>aes</span>(x <span style=color:#f92672>=</span> Sepal.Length, fill <span style=color:#f92672>=</span> Species)) <span style=color:#f92672>+</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>geom_histogram</span>(bins <span style=color:#f92672>=</span> <span style=color:#ae81ff>30</span>, alpha <span style=color:#f92672>=</span> <span style=color:#ae81ff>0.7</span>, position <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;identity&#34;</span>) <span style=color:#f92672>+</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>labs</span>(title <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;Iris: Sepal.Lengthのヒストグラム&#34;</span>,
+</span></span><span style=display:flex><span>       x <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;がく片の長さ&#34;</span>,
+</span></span><span style=display:flex><span>       y <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;度数&#34;</span>) <span style=color:#f92672>+</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>theme_classic</span>()
+</span></span></code></pre></div><p><img src=iris_histogram.png alt=ヒストグラムの例></p><hr><h3 id=23-箱ひげ図の作成>2.3 箱ひげ図の作成
+<a class=anchor href=#23-%e7%ae%b1%e3%81%b2%e3%81%92%e5%9b%b3%e3%81%ae%e4%bd%9c%e6%88%90>#</a></h3><p>mtcarsデータセットを利用し、シリンダー数（cyl）ごとに燃費（mpg）の箱ひげ図を作成します。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-r data-lang=r><span style=display:flex><span>mtcars <span style=color:#f92672>|&gt;</span> 
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>ggplot</span>(<span style=color:#a6e22e>aes</span>(x <span style=color:#f92672>=</span> <span style=color:#a6e22e>factor</span>(cyl), y <span style=color:#f92672>=</span> mpg, fill <span style=color:#f92672>=</span> <span style=color:#a6e22e>factor</span>(cyl))) <span style=color:#f92672>+</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>geom_boxplot</span>() <span style=color:#f92672>+</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>labs</span>(title <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;mtcars: シリンダー数ごとの燃費&#34;</span>,
+</span></span><span style=display:flex><span>       x <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;シリンダー数&#34;</span>,
+</span></span><span style=display:flex><span>       y <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;燃費 (mpg)&#34;</span>) <span style=color:#f92672>+</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>theme_light</span>()
+</span></span></code></pre></div><p><img src=mtcars_boxplot.png alt=箱ひげ図の例></p><hr><h3 id=24-線グラフと回帰直線>2.4 線グラフと回帰直線
+<a class=anchor href=#24-%e7%b7%9a%e3%82%b0%e3%83%a9%e3%83%95%e3%81%a8%e5%9b%9e%e5%b8%b0%e7%9b%b4%e7%b7%9a>#</a></h3><p>散布図に回帰直線を追加し、データの傾向を視覚化します。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-r data-lang=r><span style=display:flex><span>iris <span style=color:#f92672>|&gt;</span> 
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>ggplot</span>(<span style=color:#a6e22e>aes</span>(x <span style=color:#f92672>=</span> Sepal.Length, y <span style=color:#f92672>=</span> Sepal.Width)) <span style=color:#f92672>+</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>geom_point</span>() <span style=color:#f92672>+</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>geom_smooth</span>(method <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;lm&#34;</span>, se <span style=color:#f92672>=</span> <span style=color:#66d9ef>FALSE</span>, color <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;red&#34;</span>) <span style=color:#f92672>+</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>labs</span>(title <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;Irisデータセット: 回帰直線付き散布図&#34;</span>,
+</span></span><span style=display:flex><span>       x <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;がく片の長さ&#34;</span>,
+</span></span><span style=display:flex><span>       y <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;がく片の幅&#34;</span>) <span style=color:#f92672>+</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>theme_bw</span>()
+</span></span></code></pre></div><p><img src=iris_regression.png alt=回帰直線付き散布図の例></p><hr><h3 id=25-facetによるパネル分割>2.5 Facetによるパネル分割
+<a class=anchor href=#25-facet%e3%81%ab%e3%82%88%e3%82%8b%e3%83%91%e3%83%8d%e3%83%ab%e5%88%86%e5%89%b2>#</a></h3><p><code>facet_wrap</code>を使用して、Speciesごとにパネルを分割して表示します。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-r data-lang=r><span style=display:flex><span>iris <span style=color:#f92672>|&gt;</span> 
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>ggplot</span>(<span style=color:#a6e22e>aes</span>(x <span style=color:#f92672>=</span> Sepal.Length, y <span style=color:#f92672>=</span> Sepal.Width, color <span style=color:#f92672>=</span> Species)) <span style=color:#f92672>+</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>geom_point</span>(size <span style=color:#f92672>=</span> <span style=color:#ae81ff>2</span>) <span style=color:#f92672>+</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>facet_wrap</span>(<span style=color:#f92672>~</span> Species) <span style=color:#f92672>+</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>labs</span>(title <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;Irisデータセット: 種別ごとの散布図&#34;</span>,
+</span></span><span style=display:flex><span>       x <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;がく片の長さ&#34;</span>,
+</span></span><span style=display:flex><span>       y <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;がく片の幅&#34;</span>) <span style=color:#f92672>+</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>theme_minimal</span>()
+</span></span></code></pre></div><p><img src=iris_facet.png alt=Facetプロットの例></p><hr><h2 id=3-グラフのカスタマイズ>3. グラフのカスタマイズ
+<a class=anchor href=#3-%e3%82%b0%e3%83%a9%e3%83%95%e3%81%ae%e3%82%ab%e3%82%b9%e3%82%bf%e3%83%9e%e3%82%a4%e3%82%ba>#</a></h2><h3 id=31-テーマの変更>3.1 テーマの変更
+<a class=anchor href=#31-%e3%83%86%e3%83%bc%e3%83%9e%e3%81%ae%e5%a4%89%e6%9b%b4>#</a></h3><p>ggplot2には、グラフの見た目を変えるためのテーマが複数用意されています。例えば、<code>theme_minimal()</code> や <code>theme_classic()</code> を使ってシンプルなデザインに変更できます。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-r data-lang=r><span style=display:flex><span><span style=color:#a6e22e>ggplot</span>(iris, <span style=color:#a6e22e>aes</span>(x <span style=color:#f92672>=</span> Sepal.Length, y <span style=color:#f92672>=</span> Sepal.Width)) <span style=color:#f92672>+</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>geom_point</span>() <span style=color:#f92672>+</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>theme_minimal</span>() <span style=color:#f92672>+</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>labs</span>(title <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;Minimalテーマの散布図&#34;</span>)
+</span></span></code></pre></div><h3 id=32-ラベルやタイトルの追加>3.2 ラベルやタイトルの追加
+<a class=anchor href=#32-%e3%83%a9%e3%83%99%e3%83%ab%e3%82%84%e3%82%bf%e3%82%a4%e3%83%88%e3%83%ab%e3%81%ae%e8%bf%bd%e5%8a%a0>#</a></h3><p><code>labs()</code> 関数を使って、タイトルや軸ラベルを設定できます。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-r data-lang=r><span style=display:flex><span><span style=color:#a6e22e>ggplot</span>(iris, <span style=color:#a6e22e>aes</span>(x <span style=color:#f92672>=</span> Sepal.Length, y <span style=color:#f92672>=</span> Sepal.Width)) <span style=color:#f92672>+</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>geom_point</span>() <span style=color:#f92672>+</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>labs</span>(title <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;散布図タイトル&#34;</span>,
+</span></span><span style=display:flex><span>       x <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;がく片の長さ&#34;</span>,
+</span></span><span style=display:flex><span>       y <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;がく片の幅&#34;</span>)
+</span></span></code></pre></div><h3 id=33-その他のカスタマイズ>3.3 その他のカスタマイズ
+<a class=anchor href=#33-%e3%81%9d%e3%81%ae%e4%bb%96%e3%81%ae%e3%82%ab%e3%82%b9%e3%82%bf%e3%83%9e%e3%82%a4%e3%82%ba>#</a></h3><ul><li><strong>色やサイズ、透明度の調整</strong>：各<code>geom</code>関数内で引数を指定することで簡単に変更可能です。</li><li><strong>スケールの調整</strong>：<code>scale_x_continuous()</code> や <code>scale_color_manual()</code> などを使用して、軸の目盛りやカラーパレットを調整できます。</li></ul><hr><h2 id=4-まとめ>4. まとめ
+<a class=anchor href=#4-%e3%81%be%e3%81%a8%e3%82%81>#</a></h2><p>ggplot2は、シンプルなコードで高度なグラフ作成が可能な非常にパワフルなツールです。ここで紹介した基本例をもとに、データに合わせたカスタマイズや複雑なグラフの作成に挑戦してみてください。各種テーマやラベルの調整を駆使して、自分のデータを魅力的に可視化しましょう！</p><hr><h1 id=演習問題>演習問題
+<a class=anchor href=#%e6%bc%94%e7%bf%92%e5%95%8f%e9%a1%8c>#</a></h1><p>以下の7問の演習問題に挑戦してみましょう。各問題の答えは、トグルで表示されるようになっています。</p><ol><li><strong>基本的な散布図</strong><br>irisデータセットを使用して、<code>Sepal.Length</code>と<code>Sepal.Width</code>の散布図を作成するコードを書いてください。</li></ol><details><summary>答えを見る</summary><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-r data-lang=r><span style=display:flex><span><span style=color:#a6e22e>library</span>(ggplot2)
+</span></span><span style=display:flex><span>iris <span style=color:#f92672>|&gt;</span> 
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>ggplot</span>(<span style=color:#a6e22e>aes</span>(x <span style=color:#f92672>=</span> Sepal.Length, y <span style=color:#f92672>=</span> Sepal.Width)) <span style=color:#f92672>+</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>geom_point</span>() <span style=color:#f92672>+</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>labs</span>(title <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;基本散布図&#34;</span>, x <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;がく片の長さ&#34;</span>, y <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;がく片の幅&#34;</span>)
+</span></span></code></pre></div></details><ol start=2><li><strong>ヒストグラム</strong><br>irisデータセットで、<code>Sepal.Length</code>のヒストグラムを作成し、Speciesで色分けするコードを書いてください。</li></ol><details><summary>答えを見る</summary><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-r data-lang=r><span style=display:flex><span><span style=color:#a6e22e>library</span>(ggplot2)
+</span></span><span style=display:flex><span>iris <span style=color:#f92672>|&gt;</span> 
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>ggplot</span>(<span style=color:#a6e22e>aes</span>(x <span style=color:#f92672>=</span> Sepal.Length, fill <span style=color:#f92672>=</span> Species)) <span style=color:#f92672>+</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>geom_histogram</span>(bins <span style=color:#f92672>=</span> <span style=color:#ae81ff>30</span>, alpha <span style=color:#f92672>=</span> <span style=color:#ae81ff>0.6</span>, position <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;identity&#34;</span>) <span style=color:#f92672>+</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>labs</span>(title <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;ヒストグラム&#34;</span>, x <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;がく片の長さ&#34;</span>, y <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;度数&#34;</span>)
+</span></span></code></pre></div></details><ol start=3><li><strong>箱ひげ図</strong><br>mtcarsデータセットを使用して、<code>cyl</code>（シリンダー数）ごとに<code>mpg</code>の箱ひげ図を作成するコードを書いてください。</li></ol><details><summary>答えを見る</summary><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-r data-lang=r><span style=display:flex><span><span style=color:#a6e22e>library</span>(ggplot2)
+</span></span><span style=display:flex><span>mtcars <span style=color:#f92672>|&gt;</span> 
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>ggplot</span>(<span style=color:#a6e22e>aes</span>(x <span style=color:#f92672>=</span> <span style=color:#a6e22e>factor</span>(cyl), y <span style=color:#f92672>=</span> mpg, fill <span style=color:#f92672>=</span> <span style=color:#a6e22e>factor</span>(cyl))) <span style=color:#f92672>+</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>geom_boxplot</span>() <span style=color:#f92672>+</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>labs</span>(title <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;箱ひげ図&#34;</span>, x <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;シリンダー数&#34;</span>, y <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;燃費 (mpg)&#34;</span>)
+</span></span></code></pre></div></details><ol start=4><li><strong>回帰直線の追加</strong><br>散布図に回帰直線を追加するコードを書いてください。</li></ol><details><summary>答えを見る</summary><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-r data-lang=r><span style=display:flex><span><span style=color:#a6e22e>library</span>(ggplot2)
+</span></span><span style=display:flex><span>iris <span style=color:#f92672>|&gt;</span> 
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>ggplot</span>(<span style=color:#a6e22e>aes</span>(x <span style=color:#f92672>=</span> Sepal.Length, y <span style=color:#f92672>=</span> Sepal.Width)) <span style=color:#f92672>+</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>geom_point</span>() <span style=color:#f92672>+</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>geom_smooth</span>(method <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;lm&#34;</span>, se <span style=color:#f92672>=</span> <span style=color:#66d9ef>FALSE</span>, color <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;red&#34;</span>) <span style=color:#f92672>+</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>labs</span>(title <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;回帰直線付き散布図&#34;</span>, x <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;がく片の長さ&#34;</span>, y <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;がく片の幅&#34;</span>)
+</span></span></code></pre></div></details><ol start=5><li><strong>Facetプロット</strong><br>irisデータセットを種別ごとに分割した散布図を作成するコードを書いてください。</li></ol><details><summary>答えを見る</summary><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-r data-lang=r><span style=display:flex><span><span style=color:#a6e22e>library</span>(ggplot2)
+</span></span><span style=display:flex><span>iris <span style=color:#f92672>|&gt;</span> 
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>ggplot</span>(<span style=color:#a6e22e>aes</span>(x <span style=color:#f92672>=</span> Sepal.Length, y <span style=color:#f92672>=</span> Sepal.Width, color <span style=color:#f92672>=</span> Species)) <span style=color:#f92672>+</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>geom_point</span>() <span style=color:#f92672>+</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>facet_wrap</span>(<span style=color:#f92672>~</span> Species) <span style=color:#f92672>+</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>labs</span>(title <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;Facetプロット&#34;</span>, x <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;がく片の長さ&#34;</span>, y <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;がく片の幅&#34;</span>)
+</span></span></code></pre></div></details><ol start=6><li><strong>テーマの変更</strong><br><code>theme_minimal()</code> を使用してグラフのテーマを変更するコードを書いてください。</li></ol><details><summary>答えを見る</summary><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-r data-lang=r><span style=display:flex><span><span style=color:#a6e22e>library</span>(ggplot2)
+</span></span><span style=display:flex><span>iris <span style=color:#f92672>|&gt;</span> 
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>ggplot</span>(<span style=color:#a6e22e>aes</span>(x <span style=color:#f92672>=</span> Sepal.Length, y <span style=color:#f92672>=</span> Sepal.Width)) <span style=color:#f92672>+</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>geom_point</span>() <span style=color:#f92672>+</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>theme_minimal</span>() <span style=color:#f92672>+</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>labs</span>(title <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;Minimalテーマの散布図&#34;</span>)
+</span></span></code></pre></div></details><ol start=7><li><strong>ラベルの追加</strong><br>グラフにタイトル、x軸、y軸のラベルを追加するコードを書いてください。</li></ol><details><summary>答えを見る</summary><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-r data-lang=r><span style=display:flex><span><span style=color:#a6e22e>library</span>(ggplot2)
+</span></span><span style=display:flex><span>iris <span style=color:#f92672>|&gt;</span> 
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>ggplot</span>(<span style=color:#a6e22e>aes</span>(x <span style=color:#f92672>=</span> Sepal.Length, y <span style=color:#f92672>=</span> Sepal.Width)) <span style=color:#f92672>+</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>geom_point</span>() <span style=color:#f92672>+</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>labs</span>(title <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;散布図タイトル&#34;</span>, x <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;がく片の長さ&#34;</span>, y <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;がく片の幅&#34;</span>)
+</span></span></code></pre></div></details>```<hr></article><footer class=book-footer><div class="flex flex-wrap justify-between"></div><script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><div class=book-comments></div><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#1-ggplot2の基本構造>1. ggplot2の基本構造</a></li><li><a href=#2-具体例>2. 具体例</a><ul><li><a href=#21-散布図の作成>2.1 散布図の作成</a></li><li><a href=#22-ヒストグラムの作成>2.2 ヒストグラムの作成</a></li><li><a href=#23-箱ひげ図の作成>2.3 箱ひげ図の作成</a></li><li><a href=#24-線グラフと回帰直線>2.4 線グラフと回帰直線</a></li><li><a href=#25-facetによるパネル分割>2.5 Facetによるパネル分割</a></li></ul></li><li><a href=#3-グラフのカスタマイズ>3. グラフのカスタマイズ</a><ul><li><a href=#31-テーマの変更>3.1 テーマの変更</a></li><li><a href=#32-ラベルやタイトルの追加>3.2 ラベルやタイトルの追加</a></li><li><a href=#33-その他のカスタマイズ>3.3 その他のカスタマイズ</a></li></ul></li><li><a href=#4-まとめ>4. まとめ</a></li></ul></nav></div></aside></main></body></html>

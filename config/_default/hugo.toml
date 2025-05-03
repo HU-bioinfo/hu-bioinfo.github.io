@@ -9,6 +9,8 @@ DefaultContentLanguage = "ja"
 SectionPagesMenu = "main"
 enableRobotsTXT = false
 
+summaryLength = 1
+
 [module]
 [[module.imports]]
 path = 'github.com/HU-bioinfo/hugo-book'
