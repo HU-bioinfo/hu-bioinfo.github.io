@@ -1,198 +1,40 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Tutorials on 北海道大学医学部 Bioinfo研究会</title><link>http://localhost:1313/docs/tutorials/</link><description>Recent content in Tutorials on 北海道大学医学部 Bioinfo研究会</description><generator>Hugo</generator><language>ja</language><lastBuildDate>Mon, 01 Jan 0001 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/docs/tutorials/index.xml" rel="self" type="application/rss+xml"/><item><title>linux-command</title><link>http://localhost:1313/docs/tutorials/linux-command/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://localhost:1313/docs/tutorials/linux-command/</guid><description>&lt;h1 id="linuxコマンドの基本">
- Linuxコマンドの基本
- &lt;a class="anchor" href="#linux%e3%82%b3%e3%83%9e%e3%83%b3%e3%83%89%e3%81%ae%e5%9f%ba%e6%9c%ac">#&lt;/a>
-&lt;/h1>
-&lt;h2 id="1-最低限必要なコマンド">
- 1. 最低限必要なコマンド
- &lt;a class="anchor" href="#1-%e6%9c%80%e4%bd%8e%e9%99%90%e5%bf%85%e8%a6%81%e3%81%aa%e3%82%b3%e3%83%9e%e3%83%b3%e3%83%89">#&lt;/a>
-&lt;/h2>
-&lt;p>Linuxの基本操作を行うために、最低限知っておくべきコマンドを紹介します。&lt;/p>
-&lt;h3 id="11-ファイルディレクトリ操作">
- 1.1 ファイル・ディレクトリ操作
- &lt;a class="anchor" href="#11-%e3%83%95%e3%82%a1%e3%82%a4%e3%83%ab%e3%83%87%e3%82%a3%e3%83%ac%e3%82%af%e3%83%88%e3%83%aa%e6%93%8d%e4%bd%9c">#&lt;/a>
-&lt;/h3>
-&lt;ul>
-&lt;li>&lt;code>ls&lt;/code> ：ファイルやディレクトリを一覧表示&lt;/li>
-&lt;li>&lt;code>cd&lt;/code> ：ディレクトリを移動&lt;/li>
-&lt;li>&lt;code>pwd&lt;/code> ：現在のディレクトリを表示&lt;/li>
-&lt;li>&lt;code>mkdir&lt;/code> ：新しいディレクトリを作成&lt;/li>
-&lt;li>&lt;code>rm&lt;/code> ：ファイルやディレクトリを削除&lt;/li>
-&lt;li>&lt;code>cp&lt;/code> ：ファイルやディレクトリをコピー&lt;/li>
-&lt;li>&lt;code>mv&lt;/code> ：ファイルやディレクトリを移動&lt;/li>
-&lt;/ul>
-&lt;h3 id="12-データ操作">
- 1.2 データ操作
- &lt;a class="anchor" href="#12-%e3%83%87%e3%83%bc%e3%82%bf%e6%93%8d%e4%bd%9c">#&lt;/a>
-&lt;/h3>
-&lt;ul>
-&lt;li>&lt;code>cat&lt;/code> ：ファイルの中身を表示、結合&lt;/li>
-&lt;li>&lt;code>less&lt;/code> ：ファイルの内容をページ送りで表示&lt;/li>
-&lt;li>&lt;code>grep&lt;/code> ：特定の単語を検索して表示&lt;/li>
-&lt;/ul>
-&lt;h2 id="2-知っておくと便利なコマンド">
- 2. 知っておくと便利なコマンド
- &lt;a class="anchor" href="#2-%e7%9f%a5%e3%81%a3%e3%81%a6%e3%81%8a%e3%81%8f%e3%81%a8%e4%be%bf%e5%88%a9%e3%81%aa%e3%82%b3%e3%83%9e%e3%83%b3%e3%83%89">#&lt;/a>
-&lt;/h2>
-&lt;p>基本コマンドに加えて、知っておくと便利なコマンドを紹介します。&lt;/p>
-&lt;h3 id="21-権限圧縮バージョン管理">
- 2.1 権限・圧縮・バージョン管理
- &lt;a class="anchor" href="#21-%e6%a8%a9%e9%99%90%e5%9c%a7%e7%b8%ae%e3%83%90%e3%83%bc%e3%82%b8%e3%83%a7%e3%83%b3%e7%ae%a1%e7%90%86">#&lt;/a>
-&lt;/h3>
-&lt;ul>
-&lt;li>&lt;code>chmod&lt;/code> ：ファイルの権限を変更&lt;/li>
-&lt;li>&lt;code>echo&lt;/code> ：指定した文字列を標準出力に表示&lt;/li>
-&lt;li>&lt;code>tar&lt;/code> ：アーカイブを作成または展開&lt;/li>
-&lt;li>&lt;code>git&lt;/code> ：バージョン管理システム&lt;/li>
-&lt;/ul>
-&lt;h3 id="22-rスクリプトの実行">
- 2.2 Rスクリプトの実行
- &lt;a class="anchor" href="#22-r%e3%82%b9%e3%82%af%e3%83%aa%e3%83%97%e3%83%88%e3%81%ae%e5%ae%9f%e8%a1%8c">#&lt;/a>
-&lt;/h3>
-&lt;ul>
-&lt;li>&lt;code>Rscript&lt;/code> ：Rスクリプトを実行&lt;/li>
-&lt;/ul>
-&lt;h2 id="3-まとめ">
- 3. まとめ
- &lt;a class="anchor" href="#3-%e3%81%be%e3%81%a8%e3%82%81">#&lt;/a>
-&lt;/h2>
-&lt;ul>
-&lt;li>Linuxの基本操作として、ファイル・ディレクトリ操作、データ操作のコマンドを覚えましょう。&lt;/li>
-&lt;li>さらに、権限変更やアーカイブ操作、バージョン管理、Rスクリプト実行などもできると便利です。&lt;/li>
-&lt;li>ターミナルを開いて、実際にコマンドを試してみましょう！&lt;/li>
-&lt;/ul></description></item><item><title>Tidyverse</title><link>http://localhost:1313/docs/tutorials/tidyverse/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://localhost:1313/docs/tutorials/tidyverse/</guid><description>&lt;h1 id="tidyverse">
- Tidyverse
- &lt;a class="anchor" href="#tidyverse">#&lt;/a>
-&lt;/h1>
-&lt;h2 id="tidyverseってなんぞや">
- Tidyverseってなんぞや
- &lt;a class="anchor" href="#tidyverse%e3%81%a3%e3%81%a6%e3%81%aa%e3%82%93%e3%81%9e%e3%82%84">#&lt;/a>
-&lt;/h2>
-&lt;p>Tidyverseは，データ分析と可視化を効率的に行うために設計されたR言語のパッケージ群です．
-このパッケージの思想上の特徴として&lt;strong>Tidy Data&lt;/strong>の原則のもと，一貫性のある操作体系により，データ処理の生産性を保つことを特徴としています．&lt;/p>
-&lt;p>とはいえ含まれる内容や思想も膨大かつ難解なので，この章では，よくする使い方をメインに書いていきます．
-より詳しく知りたい方は，それぞれ詳細のページを見てください．(現在製作中です)&lt;/p>
-&lt;details >&lt;summary>Tidyverseのパッケージ群&lt;/summary>
- &lt;div class="markdown-inner">
-&lt;table>
- &lt;thead>
- &lt;tr>
- &lt;th>パッケージ名&lt;/th>
- &lt;th>役割&lt;/th>
- &lt;th>主な機能&lt;/th>
- &lt;/tr>
- &lt;/thead>
- &lt;tbody>
- &lt;tr>
- &lt;td>ggplot2&lt;/td>
- &lt;td>データ可視化&lt;/td>
- &lt;td>グラフィックスの文法に基づいて、グラフを宣言的に作成できる&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>dplyr&lt;/td>
- &lt;td>データ操作&lt;/td>
- &lt;td>フィルタリング，要約，並べ替え，結合といったデータ操作&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>tidyr&lt;/td>
- &lt;td>データ整理&lt;/td>
- &lt;td>&lt;strong>Tidy data&lt;/strong>作成&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>readr&lt;/td>
- &lt;td>データ読み込み&lt;/td>
- &lt;td>矩形データ（csv、tsv、fwfなど）の高速読み込み&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>purrr&lt;/td>
- &lt;td>関数型プログラミング&lt;/td>
- &lt;td>ベクトルやリストの操作（map関数など）&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>tibble&lt;/td>
- &lt;td>データフレームの現代的な再構築&lt;/td>
- &lt;td>モダンなデータフレーム構造&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>stringr&lt;/td>
- &lt;td>文字列操作&lt;/td>
- &lt;td>パターンマッチングや文字列の処理&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>forcats&lt;/td>
- &lt;td>因子型操作&lt;/td>
- &lt;td>因子データのレベルの順序や値の変更など&lt;/td>
- &lt;/tr>
- &lt;tr>
- &lt;td>lubridate&lt;/td>
- &lt;td>日付・時刻データ操作&lt;/td>
- &lt;td>日付や時間の解析と処理&lt;/td>
- &lt;/tr>
- &lt;/tbody>
-&lt;/table>
- &lt;/div>
-&lt;/details>
-&lt;h2 id="tidy-data">
- Tidy Data
- &lt;a class="anchor" href="#tidy-data">#&lt;/a>
-&lt;/h2>
-&lt;p>基本的にデータはExcelのように表形式となったデータを扱います．この時，ただ漫然と表を作成するのではなく，一定のルールの下に作成，加工していくことで効率や安全性が増します．具体的なルールとは以下の三つのことです.&lt;/p>
-&lt;ol>
-&lt;li>一つの変数は一つの列に（Each variable must have its own column.）&lt;/li>
-&lt;li>一つの観測は一つの行に（Each observation must have its own row.）&lt;/li>
-&lt;li>一つの値は一つのセルに（Each value must have its own cell.）&lt;/li>
-&lt;/ol>
-&lt;p>上記3つを満たした表形式のデータを &lt;strong>Tidy Data(整列データ)&lt;/strong> といいます．&lt;/p></description></item><item><title>ggplot2</title><link>http://localhost:1313/docs/tutorials/ggplot2/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://localhost:1313/docs/tutorials/ggplot2/</guid><description>&lt;h1 id="ggplot2で作る魅力的なグラフ">
- ggplot2で作る魅力的なグラフ
- &lt;a class="anchor" href="#ggplot2%e3%81%a7%e4%bd%9c%e3%82%8b%e9%ad%85%e5%8a%9b%e7%9a%84%e3%81%aa%e3%82%b0%e3%83%a9%e3%83%95">#&lt;/a>
-&lt;/h1>
-&lt;p>このガイドでは、Rの&lt;strong>ggplot2&lt;/strong>パッケージを用いて、シンプルかつ柔軟にグラフを作成する方法を紹介します。基本的な使い方から、グラフのカスタマイズ、複数の具体例を通して実際に使えるコードを掲載しています。なお、ここではdplyrの基本的なコマンド（パイプ(|&amp;gt;)、select、filterなど）は既にご存知であるものとして解説します。&lt;/p>
-&lt;hr>
-&lt;h2 id="1-ggplot2の基本構造">
- 1. ggplot2の基本構造
- &lt;a class="anchor" href="#1-ggplot2%e3%81%ae%e5%9f%ba%e6%9c%ac%e6%a7%8b%e9%80%a0">#&lt;/a>
-&lt;/h2>
-&lt;p>ggplot2では、まずデータフレームを指定し、&lt;code>aes()&lt;/code>関数で美的属性（x軸、y軸、色、サイズなど）を設定します。その後、&lt;code>geom_&lt;/code>系列の関数で具体的なグラフの種類を指定します。&lt;/p>
-&lt;p>基本構造は以下の通りです。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-r" data-lang="r">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">library&lt;/span>(ggplot2)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">ggplot&lt;/span>(data &lt;span style="color:#f92672">=&lt;/span> データ, &lt;span style="color:#a6e22e">aes&lt;/span>(x &lt;span style="color:#f92672">=&lt;/span> x軸, y &lt;span style="color:#f92672">=&lt;/span> y軸)) &lt;span style="color:#f92672">+&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> geom_○○()
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;hr>
-&lt;h2 id="2-具体例">
- 2. 具体例
- &lt;a class="anchor" href="#2-%e5%85%b7%e4%bd%93%e4%be%8b">#&lt;/a>
-&lt;/h2>
-&lt;h3 id="21-散布図の作成">
- 2.1 散布図の作成
- &lt;a class="anchor" href="#21-%e6%95%a3%e5%b8%83%e5%9b%b3%e3%81%ae%e4%bd%9c%e6%88%90">#&lt;/a>
-&lt;/h3>
-&lt;p>irisデータセットを用い、&lt;code>Sepal.Length&lt;/code>と&lt;code>Sepal.Width&lt;/code>の散布図を作成。種別（Species）ごとに色分けして表示します。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-r" data-lang="r">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">library&lt;/span>(dplyr)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">library&lt;/span>(ggplot2)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>iris &lt;span style="color:#f92672">|&amp;gt;&lt;/span> 
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">ggplot&lt;/span>(&lt;span style="color:#a6e22e">aes&lt;/span>(x &lt;span style="color:#f92672">=&lt;/span> Sepal.Length, y &lt;span style="color:#f92672">=&lt;/span> Sepal.Width, color &lt;span style="color:#f92672">=&lt;/span> Species)) &lt;span style="color:#f92672">+&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">geom_point&lt;/span>(size &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">3&lt;/span>) &lt;span style="color:#f92672">+&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">labs&lt;/span>(title &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">&amp;#34;Irisデータセットの散布図&amp;#34;&lt;/span>,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> x &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">&amp;#34;がく片の長さ&amp;#34;&lt;/span>,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> y &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">&amp;#34;がく片の幅&amp;#34;&lt;/span>) &lt;span style="color:#f92672">+&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">theme_minimal&lt;/span>()
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;img src="iris_scatter.png" alt="散布図の例" />&lt;/p>
-&lt;hr>
-&lt;h3 id="22-ヒストグラムの作成">
- 2.2 ヒストグラムの作成
- &lt;a class="anchor" href="#22-%e3%83%92%e3%82%b9%e3%83%88%e3%82%b0%e3%83%a9%e3%83%a0%e3%81%ae%e4%bd%9c%e6%88%90">#&lt;/a>
-&lt;/h3>
-&lt;p>irisデータセットの&lt;code>Sepal.Length&lt;/code>の分布をヒストグラムで表示し、Speciesごとに色分けします。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-r" data-lang="r">&lt;span style="display:flex;">&lt;span>iris &lt;span style="color:#f92672">|&amp;gt;&lt;/span> 
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">ggplot&lt;/span>(&lt;span style="color:#a6e22e">aes&lt;/span>(x &lt;span style="color:#f92672">=&lt;/span> Sepal.Length, fill &lt;span style="color:#f92672">=&lt;/span> Species)) &lt;span style="color:#f92672">+&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">geom_histogram&lt;/span>(bins &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">30&lt;/span>, alpha &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0.7&lt;/span>, position &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">&amp;#34;identity&amp;#34;&lt;/span>) &lt;span style="color:#f92672">+&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">labs&lt;/span>(title &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">&amp;#34;Iris: Sepal.Lengthのヒストグラム&amp;#34;&lt;/span>,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> x &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">&amp;#34;がく片の長さ&amp;#34;&lt;/span>,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> y &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">&amp;#34;度数&amp;#34;&lt;/span>) &lt;span style="color:#f92672">+&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">theme_classic&lt;/span>()
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;img src="iris_histogram.png" alt="ヒストグラムの例" />&lt;/p></description></item><item><title>Example</title><link>http://localhost:1313/docs/tutorials/example/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>http://localhost:1313/docs/tutorials/example/</guid><description>&lt;h1 id="example">
- Example
- &lt;a class="anchor" href="#example">#&lt;/a>
-&lt;/h1>
-&lt;p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tutorials on 北海道大学医学部 Bioinfo研究会</title>
+    <link>http://localhost:1313/docs/tutorials/</link>
+    <description>Recent content in Tutorials on 北海道大学医学部 Bioinfo研究会</description>
+    <generator>Hugo</generator>
+    <language>ja</language>
+    <lastBuildDate>Mon, 01 Jan 0001 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/docs/tutorials/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>linux-command</title>
+      <link>http://localhost:1313/docs/tutorials/linux-command/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/docs/tutorials/linux-command/</guid>
+      <description>&lt;h1 id=&#34;linuxコマンドの基本&#34;&gt;&#xA;  Linuxコマンドの基本&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#linux%e3%82%b3%e3%83%9e%e3%83%b3%e3%83%89%e3%81%ae%e5%9f%ba%e6%9c%ac&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h1&gt;&#xA;&lt;h2 id=&#34;1-最低限必要なコマンド&#34;&gt;&#xA;  1. 最低限必要なコマンド&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#1-%e6%9c%80%e4%bd%8e%e9%99%90%e5%bf%85%e8%a6%81%e3%81%aa%e3%82%b3%e3%83%9e%e3%83%b3%e3%83%89&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;Linuxの基本操作を行うために、最低限知っておくべきコマンドを紹介します。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Tidyverse</title>
+      <link>http://localhost:1313/docs/tutorials/tidyverse/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/docs/tutorials/tidyverse/</guid>
+      <description>&lt;h1 id=&#34;tidyverse&#34;&gt;&#xA;  Tidyverse&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#tidyverse&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h1&gt;&#xA;&lt;h2 id=&#34;tidyverseってなんぞや&#34;&gt;&#xA;  Tidyverseってなんぞや&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#tidyverse%e3%81%a3%e3%81%a6%e3%81%aa%e3%82%93%e3%81%9e%e3%82%84&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;Tidyverseは，データ分析と可視化を効率的に行うために設計されたR言語のパッケージ群です．&#xA;このパッケージの思想上の特徴として&lt;strong&gt;Tidy Data&lt;/strong&gt;の原則のもと，一貫性のある操作体系により，データ処理の生産性を保つことを特徴としています．&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>ggplot2</title>
+      <link>http://localhost:1313/docs/tutorials/ggplot2/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/docs/tutorials/ggplot2/</guid>
+      <description>&lt;h1 id=&#34;ggplot2で作る魅力的なグラフ&#34;&gt;&#xA;  ggplot2で作る魅力的なグラフ&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#ggplot2%e3%81%a7%e4%bd%9c%e3%82%8b%e9%ad%85%e5%8a%9b%e7%9a%84%e3%81%aa%e3%82%b0%e3%83%a9%e3%83%95&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h1&gt;&#xA;&lt;p&gt;このガイドでは、Rの&lt;strong&gt;ggplot2&lt;/strong&gt;パッケージを用いて、シンプルかつ柔軟にグラフを作成する方法を紹介します。基本的な使い方から、グラフのカスタマイズ、複数の具体例を通して実際に使えるコードを掲載しています。なお、ここではdplyrの基本的なコマンド（パイプ(|&amp;gt;)、select、filterなど）は既にご存知であるものとして解説します。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Example</title>
+      <link>http://localhost:1313/docs/tutorials/example/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/docs/tutorials/example/</guid>
+      <description>&lt;h1 id=&#34;example&#34;&gt;&#xA;  Example&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#example&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h1&gt;&#xA;&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

@@ -3,11 +3,12 @@ title: "Test"
 date: 2025-05-03T14:12:10+09:00
 draft: true
 ---
-test
 # テスト
+## monul
 
 エラーメッセージから、Hugoモジュールの取得に失敗していることがわかりますね。具体的には、github.com/HU-bioinfo/hugo-book を取得しようとした際に、そのモジュールの go.mod ファイルが自身のパスを github.com/alex-shpak/hugo-book と宣言しているため、不一致が起こっています。
 
+## wow
 考えられる原因
 
 このエラーの主な原因は、取得しようとしているモジュールのパス (github.com/HU-bioinfo/hugo-book) が、実際にモジュールが自身を宣言しているパス (github.com/alex-shpak/hugo-book) と異なっていることです。
