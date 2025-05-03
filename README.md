@@ -5,7 +5,7 @@
 - Hugo extended version, [Installation Instructions](https://gohugo.io/installation/)
 
 ## 初期セットアップ
-git clone https://github.com/HU-bioinfo/hu-bioinfo.github.io.git
-cd hu-bioinfo.github.io
-hugo mod get -u
-hugo server (-D)
+git clone https://github.com/HU-bioinfo/hu-bioinfo.github.io.git  
+cd hu-bioinfo.github.io  
+hugo mod get -u  
+hugo server (-D)  
