@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="
+  What is RNA-seq？
+  #
+
+
+  はじめに：遺伝子の情報が形になるまで
+  #
+
+私たちの体の設計図であるDNAには、様々なタンパク質を作るための情報が書かれています。しかし、DNAの情報が直接タンパク質になるわけではありません。">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/docs/lecture/what-is-rna-seq/">
+  <meta property="og:site_name" content="北海道大学医学部 Bioinfo研究会">
+  <meta property="og:title" content="What is RNA-seq?">
+  <meta property="og:description" content="What is RNA-seq？ # はじめに：遺伝子の情報が形になるまで # 私たちの体の設計図であるDNAには、様々なタンパク質を作るための情報が書かれています。しかし、DNAの情報が直接タンパク質になるわけではありません。">
+  <meta property="og:locale" content="ja">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="docs">
+<title>What is RNA-seq? | 北海道大学医学部 Bioinfo研究会</title>
+<link rel="icon" href="http://localhost:1313/favicon.png" >
+<link rel="manifest" href="http://localhost:1313/manifest.json">
+<link rel="canonical" href="http://localhost:1313/docs/lecture/what-is-rna-seq/">
+<link rel="stylesheet" href="http://localhost:1313/book.min.e9f68c3fff3d8236a489d16a9caf6de5e4d1a29c20eb4b5524e42cd30be4d319.css" integrity="sha256-6faMP/89gjakidFqnK9t5eTRopwg60tVJOQs0wvk0xk=" crossorigin="anonymous">
+  <script defer src="http://localhost:1313/fuse.min.js"></script>
+  <script defer src="http://localhost:1313/ja.search.min.cf8059d6a15b55a687bdc5b72b990e92144871388da327492e0e64a2e4863c22.js" integrity="sha256-z4BZ1qFbVaaHvcW3K5kOkhRIcTiNoydJLg5kouSGPCI=" crossorigin="anonymous"></script>
+<!--
+Made with Book Theme
+https://github.com/HU-bioinfo/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="http://localhost:1313/"><span>北海道大学医学部 Bioinfo研究会</span>
+  </a>
+</h2>
+
+
+<div class="book-search hidden">
+  <input type="text" id="book-search-input" placeholder="検索" aria-label="検索" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+<script>document.querySelector(".book-search").classList.remove("hidden")</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <ul>
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-c0a92f7b53ff9cc8a20d4f1b6823c910" class="toggle"  />
+    <label for="section-c0a92f7b53ff9cc8a20d4f1b6823c910" class="flex justify-between">
+      <a href="http://localhost:1313/docs/tutorials/" class="">Tutorials</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/tutorials/linux-command/" class="">linux-command</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/tutorials/tidyverse/" class="">Tidyverse</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/tutorials/ggplot2/" class="">ggplot2</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/tutorials/example/" class="">Example</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-96e42de36d5ee1b8abe10a8628b5b82a" class="toggle" checked />
+    <label for="section-96e42de36d5ee1b8abe10a8628b5b82a" class="flex justify-between">
+      <a href="http://localhost:1313/docs/lecture/" class="">Lecture</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/lecture/what-is-rna-seq/" class="active">What is RNA-seq?</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/about/" class="">About</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/members/" class="">Members</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/how_to_write_articles/" class="">How to Write Articles</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+  
+<ul>
+  
+  <li>
+    <a href="https://github.com/HU-bioinfo/"  target="_blank" rel="noopener">
+        Github
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://x.com/hokudaiBioinfo"  target="_blank" rel="noopener">
+        X
+      </a>
+  </li>
+  
+</ul>
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="http://localhost:1313/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <h3>What is RNA-seq?</h3>
+
+  <label for="toc-control">
+    
+    <img src="http://localhost:1313/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#はじめに遺伝子の情報が形になるまで">はじめに：遺伝子の情報が形になるまで</a></li>
+    <li><a href="#rna-seqとは">RNA-seqとは？</a>
+      <ul>
+        <li><a href="#bulk-rna-seq-と-single-cell-rna-seq">bulk RNA-seq と single-cell RNA-seq</a></li>
+      </ul>
+    </li>
+    <li><a href="#bulk-rna-seq実験の基本的な流れ">bulk RNA-seq実験の基本的な流れ</a></li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown book-article"><h1 id="what-is-rna-seq">
+  What is RNA-seq？
+  <a class="anchor" href="#what-is-rna-seq">#</a>
+</h1>
+<h2 id="はじめに遺伝子の情報が形になるまで">
+  はじめに：遺伝子の情報が形になるまで
+  <a class="anchor" href="#%e3%81%af%e3%81%98%e3%82%81%e3%81%ab%e9%81%ba%e4%bc%9d%e5%ad%90%e3%81%ae%e6%83%85%e5%a0%b1%e3%81%8c%e5%bd%a2%e3%81%ab%e3%81%aa%e3%82%8b%e3%81%be%e3%81%a7">#</a>
+</h2>
+<p>私たちの体の設計図であるDNAには、様々なタンパク質を作るための情報が書かれています。しかし、DNAの情報が直接タンパク質になるわけではありません。</p>
+<p><strong>セントラルドグマ</strong>という生命の基本的な原則があります。これは、遺伝子情報が <strong>DNA → RNA → タンパク質</strong> という一方向の流れで伝えられる、という考え方です。</p>
+
+
+<script src="http://localhost:1313/mermaid.min.js"></script>
+
+  <script>mermaid.initialize({
+  "flowchart": {
+    "useMaxWidth":true
+  },
+  "theme": "default"
+}
+)</script>
+
+
+
+
+<pre class="mermaid">
+graph LR
+    A[DNA] -- Replication --> A
+    A -- Transcription --> B[RNA]
+    B -- Translation --> C[Protein]
+</pre>
+
+<ol>
+<li><strong>転写 (Transcription):</strong> DNAの必要な部分の情報が <strong>mRNA (メッセンジャーRNA)</strong> という分子にコピーされます。</li>
+<li><strong>翻訳 (Translation):</strong> mRNAの情報をもとに、タンパク質が合成されます。</li>
+</ol>
+<p>このタンパク質が、私たちの体の機能や見た目（表現型）を作り出す実働部隊です。つまり、<strong>どの遺伝子からどれくらいの量のmRNAが作られるか</strong>（遺伝子発現）が、細胞や個体の状態を決定する上で非常に重要なのです。</p>
+<blockquote class="book-hint info">
+  
+**補足:**
+実際には、RNAにはmRNA以外にも様々な種類があり、それぞれ重要な役割を担っています。また、セントラルドグマには例外（逆転写など）も存在しますが、まずはこの基本的な流れを理解することが重要です。
+
+</blockquote>
+
+<h2 id="rna-seqとは">
+  RNA-seqとは？
+  <a class="anchor" href="#rna-seq%e3%81%a8%e3%81%af">#</a>
+</h2>
+<p><strong>RNA-seq (RNAシーケンシング)</strong> は、細胞の中に存在するRNA、特に <strong>mRNA</strong> を網羅的に読み取り、その種類と量を調べるための強力な技術です。</p>
+<p>これにより、特定の時点や条件下で、<strong>どの遺伝子が活発に働いているか（発現しているか）</strong> を大規模に知ることができます。</p>
+<h3 id="bulk-rna-seq-と-single-cell-rna-seq">
+  bulk RNA-seq と single-cell RNA-seq
+  <a class="anchor" href="#bulk-rna-seq-%e3%81%a8-single-cell-rna-seq">#</a>
+</h3>
+<p>RNA-seqには、大きく分けて2つのアプローチがあります。</p>
+<ul>
+<li><strong>bulk RNA-seq:</strong> 複数の細胞の集団からRNAをまとめて抽出し、平均的な発現パターンを解析します。組織全体の傾向を見るのに適しています。</li>
+<li><strong>single-cell RNA-seq (scRNA-seq):</strong> 細胞を1つずつ分離し、それぞれの細胞のRNAを解析します。細胞ごとの違いや、不均一な細胞集団の内部構造を詳細に調べることができます。</li>
+</ul>
+<p>もう少し詳しくデータの性質を見てみましょう。</p>
+<p><strong>bulk RNA-seq</strong> では、測定結果は組織や細胞集団全体の <strong>平均的な遺伝子発現</strong> を表します。通常、1人の患者さんや1つの実験条件あたり、<strong>1つのサンプル</strong>（RNA抽出物）からデータが得られます。</p>
+
+
+<pre class="mermaid">
+graph LR
+    A("組織/細胞集団 (Bulk)") --> B("まとめてRNA抽出") --> C("平均的な発現データ<br>(1サンプル)")
+</pre>
+
+<p><strong>Bulk RNA-seq のデータの例:</strong></p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">遺伝子</th>
+          <th style="text-align: right">症例A (サンプルA)</th>
+          <th style="text-align: right">症例B (サンプルB)</th>
+          <th style="text-align: right">症例C (サンプルC)</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">遺伝子1</td>
+          <td style="text-align: right">150</td>
+          <td style="text-align: right">200</td>
+          <td style="text-align: right">180</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">遺伝子2</td>
+          <td style="text-align: right">10</td>
+          <td style="text-align: right">5</td>
+          <td style="text-align: right">12</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">遺伝子3</td>
+          <td style="text-align: right">800</td>
+          <td style="text-align: right">750</td>
+          <td style="text-align: right">820</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">&hellip;</td>
+          <td style="text-align: right">&hellip;</td>
+          <td style="text-align: right">&hellip;</td>
+          <td style="text-align: right">&hellip;</td>
+      </tr>
+  </tbody>
+</table>
+<p>（行: 遺伝子, 列: 各症例から得られたサンプル）</p>
+<p><strong>scRNA-seq</strong> では、<strong>個々の細胞ごと</strong> の遺伝子発現プロファイルが得られます。つまり、1人の患者さんや1つのサンプルから、<strong>数百〜数万個の細胞（データ点）</strong> を得ることができ、細胞間のばらつきや、異なる細胞タイプの存在を直接的に解析できます。</p>
+
+
+<pre class="mermaid">
+graph LR
+    D("組織/細胞集団 (sc)") --> E("1細胞ずつ分離") --> G("1細胞ごとに<br>RNA抽出/解析") --> H("1細胞ごとの発現データ<br>(多数の細胞)")
+</pre>
+
+<p><strong>Single-cell RNA-seq のデータの例:</strong></p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">遺伝子</th>
+          <th style="text-align: right">細胞A_1</th>
+          <th style="text-align: center">&hellip;</th>
+          <th style="text-align: right">細胞A_1000</th>
+          <th style="text-align: right">細胞B_1</th>
+          <th style="text-align: center">&hellip;</th>
+          <th style="text-align: right">細胞B_1500</th>
+          <th style="text-align: right">細胞C_1</th>
+          <th style="text-align: center">&hellip;</th>
+          <th style="text-align: right">細胞C_2000</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">遺伝子1</td>
+          <td style="text-align: right">5</td>
+          <td style="text-align: center">&hellip;</td>
+          <td style="text-align: right">8</td>
+          <td style="text-align: right">7</td>
+          <td style="text-align: center">&hellip;</td>
+          <td style="text-align: right">10</td>
+          <td style="text-align: right">9</td>
+          <td style="text-align: center">&hellip;</td>
+          <td style="text-align: right">11</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">遺伝子2</td>
+          <td style="text-align: right">0</td>
+          <td style="text-align: center">&hellip;</td>
+          <td style="text-align: right">1</td>
+          <td style="text-align: right">0</td>
+          <td style="text-align: center">&hellip;</td>
+          <td style="text-align: right">0</td>
+          <td style="text-align: right">2</td>
+          <td style="text-align: center">&hellip;</td>
+          <td style="text-align: right">0</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">遺伝子3</td>
+          <td style="text-align: right">25</td>
+          <td style="text-align: center">&hellip;</td>
+          <td style="text-align: right">22</td>
+          <td style="text-align: right">30</td>
+          <td style="text-align: center">&hellip;</td>
+          <td style="text-align: right">28</td>
+          <td style="text-align: right">15</td>
+          <td style="text-align: center">&hellip;</td>
+          <td style="text-align: right">18</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">&hellip;</td>
+          <td style="text-align: right">&hellip;</td>
+          <td style="text-align: center">&hellip;</td>
+          <td style="text-align: right">&hellip;</td>
+          <td style="text-align: right">&hellip;</td>
+          <td style="text-align: center">&hellip;</td>
+          <td style="text-align: right">&hellip;</td>
+          <td style="text-align: right">&hellip;</td>
+          <td style="text-align: center">&hellip;</td>
+          <td style="text-align: right">&hellip;</td>
+      </tr>
+  </tbody>
+</table>
+<p>（行: 遺伝子, 列: 各症例の個々の細胞。例えば、症例Aから1000細胞、症例Bから1500細胞、症例Cから2000細胞など）</p>
+<p>このデータの粒度の違いは、後に行うデータ解析のアプローチにも大きく影響します。</p>
+<blockquote class="book-hint info">
+  
+このレクチャーでは、主に **bulk RNA-seq** について解説を進めます。
+
+</blockquote>
+
+<h2 id="bulk-rna-seq実験の基本的な流れ">
+  bulk RNA-seq実験の基本的な流れ
+  <a class="anchor" href="#bulk-rna-seq%e5%ae%9f%e9%a8%93%e3%81%ae%e5%9f%ba%e6%9c%ac%e7%9a%84%e3%81%aa%e6%b5%81%e3%82%8c">#</a>
+</h2>
+<p>bulk RNA-seqは、一般的に以下のステップで進められます。</p>
+<ol>
+<li><strong>RNA抽出 (RNA Extraction):</strong> 解析したい細胞や組織からRNAを抽出します。DNAやタンパク質などの他の分子を取り除き、純粋なRNAを得ることが重要です。</li>
+<li><strong>ライブラリ調製 (Library Preparation):</strong> 抽出したRNAをシーケンサーで読み取れる形に加工します。
+<ul>
+<li>（多くの場合）mRNAの選択またはrRNA（リボソームRNA）の除去</li>
+<li>RNAを断片化</li>
+<li>cDNA（相補的DNA）への逆転写</li>
+<li>アダプター配列の付加（シーケンサーが認識するための目印）</li>
+<li>PCR増幅</li>
+</ul>
+</li>
+<li><strong>シーケンシング (Sequencing):</strong> 調製したライブラリを次世代シーケンサー（NGS）で読み取り、大量の短い塩基配列データ（リード）を得ます。</li>
+<li><strong>データ解析 (Data Analysis):</strong> 得られたリードをリファレンスゲノムやトランスクリプトームにマッピングし、遺伝子ごとにリード数をカウントすることで、遺伝子の発現量を定量します。その後、統計解析などを行い、実験群間での発現変動などを調べます。</li>
+</ol>
+<blockquote class="book-hint danger">
+  
+**注意:** 各ステップには細かいプロトコルや注意点が多く存在します。ここでは大まかな流れを理解することを目的としています。
+
+</blockquote>
+
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#はじめに遺伝子の情報が形になるまで">はじめに：遺伝子の情報が形になるまで</a></li>
+    <li><a href="#rna-seqとは">RNA-seqとは？</a>
+      <ul>
+        <li><a href="#bulk-rna-seq-と-single-cell-rna-seq">bulk RNA-seq と single-cell RNA-seq</a></li>
+      </ul>
+    </li>
+    <li><a href="#bulk-rna-seq実験の基本的な流れ">bulk RNA-seq実験の基本的な流れ</a></li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

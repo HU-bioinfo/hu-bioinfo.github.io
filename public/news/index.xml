@@ -2,18 +2,25 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>News on 北海道大学医学部 Bioinfo研究会</title>
-    <link>https://hu-bioinfo.github.io/news/</link>
+    <link>http://localhost:1313/news/</link>
     <description>Recent content in News on 北海道大学医学部 Bioinfo研究会</description>
     <generator>Hugo</generator>
     <language>ja</language>
     <lastBuildDate>Sat, 03 May 2025 20:04:47 +0900</lastBuildDate>
-    <atom:link href="https://hu-bioinfo.github.io/news/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/news/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>第1回勉強会やります</title>
-      <link>https://hu-bioinfo.github.io/news/%E7%AC%AC1%E5%9B%9E%E5%8B%89%E5%BC%B7%E4%BC%9A%E3%82%84%E3%82%8A%E3%81%BE%E3%81%99/</link>
+      <link>http://localhost:1313/news/%E7%AC%AC1%E5%9B%9E%E5%8B%89%E5%BC%B7%E4%BC%9A%E3%82%84%E3%82%8A%E3%81%BE%E3%81%99/</link>
       <pubDate>Sat, 03 May 2025 20:04:47 +0900</pubDate>
-      <guid>https://hu-bioinfo.github.io/news/%E7%AC%AC1%E5%9B%9E%E5%8B%89%E5%BC%B7%E4%BC%9A%E3%82%84%E3%82%8A%E3%81%BE%E3%81%99/</guid>
+      <guid>http://localhost:1313/news/%E7%AC%AC1%E5%9B%9E%E5%8B%89%E5%BC%B7%E4%BC%9A%E3%82%84%E3%82%8A%E3%81%BE%E3%81%99/</guid>
       <description>&lt;h1 id=&#34;第1回勉強会のお知らせ&#34;&gt;&#xA;  第1回勉強会のお知らせ&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#%e7%ac%ac1%e5%9b%9e%e5%8b%89%e5%bc%b7%e4%bc%9a%e3%81%ae%e3%81%8a%e7%9f%a5%e3%82%89%e3%81%9b&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h1&gt;&#xA;&lt;h2 id=&#34;開催日時&#34;&gt;&#xA;  開催日時&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#%e9%96%8b%e5%82%ac%e6%97%a5%e6%99%82&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;5月13日(火曜日) 17:00&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Test</title>
+      <link>http://localhost:1313/news/test/</link>
+      <pubDate>Sat, 03 May 2025 14:12:10 +0900</pubDate>
+      <guid>http://localhost:1313/news/test/</guid>
+      <description>&lt;h1 id=&#34;テスト&#34;&gt;&#xA;  テスト&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#%e3%83%86%e3%82%b9%e3%83%88&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h1&gt;&#xA;&lt;h2 id=&#34;monul&#34;&gt;&#xA;  monul&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#monul&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;エラーメッセージから、Hugoモジュールの取得に失敗していることがわかりますね。具体的には、github.com/HU-bioinfo/hugo-book を取得しようとした際に、そのモジュールの go.mod ファイルが自身のパスを github.com/alex-shpak/hugo-book と宣言しているため、不一致が起こっています。&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

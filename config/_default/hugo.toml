@@ -31,5 +31,8 @@ path = 'github.com/HU-bioinfo/hugo-book'
   name = "X"
   url = "https://x.com/hokudaiBioinfo"
 
+[params]
+  BookMermaid = true
+
 [markup.goldmark.renderer]
   unsafe = true
