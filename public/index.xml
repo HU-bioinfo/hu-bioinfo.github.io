@@ -2,81 +2,81 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>北海道大学医学部 Bioinfo研究会</title>
-    <link>http://localhost:1313/</link>
+    <link>http://localhost:38111/</link>
     <description>Recent content on 北海道大学医学部 Bioinfo研究会</description>
     <generator>Hugo</generator>
     <language>ja</language>
     <lastBuildDate>Sat, 03 May 2025 20:04:47 +0900</lastBuildDate>
-    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:38111/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>linux-command</title>
-      <link>http://localhost:1313/docs/tutorials/linux-command/</link>
+      <title>Start up</title>
+      <link>http://localhost:38111/docs/tutorials/start-up/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/docs/tutorials/linux-command/</guid>
-      <description>&lt;h1 id=&#34;linuxコマンドの基本&#34;&gt;&#xA;  Linuxコマンドの基本&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#linux%e3%82%b3%e3%83%9e%e3%83%b3%e3%83%89%e3%81%ae%e5%9f%ba%e6%9c%ac&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h1&gt;&#xA;&lt;h2 id=&#34;1-最低限必要なコマンド&#34;&gt;&#xA;  1. 最低限必要なコマンド&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#1-%e6%9c%80%e4%bd%8e%e9%99%90%e5%bf%85%e8%a6%81%e3%81%aa%e3%82%b3%e3%83%9e%e3%83%b3%e3%83%89&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;Linuxの基本操作を行うために、最低限知っておくべきコマンドを紹介します。&lt;/p&gt;</description>
+      <guid>http://localhost:38111/docs/tutorials/start-up/</guid>
+      <description>&lt;h1 id=&#34;hu-bioinfo-workshop-開発環境セットアップガイド&#34;&gt;&#xA;  HU Bioinfo Workshop 開発環境セットアップガイド&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#hu-bioinfo-workshop-%e9%96%8b%e7%99%ba%e7%92%b0%e5%a2%83%e3%82%bb%e3%83%83%e3%83%88%e3%82%a2%e3%83%83%e3%83%97%e3%82%ac%e3%82%a4%e3%83%89&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h1&gt;&#xA;&lt;div class=&#34;book-tabs&#34;&gt;&#xA;&lt;input type=&#34;radio&#34; class=&#34;toggle&#34; name=&#34;tabs-windows-version&#34; id=&#34;tabs-windows-version-0&#34; checked=&#34;checked&#34; /&gt;&#xA;&lt;label for=&#34;tabs-windows-version-0&#34;&gt;Windows 11&lt;/label&gt;&#xA;&lt;div class=&#34;book-tabs-content markdown-inner&#34;&gt;&lt;h2 id=&#34;windows-11-でのセットアップ&#34;&gt;&#xA;  Windows 11 でのセットアップ&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#windows-11-%e3%81%a7%e3%81%ae%e3%82%bb%e3%83%83%e3%83%88%e3%82%a2%e3%83%83%e3%83%97&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;details &gt;&lt;summary&gt;1. WSL2 (Windows Subsystem for Linux 2) の導入&lt;/summary&gt;&#xA;  &lt;div class=&#34;markdown-inner&#34;&gt;&#xA;&lt;p&gt;Windows上でLinux環境を動かすための「WSL2」をセットアップします。これにより、Linuxベースのツールが使えるようになります。&lt;/p&gt;</description>
     </item>
     <item>
       <title>What is RNA-seq?</title>
-      <link>http://localhost:1313/docs/lecture/what-is-rna-seq/</link>
+      <link>http://localhost:38111/docs/lecture/what-is-rna-seq/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/docs/lecture/what-is-rna-seq/</guid>
+      <guid>http://localhost:38111/docs/lecture/what-is-rna-seq/</guid>
       <description>&lt;h1 id=&#34;what-is-rna-seq&#34;&gt;&#xA;  What is RNA-seq？&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#what-is-rna-seq&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h1&gt;&#xA;&lt;h2 id=&#34;はじめに遺伝子の情報が形になるまで&#34;&gt;&#xA;  はじめに：遺伝子の情報が形になるまで&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#%e3%81%af%e3%81%98%e3%82%81%e3%81%ab%e9%81%ba%e4%bc%9d%e5%ad%90%e3%81%ae%e6%83%85%e5%a0%b1%e3%81%8c%e5%bd%a2%e3%81%ab%e3%81%aa%e3%82%8b%e3%81%be%e3%81%a7&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;私たちの体の設計図であるDNAには、様々なタンパク質を作るための情報が書かれています。しかし、DNAの情報が直接タンパク質になるわけではありません。&lt;/p&gt;</description>
     </item>
     <item>
-      <title>Tidyverse</title>
-      <link>http://localhost:1313/docs/tutorials/tidyverse/</link>
+      <title>linux-command</title>
+      <link>http://localhost:38111/docs/tutorials/linux-command/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/docs/tutorials/tidyverse/</guid>
+      <guid>http://localhost:38111/docs/tutorials/linux-command/</guid>
+      <description>&lt;h1 id=&#34;linuxコマンドの基本&#34;&gt;&#xA;  Linuxコマンドの基本&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#linux%e3%82%b3%e3%83%9e%e3%83%b3%e3%83%89%e3%81%ae%e5%9f%ba%e6%9c%ac&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h1&gt;&#xA;&lt;h2 id=&#34;1-最低限必要なコマンド&#34;&gt;&#xA;  1. 最低限必要なコマンド&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#1-%e6%9c%80%e4%bd%8e%e9%99%90%e5%bf%85%e8%a6%81%e3%81%aa%e3%82%b3%e3%83%9e%e3%83%b3%e3%83%89&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;Linuxの基本操作を行うために、最低限知っておくべきコマンドを紹介します。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Tidyverse</title>
+      <link>http://localhost:38111/docs/tutorials/tidyverse/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:38111/docs/tutorials/tidyverse/</guid>
       <description>&lt;h1 id=&#34;tidyverse&#34;&gt;&#xA;  Tidyverse&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#tidyverse&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h1&gt;&#xA;&lt;h2 id=&#34;tidyverseってなんぞや&#34;&gt;&#xA;  Tidyverseってなんぞや&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#tidyverse%e3%81%a3%e3%81%a6%e3%81%aa%e3%82%93%e3%81%9e%e3%82%84&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;Tidyverseは，データ分析と可視化を効率的に行うために設計されたR言語のパッケージ群です．&#xA;このパッケージの思想上の特徴として&lt;strong&gt;Tidy Data&lt;/strong&gt;の原則のもと，一貫性のある操作体系により，データ処理の生産性を保つことを特徴としています．&lt;/p&gt;</description>
     </item>
     <item>
       <title>ggplot2</title>
-      <link>http://localhost:1313/docs/tutorials/ggplot2/</link>
+      <link>http://localhost:38111/docs/tutorials/ggplot2/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/docs/tutorials/ggplot2/</guid>
+      <guid>http://localhost:38111/docs/tutorials/ggplot2/</guid>
       <description>&lt;h1 id=&#34;ggplot2で作る魅力的なグラフ&#34;&gt;&#xA;  ggplot2で作る魅力的なグラフ&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#ggplot2%e3%81%a7%e4%bd%9c%e3%82%8b%e9%ad%85%e5%8a%9b%e7%9a%84%e3%81%aa%e3%82%b0%e3%83%a9%e3%83%95&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h1&gt;&#xA;&lt;p&gt;このガイドでは、Rの&lt;strong&gt;ggplot2&lt;/strong&gt;パッケージを用いて、シンプルかつ柔軟にグラフを作成する方法を紹介します。基本的な使い方から、グラフのカスタマイズ、複数の具体例を通して実際に使えるコードを掲載しています。なお、ここではdplyrの基本的なコマンド（パイプ(|&amp;gt;)、select、filterなど）は既にご存知であるものとして解説します。&lt;/p&gt;</description>
     </item>
     <item>
       <title>About</title>
-      <link>http://localhost:1313/docs/about/</link>
+      <link>http://localhost:38111/docs/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/docs/about/</guid>
+      <guid>http://localhost:38111/docs/about/</guid>
       <description>&lt;p&gt;私たちは北海道大学医学部に在学する学生によって構成されている学生団体です.&#xA;バイオインフォマティクスや広く情報科学ついて学習し合っている団体です．&lt;/p&gt;</description>
     </item>
     <item>
       <title>Members</title>
-      <link>http://localhost:1313/docs/members/</link>
+      <link>http://localhost:38111/docs/members/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/docs/members/</guid>
+      <guid>http://localhost:38111/docs/members/</guid>
       <description>&lt;p&gt;Comming soon&amp;hellip;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Example</title>
-      <link>http://localhost:1313/docs/tutorials/example/</link>
+      <link>http://localhost:38111/docs/tutorials/example/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/docs/tutorials/example/</guid>
+      <guid>http://localhost:38111/docs/tutorials/example/</guid>
       <description>&lt;h1 id=&#34;example&#34;&gt;&#xA;  Example&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#example&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h1&gt;&#xA;&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&lt;/p&gt;</description>
     </item>
     <item>
       <title>How to Write Articles</title>
-      <link>http://localhost:1313/docs/how_to_write_articles/</link>
+      <link>http://localhost:38111/docs/how_to_write_articles/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/docs/how_to_write_articles/</guid>
+      <guid>http://localhost:38111/docs/how_to_write_articles/</guid>
       <description>&lt;h1 id=&#34;記事の投稿方法&#34;&gt;&#xA;  記事の投稿方法&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#%e8%a8%98%e4%ba%8b%e3%81%ae%e6%8a%95%e7%a8%bf%e6%96%b9%e6%b3%95&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h1&gt;&#xA;&lt;h2 id=&#34;構成&#34;&gt;&#xA;  構成&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#%e6%a7%8b%e6%88%90&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;サイトは&lt;a href=&#34;https://gohugo.io/&#34;&gt;Hugo&lt;/a&gt;の&lt;a href=&#34;https://themes.gohugo.io/themes/hugo-book/&#34;&gt;Hugo-bookテーマ&lt;/a&gt;用いて作成しました．&#xA;ディレクトリ構成は以下のとおりです．&#xA;基本的にいじるのは&lt;code&gt;content&lt;/code&gt;以下のディレクトリだけです．&lt;/p&gt;</description>
     </item>
     <item>
       <title>第1回勉強会やります</title>
-      <link>http://localhost:1313/news/%E7%AC%AC1%E5%9B%9E%E5%8B%89%E5%BC%B7%E4%BC%9A%E3%82%84%E3%82%8A%E3%81%BE%E3%81%99/</link>
+      <link>http://localhost:38111/news/%E7%AC%AC1%E5%9B%9E%E5%8B%89%E5%BC%B7%E4%BC%9A%E3%82%84%E3%82%8A%E3%81%BE%E3%81%99/</link>
       <pubDate>Sat, 03 May 2025 20:04:47 +0900</pubDate>
-      <guid>http://localhost:1313/news/%E7%AC%AC1%E5%9B%9E%E5%8B%89%E5%BC%B7%E4%BC%9A%E3%82%84%E3%82%8A%E3%81%BE%E3%81%99/</guid>
+      <guid>http://localhost:38111/news/%E7%AC%AC1%E5%9B%9E%E5%8B%89%E5%BC%B7%E4%BC%9A%E3%82%84%E3%82%8A%E3%81%BE%E3%81%99/</guid>
       <description>&lt;h1 id=&#34;第1回勉強会のお知らせ&#34;&gt;&#xA;  第1回勉強会のお知らせ&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#%e7%ac%ac1%e5%9b%9e%e5%8b%89%e5%bc%b7%e4%bc%9a%e3%81%ae%e3%81%8a%e7%9f%a5%e3%82%89%e3%81%9b&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h1&gt;&#xA;&lt;h2 id=&#34;開催日時&#34;&gt;&#xA;  開催日時&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#%e9%96%8b%e5%82%ac%e6%97%a5%e6%99%82&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;5月13日(火曜日) 17:00&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Test</title>
-      <link>http://localhost:1313/news/test/</link>
-      <pubDate>Sat, 03 May 2025 14:12:10 +0900</pubDate>
-      <guid>http://localhost:1313/news/test/</guid>
-      <description>&lt;h1 id=&#34;テスト&#34;&gt;&#xA;  テスト&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#%e3%83%86%e3%82%b9%e3%83%88&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h1&gt;&#xA;&lt;h2 id=&#34;monul&#34;&gt;&#xA;  monul&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#monul&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;エラーメッセージから、Hugoモジュールの取得に失敗していることがわかりますね。具体的には、github.com/HU-bioinfo/hugo-book を取得しようとした際に、そのモジュールの go.mod ファイルが自身のパスを github.com/alex-shpak/hugo-book と宣言しているため、不一致が起こっています。&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
