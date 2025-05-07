@@ -60,6 +60,30 @@ Windows上でLinux環境を動かすための「WSL2」をセットアップし�
     インストール完了後、PowerShellで `wsl` または `wsl -d Ubuntu-24.04` と入力してUbuntuを起動します。
     初回起動時、ユーザー名とパスワードの設定を求められます。画面の指示に従い設定し、**忘れないようにメモしておきましょう。**
 
+{{< hint warning >}}
+**Ubuntu ユーザー名とパスワード:** この後すぐに使用します。忘れた場合は以下の方法で再設定が可能です。
+
+パスワード再設定手順:
+
+1.  **WindowsのコマンドプロンプトまたはPowerShellを管理者として開きます。**
+2.  **以下のコマンドでWSLをrootユーザーで起動します。** (`YourUbuntuDistro` の部分は、`wsl -l -v` で確認できる実際のディストリビューション名 (例: `Ubuntu-24.04`) に置き換えてください。)
+    ```powershell
+    wsl -d YourUbuntuDistro -u root
+    ```
+3.  **rootユーザーとしてUbuntuが起動したら、以下のコマンドでパスワードをリセットしたいユーザーのパスワードを設定します。** (`yourusername` の部分は、ご自身のUbuntuのユーザー名に置き換えてください。ユーザー名が分からない場合は、`ls /home` コマンドで確認できます。パスワード入力時は画面に文字が表示されませんが、そのまま入力してEnterを押してください。)
+    ```bash
+    passwd yourusername
+    ```
+4.  **新しいパスワードを2回入力し、設定が完了したら `exit` コマンドでrootシェルを終了します。**
+5.  **Windowsのコマンドプロンプト/PowerShellで、以下のコマンドを実行し、デフォルトユーザーを元に戻します。** (`YourUbuntuDistro` と `yourusername` は適切に置き換えてください。)
+    ```powershell
+    YourUbuntuDistro config --default-user yourusername
+    ```
+    *(`Ubuntu` コマンドで起動している場合は `ubuntu config --default-user yourusername` となります。)*
+
+これでパスワードが再設定されました。WSLを通常起動して、新しいパスワードでログインできることを確認してください。
+{{< /hint >}}
+
 これでWSL2とUbuntuの基本的なセットアップは完了です。
 {{< /details >}}
 
@@ -201,6 +225,10 @@ GitHub上のリソースにアクセスするために、Personal Access Token (
 
 このPATは後ほど使用します。パスワード同様、大切に扱ってください。
 
+{{< hint warning >}}
+**注意:** PATを紛失した、もしくは漏洩した場合は必ず **そのPATを削除** して新しく作り直してください。
+{{< /hint >}}
+
 #### 6.3 解析作業用ディレクトリの作成とLauncherの実行
 
 1.  **WSL (Ubuntu) ターミナルを開く** (Cursor内で `Ctrl+@`)
@@ -228,8 +256,58 @@ GitHub上のリソースにアクセスするために、Personal Access Token (
 
 6.  **環境構築の開始**
     設定後、`bioinfo-launcher` がDockerを使って解析環境の構築を開始します。
-    *   **Dockerについて:** この拡張機能はDockerが必要です。UbuntuにDocker Engineが未インストールの場合は、拡張機能がインストールを試みます。うまくいかない場合は、[Docker Engine for Ubuntu 公式サイト](https://docs.docker.com/engine/install/ubuntu/) を参考に手動でインストールしてください。
-    *   環境構築には数分～数十分かかることがあります（特に初回）。
+    *   **Dockerについて:** この拡張機能はDockerが必要です。UbuntuにDocker Engineが未インストールの場合は、拡張機能がインストールを試みます。うまくいかない場合は、下記の方法を参考に手動でインストールしてください。
+
+{{< details title = "Docker Engineのインストール" >}}
+    WSL2 Ubuntu上にDocker Engineをインストールする手順を説明します。
+
+1.  **古いバージョンのDockerを削除（必要な場合）**
+    ```bash
+    sudo apt-get remove docker docker-engine docker.io containerd runc
+    ```
+
+2.  **必要なパッケージのインストール**
+    ```bash
+    sudo apt-get update
+    sudo apt-get install \
+        ca-certificates \
+        curl \
+        gnupg \
+        lsb-release
+    ```
+
+3.  **Dockerの公式GPGキーを追加**
+    ```bash
+    sudo mkdir -m 0755 -p /etc/apt/keyrings
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+    ```
+
+4.  **Dockerのリポジトリを設定**
+    ```bash
+    echo \
+      "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+      $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+    ```
+
+5.  **Docker Engineのインストール**
+    ```bash
+    sudo apt-get update
+    sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+    ```
+
+6.  **Dockerの動作確認**
+    ```bash
+    sudo docker run hello-world
+    ```
+    正常にインストールされていれば、Hello from Docker!というメッセージが表示されます。
+
+7.  **（推奨）一般ユーザーでDockerを使用できるようにする**
+    ```bash
+    sudo usermod -aG docker $USER
+    ```
+    このコマンドを実行後、**WSLを再起動**してください。再起動後は`sudo`なしでDockerコマンドが使えるようになります。
+
+{{< /details >}}
 
 7.  **コンテナ内での作業開始**
     構築が完了すると、多くの場合、新しいCursorウィンドウが自動で開きます。これがDockerコンテナ内の開発環境です。
@@ -238,17 +316,54 @@ GitHub上のリソースにアクセスするために、Personal Access Token (
 
 これで、`hu-bioinfo-workshop.bioinfo-launcher` のセットアップと実行は完了です。統一された解析環境で作業を始めましょう！
 {{< /details >}}
+
+{{< details title = "7. GitHub Copilot (学生向け無料) のセットアップ" >}}
+
+GitHub Copilot は、AIによるコード補完・生成ツールです。学生の方は、GitHub Student Developer Pack を通じて GitHub Copilot Pro を無料で利用できます。ここでは、その申請とCursorでの利用設定について説明します。
+
+{{< hint info>}}
+**なぜ必要？** Cursorにも「Cursor Tab」という同様の拡張機能がありますが、無料版では2000回の使い切りとなっています。そのためその後は上記のGitHub Copilotを使ってください（学生限定）。
+{{< /hint >}}
+
+{{< hint warning >}}
+**注意:** GitHub Student Developer Pack の申請承認には数日から数週間かかる場合があります。ワークショップ開始までに承認されない場合でも、その後の学習は可能です。
+{{< /hint >}}
+
+1.  **GitHub Student Developer Pack を申請**
+    以下のページにアクセスし、「Get your Pack」から学生であることを証明するための情報を入力し、申請してください。
+    [https://education.github.com/pack](https://education.github.com/pack)
+
+2.  **申請承認を確認し、Copilot Pro を有効化**
+    申請状況は以下のページで確認できます。
+    [https://github.com/settings/education/benefits](https://github.com/settings/education/benefits)
+    承認されたら、このページにある特典リストから GitHub Copilot Pro の項目を見つけ、リンクをクリックして有効化してください。
+
+3.  **Cursor に GitHub Copilot 拡張機能をインストール**
+    GitHub Copilot Pro が有効になったら、Cursorに戻ります。
+    Cursorの拡張機能ビュー（`Ctrl+Shift+X`）で「GitHub Copilot」と検索し、公式拡張機能をインストールしてください。
+    インストール後に表示される指示に従い、GitHubアカウントでサインインすることで機能が利用可能になります。
+
+これで、CursorでGitHub Copilotを使ったAIコーディング支援を受けられるようになります。
+{{< /details >}}
 {{% /tab %}}
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 {{% tab "Windows 10" %}}
-
-
-
-
-
-
-
-
 ## Windows 10 でのセットアップ
 
 {{< details title = "1. WSL2 (Windows Subsystem for Linux 2) の導入" >}}
@@ -297,6 +412,30 @@ Windows上でLinux環境を動かすための「WSL2」をセットアップし�
     インストール完了後、PowerShellで `wsl` または `wsl -d Ubuntu-24.04` と入力してUbuntuを起動します。
     初回起動時、ユーザー名とパスワードの設定を求められます。画面の指示に従い設定し、**忘れないようにメモしておきましょう。**
 
+{{< hint info >}}
+**Ubuntu ユーザー名とパスワード:** この後すぐに使用します。忘れた場合は以下の方法で再設定が可能です。
+
+パスワード再設定手順:
+
+1.  **WindowsのコマンドプロンプトまたはPowerShellを管理者として開きます。**
+2.  **以下のコマンドでWSLをrootユーザーで起動します。** (`YourUbuntuDistro` の部分は、`wsl -l -v` で確認できる実際のディストリビューション名 (例: `Ubuntu-24.04`) に置き換えてください。)
+    ```powershell
+    wsl -d YourUbuntuDistro -u root
+    ```
+3.  **rootユーザーとしてUbuntuが起動したら、以下のコマンドでパスワードをリセットしたいユーザーのパスワードを設定します。** (`yourusername` の部分は、ご自身のUbuntuのユーザー名に置き換えてください。ユーザー名が分からない場合は、`ls /home` コマンドで確認できます。パスワード入力時は画面に文字が表示されませんが、そのまま入力してEnterを押してください。)
+    ```bash
+    passwd yourusername
+    ```
+4.  **新しいパスワードを2回入力し、設定が完了したら `exit` コマンドでrootシェルを終了します。**
+5.  **Windowsのコマンドプロンプト/PowerShellで、以下のコマンドを実行し、デフォルトユーザーを元に戻します。** (`YourUbuntuDistro` と `yourusername` は適切に置き換えてください。)
+    ```powershell
+    YourUbuntuDistro config --default-user yourusername
+    ```
+    *(`Ubuntu` コマンドで起動している場合は `ubuntu config --default-user yourusername` となります。)*
+
+これでパスワードが再設定されました。WSLを通常起動して、新しいパスワードでログインできることを確認してください。
+{{< /hint >}}
+
 これでWSL2とUbuntuの基本的なセットアップは完了です。
 {{< /details >}}
 
@@ -390,6 +529,7 @@ Dockerコンテナを開発環境として使うための拡張機能です。�
 {{< /details >}}
 
 {{< details title = "6. HU-Bioinfo Workshop Launcher 拡張機能のセットアップと実行" >}}
+
 `hu-bioinfo-workshop.bioinfo-launcher` は、本ワークショップ用のR/Python解析環境を簡単に構築できるCursor拡張機能です。Dockerコンテナ技術を使用します。
 
 **重要:** この拡張機能のインストールと実行は、**CursorがWSL (Ubuntu) に接続された状態**で行います。
@@ -433,6 +573,10 @@ GitHub上のリソースにアクセスするために、Personal Access Token (
 
 このPATは後ほど使用します。パスワード同様、大切に扱ってください。
 
+{{< hint warning >}}
+**注意:** PATを紛失した、もしくは漏洩した場合は必ず **そのPATを削除** して新しく作り直してください。
+{{< /hint >}}
+
 #### 6.3 解析作業用ディレクトリの作成とLauncherの実行
 
 1.  **WSL (Ubuntu) ターミナルを開く** (Cursor内で `Ctrl+@`)
@@ -460,8 +604,58 @@ GitHub上のリソースにアクセスするために、Personal Access Token (
 
 6.  **環境構築の開始**
     設定後、`bioinfo-launcher` がDockerを使って解析環境の構築を開始します。
-    *   **Dockerについて:** この拡張機能はDockerが必要です。UbuntuにDocker Engineが未インストールの場合は、拡張機能がインストールを試みます。うまくいかない場合は、[Docker Engine for Ubuntu 公式サイト](https://docs.docker.com/engine/install/ubuntu/) を参考に手動でインストールしてください。
-    *   環境構築には数分～数十分かかることがあります（特に初回）。
+    *   **Dockerについて:** この拡張機能はDockerが必要です。UbuntuにDocker Engineが未インストールの場合は、拡張機能がインストールを試みます。うまくいかない場合は、下記の方法を参考に手動でインストールしてください。
+
+{{< details title = "Docker Engineのインストール" >}}
+    WSL2 Ubuntu上にDocker Engineをインストールする手順を説明します。
+
+1.  **古いバージョンのDockerを削除（必要な場合）**
+    ```bash
+    sudo apt-get remove docker docker-engine docker.io containerd runc
+    ```
+
+2.  **必要なパッケージのインストール**
+    ```bash
+    sudo apt-get update
+    sudo apt-get install \
+        ca-certificates \
+        curl \
+        gnupg \
+        lsb-release
+    ```
+
+3.  **Dockerの公式GPGキーを追加**
+    ```bash
+    sudo mkdir -m 0755 -p /etc/apt/keyrings
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+    ```
+
+4.  **Dockerのリポジトリを設定**
+    ```bash
+    echo \
+      "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+      $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+    ```
+
+5.  **Docker Engineのインストール**
+    ```bash
+    sudo apt-get update
+    sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+    ```
+
+6.  **Dockerの動作確認**
+    ```bash
+    sudo docker run hello-world
+    ```
+    正常にインストールされていれば、Hello from Docker!というメッセージが表示されます。
+
+7.  **（推奨）一般ユーザーでDockerを使用できるようにする**
+    ```bash
+    sudo usermod -aG docker $USER
+    ```
+    このコマンドを実行後、**WSLを再起動**してください。再起動後は`sudo`なしでDockerコマンドが使えるようになります。
+
+{{< /details >}}
 
 7.  **コンテナ内での作業開始**
     構築が完了すると、多くの場合、新しいCursorウィンドウが自動で開きます。これがDockerコンテナ内の開発環境です。
@@ -470,7 +664,66 @@ GitHub上のリソースにアクセスするために、Personal Access Token (
 
 これで、`hu-bioinfo-workshop.bioinfo-launcher` のセットアップと実行は完了です。統一された解析環境で作業を始めましょう！
 {{< /details >}}
+
+{{< details title = "7. GitHub Copilot (学生向け無料) のセットアップ" >}}
+
+GitHub Copilot は、AIによるコード補完・生成ツールです。学生の方は、GitHub Student Developer Pack を通じて GitHub Copilot Pro を無料で利用できます。ここでは、その申請とCursorでの利用設定について説明します。
+
+{{< hint info>}}
+**なぜ必要？** Cursorにも「Cursor Tab」という同様の拡張機能がありますが、無料版では2000回の使い切りとなっています。そのためその後は上記のGitHub Copilotを使ってください（学生限定）。
+{{< /hint >}}
+
+{{< hint warning >}}
+**注意:** GitHub Student Developer Pack の申請承認には数日から数週間かかる場合があります。ワークショップ開始までに承認されない場合でも、その後の学習は可能です。
+{{< /hint >}}
+
+1.  **GitHub Student Developer Pack を申請**
+    以下のページにアクセスし、「Get your Pack」から学生であることを証明するための情報を入力し、申請してください。
+    [https://education.github.com/pack](https://education.github.com/pack)
+
+2.  **申請承認を確認し、Copilot Pro を有効化**
+    申請状況は以下のページで確認できます。
+    [https://github.com/settings/education/benefits](https://github.com/settings/education/benefits)
+    承認されたら、このページにある特典リストから GitHub Copilot Pro の項目を見つけ、リンクをクリックして有効化してください。
+
+3.  **Cursor に GitHub Copilot 拡張機能をインストール**
+    GitHub Copilot Pro が有効になったら、Cursorに戻ります。
+    Cursorの拡張機能ビュー（`Ctrl+Shift+X`）で「GitHub Copilot」と検索し、公式拡張機能をインストールしてください。
+    インストール後に表示される指示に従い、GitHubアカウントでサインインすることで機能が利用可能になります。
+
+これで、CursorでGitHub Copilotを使ったAIコーディング支援を受けられるようになります。
+{{< /details >}}
 {{% /tab %}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 {{% tab "MacOS" %}}
 
@@ -622,6 +875,35 @@ GitHub上のリソースにアクセスするために、Personal Access Token (
     `BioinfoSpace` ディレクトリ内に `.env` ファイルや `cache`, `container` などのディレクトリが自動生成されているはずです。
 
 これで、`hu-bioinfo-workshop.bioinfo-launcher` のセットアップと実行は完了です。統一された解析環境で作業を始めましょう！
+{{< /details >}}
+
+{{< details title = "6. GitHub Copilot (学生向け無料) のセットアップ" >}}
+
+GitHub Copilot は、AIによるコード補完・生成ツールです。学生の方は、GitHub Student Developer Pack を通じて GitHub Copilot Pro を無料で利用できます。ここでは、その申請とCursorでの利用設定について説明します。
+
+{{< hint info>}}
+**なぜ必要？** Cursorにも「Cursor Tab」という同様の拡張機能がありますが、無料版では2000回の使い切りとなっています。そのためその後は上記のGitHub Copilotを使ってください（学生限定）。
+{{< /hint >}}
+
+{{< hint warning >}}
+**注意:** GitHub Student Developer Pack の申請承認には数日から数週間かかる場合があります。ワークショップ開始までに承認されない場合でも、その後の学習は可能です。
+{{< /hint >}}
+
+1.  **GitHub Student Developer Pack を申請**
+    以下のページにアクセスし、「Get your Pack」から学生であることを証明するための情報を入力し、申請してください。
+    [https://education.github.com/pack](https://education.github.com/pack)
+
+2.  **申請承認を確認し、Copilot Pro を有効化**
+    申請状況は以下のページで確認できます。
+    [https://github.com/settings/education/benefits](https://github.com/settings/education/benefits)
+    承認されたら、このページにある特典リストから GitHub Copilot Pro の項目を見つけ、リンクをクリックして有効化してください。
+
+3.  **Cursor に GitHub Copilot 拡張機能をインストール**
+    GitHub Copilot Pro が有効になったら、Cursorに戻ります。
+    Cursorの拡張機能ビュー（`Cmd+Shift+X`）で「GitHub Copilot」と検索し、公式拡張機能をインストールしてください。
+    インストール後に表示される指示に従い、GitHubアカウントでサインインすることで機能が利用可能になります。
+
+これで、CursorでGitHub Copilotを使ったAIコーディング支援を受けられるようになります。
 {{< /details >}}
 {{% /tab %}}
 {{% /tabs %}}
