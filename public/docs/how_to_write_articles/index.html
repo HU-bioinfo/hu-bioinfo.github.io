@@ -1,0 +1,102 @@
+<!doctype html><html lang=ja dir=ltr><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="
+  記事の投稿方法
+  #
+
+
+  構成
+  #
+
+サイトはHugoのHugo-bookテーマ用いて作成しました．
+ディレクトリ構成は以下のとおりです．
+基本的にいじるのはcontent以下のディレクトリだけです．
+.
+├── archetypes
+├── config
+    └── _default
+        ├── hugo.toml
+        └── params.toml
+├── content
+    ├── docs
+    │   ├── tutorials
+    │   │   ├── example
+    │   │   │   ├── bioinfo_tutorial.webp
+    │   │   │   └── index.md
+    │   │   ├── test
+    │   │   │   └── index.md
+    │   │   ├── _index.md
+    │   │   └── bioinfo_tutorial.webp
+    │   ├── about.md
+    │   └── members.md
+    └── _index.md
+├── data
+├── i18n
+├── layouts
+├── public
+├── resources
+├── static
+├── go.mod
+└── go.sum
+
+  記事の作成
+  #
+
+まず，Githubリポジトリのmainブランチをローカルにcloneしてください．
+自分で新しい記事を作成，修正するときは，mainではない別のブランチ(自分の名前とか)を作成し，そこで作業するようにしてください．"><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://hu-bioinfo.github.io/docs/how_to_write_articles/"><meta property="og:site_name" content="北海道大学医学部 Bioinfo研究会"><meta property="og:title" content="How to Write Articles"><meta property="og:description" content="記事の投稿方法 # 構成 # サイトはHugoのHugo-bookテーマ用いて作成しました． ディレクトリ構成は以下のとおりです． 基本的にいじるのはcontent以下のディレクトリだけです．
+. ├── archetypes ├── config └── _default ├── hugo.toml └── params.toml ├── content ├── docs │ ├── tutorials │ │ ├── example │ │ │ ├── bioinfo_tutorial.webp │ │ │ └── index.md │ │ ├── test │ │ │ └── index.md │ │ ├── _index.md │ │ └── bioinfo_tutorial.webp │ ├── about.md │ └── members.md └── _index.md ├── data ├── i18n ├── layouts ├── public ├── resources ├── static ├── go.mod └── go.sum 記事の作成 # まず，Githubリポジトリのmainブランチをローカルにcloneしてください． 自分で新しい記事を作成，修正するときは，mainではない別のブランチ(自分の名前とか)を作成し，そこで作業するようにしてください．"><meta property="og:locale" content="ja"><meta property="og:type" content="article"><meta property="article:section" content="docs"><title>How to Write Articles | 北海道大学医学部 Bioinfo研究会</title>
+<link rel=icon href=https://hu-bioinfo.github.io/favicon.png><link rel=manifest href=https://hu-bioinfo.github.io/manifest.json><link rel=canonical href=https://hu-bioinfo.github.io/docs/how_to_write_articles/><link rel=stylesheet href=https://hu-bioinfo.github.io/book.min.434035e7885c7f5d12818bd9f111cf1a0925c6fb78382667381c3d5eda3fb4f1.css integrity="sha256-Q0A154hcf10SgYvZ8RHPGgklxvt4OCZnOBw9Xto/tPE=" crossorigin=anonymous><script defer src=https://hu-bioinfo.github.io/fuse.min.js></script><script defer src=https://hu-bioinfo.github.io/ja.search.min.7a2bfcf6c9d4c3bb317993ee62d8b3e16d70331fb5b49cd076a1e8a3ee86aa89.js integrity="sha256-eiv89snUw7sxeZPuYtiz4W1wMx+1tJzQdqHoo+6Gqok=" crossorigin=anonymous></script></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=https://hu-bioinfo.github.io/><span>北海道大学医学部 Bioinfo研究会</span></a></h2><div class="book-search hidden"><input type=text id=book-search-input placeholder=検索 aria-label=検索 maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><script>document.querySelector(".book-search").classList.remove("hidden")</script><ul><li class=book-section-flat><input type=checkbox id=section-19e3ab56062efc00dcb4ec4cfb280452 class=toggle>
+<label for=section-19e3ab56062efc00dcb4ec4cfb280452 class="flex justify-between"><a href=https://hu-bioinfo.github.io/docs/tutorials/>Tutorials</a></label><ul><li><a href=https://hu-bioinfo.github.io/docs/tutorials/linux-command/>linux-command</a></li><li><a href=https://hu-bioinfo.github.io/docs/tutorials/r_basic_grammar/>R Basic Grammar</a></li><li><a href=https://hu-bioinfo.github.io/docs/tutorials/tidyverse/>Tidyverse</a></li><li><a href=https://hu-bioinfo.github.io/docs/tutorials/ggplot2/>ggplot2</a></li><li><a href=https://hu-bioinfo.github.io/docs/tutorials/example/>Example</a></li></ul></li><li><a href=https://hu-bioinfo.github.io/docs/about/>About</a></li><li><a href=https://hu-bioinfo.github.io/docs/members/>Members</a></li><li><a href=https://hu-bioinfo.github.io/docs/how_to_write_articles/ class=active>How to Write Articles</a></li></ul><ul><li><a href=https://github.com/HU-bioinfo/ target=_blank rel=noopener>Github</a></li><li><a href=https://x.com/hokudaiBioinfo target=_blank rel=noopener>X</a></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class=book-header><div class="flex align-center justify-between"><label for=menu-control><img src=https://hu-bioinfo.github.io/svg/menu.svg class=book-icon alt=Menu></label><h3>How to Write Articles</h3><label for=toc-control><img src=https://hu-bioinfo.github.io/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class="hidden clearfix"><nav id=TableOfContents><ul><li><a href=#構成>構成</a></li><li><a href=#記事の作成>記事の作成</a></li><li><a href=#投稿方法>投稿方法</a></li><li><a href=#リンク>リンク</a></li></ul></nav></aside></header><article class="markdown book-article"><h1 id=記事の投稿方法>記事の投稿方法
+<a class=anchor href=#%e8%a8%98%e4%ba%8b%e3%81%ae%e6%8a%95%e7%a8%bf%e6%96%b9%e6%b3%95>#</a></h1><h2 id=構成>構成
+<a class=anchor href=#%e6%a7%8b%e6%88%90>#</a></h2><p>サイトは<a href=https://gohugo.io/>Hugo</a>の<a href=https://themes.gohugo.io/themes/hugo-book/>Hugo-bookテーマ</a>用いて作成しました．
+ディレクトリ構成は以下のとおりです．
+基本的にいじるのは<code>content</code>以下のディレクトリだけです．</p><pre tabindex=0><code>.
+├── archetypes
+├── config
+    └── _default
+        ├── hugo.toml
+        └── params.toml
+├── content
+    ├── docs
+    │   ├── tutorials
+    │   │   ├── example
+    │   │   │   ├── bioinfo_tutorial.webp
+    │   │   │   └── index.md
+    │   │   ├── test
+    │   │   │   └── index.md
+    │   │   ├── _index.md
+    │   │   └── bioinfo_tutorial.webp
+    │   ├── about.md
+    │   └── members.md
+    └── _index.md
+├── data
+├── i18n
+├── layouts
+├── public
+├── resources
+├── static
+├── go.mod
+└── go.sum
+</code></pre><h2 id=記事の作成>記事の作成
+<a class=anchor href=#%e8%a8%98%e4%ba%8b%e3%81%ae%e4%bd%9c%e6%88%90>#</a></h2><p>まず，<a href=https://github.com/HU-bioinfo/hu-bioinfo.github.io>Githubリポジトリ</a>の<code>main</code>ブランチをローカルにcloneしてください．
+自分で新しい記事を作成，修正するときは，<code>main</code>ではない別のブランチ(自分の名前とか)を作成し，そこで作業するようにしてください．</p><p>今後は基本的に<code>content/docs/tutorials</code>以下に，一記事ずつディレクトリを作成していきます．</p><pre tabindex=0><code>├── content
+    ├── docs
+    │   ├── tutorials
+    │   │   ├── new_article
+    │   │   │   ├── images
+    │   │   │   └── index.md
+</code></pre><p>作成したい記事のディレクトリを作成し，index.mdを作り，編集します．</p><p>index.mdにはヘッダーとして以下のものをつけてください．</p><pre tabindex=0><code class="language-markdown=" data-lang="markdown=">---
+title: &#34;Example&#34;
+weight: 1
+# bookFlatSection: false
+# bookToc: true
+# bookHidden: false
+# bookCollapseSection: false
+# bookComments: false
+# bookSearchExclude: false
+---
+</code></pre><p>このときtitleにはディレクトリ名と同じ名前を基本的にはつけてください．
+weightはサイトの左側メニューに表示される時の順番を示しています．上に載せたいものほど小さい値をつけてください．
+挿入する画像は，作成したディレクトリ以下に配置してください．</p><p>markdownの編集方法については，<a href=https://hugo-book-demo.netlify.app/>Hugo-bookのサイト</a>のShortcodesや，私が作成した<a href=https://github.com/HU-bioinfo/hu-bioinfo.github.io/blob/main/content/docs/tutorials/example/index.md>記事</a>と<a href=https://hu-bioinfo.github.io/docs/tutorials/example/>サイト</a>を見比べてみてください．</p><h2 id=投稿方法>投稿方法
+<a class=anchor href=#%e6%8a%95%e7%a8%bf%e6%96%b9%e6%b3%95>#</a></h2><p>記事の作成が完了したら，<code>git add && git commit</code>して，リポジトリにそのまま自分のブランチをpushしてください．</p><p>pushした自分のブランチを<code>main</code>ブランチに向けてプルリクエストを作成してください．</p><p>無事，プルリクが受理され，<code>main</code>ブランチにマージされたら，Github Actionsが走り，hugoによりサイトがビルドされます．
+<a href=https://hu-bioinfo.github.io/>北大バイオインフォのサイト</a>に変更がなされているか確認してみてください．</p><h2 id=リンク>リンク
+<a class=anchor href=#%e3%83%aa%e3%83%b3%e3%82%af>#</a></h2><ul><li><a href=https://github.com/HU-bioinfo/hu-bioinfo.github.io>Githubリポジトリ</a></li><li><a href=https://hu-bioinfo.github.io/>Github pages</a></li><li><a href=https://hugo-book-demo.netlify.app/>Hugo-book</a></li></ul></article><footer class=book-footer><div class="flex flex-wrap justify-between"></div><script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><div class=book-comments></div><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#構成>構成</a></li><li><a href=#記事の作成>記事の作成</a></li><li><a href=#投稿方法>投稿方法</a></li><li><a href=#リンク>リンク</a></li></ul></nav></div></aside></main></body></html>
