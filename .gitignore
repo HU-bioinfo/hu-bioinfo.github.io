@@ -1,6 +1,26 @@
-/.cursor
-/public
-/resources
-/.github
-/.frontmatter
+# Hugo
+/public/
+/resources/
+/.hugo_build.lock
+
+# Frontmatter CMS
+/.frontmatter/
 frontmatter.json
+
+# Cursor IDE
+/.cursor/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+._*
+
+# Log files
+*.log
+
+# Node.js dependencies (if any)
+# node_modules/
+
+# GitHub directory - typically version controlled
+# If you want to ignore it, uncomment the line below
+# /.github/
