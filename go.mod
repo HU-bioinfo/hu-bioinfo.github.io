@@ -1,5 +1,5 @@
 module github.com/HU-bioinfo/hu-bioinfo.github.io
 
-go 1.23.5
+go 1.24.2
 
-require github.com/alex-shpak/hugo-book v0.0.0-20250203221943-645c868cec13 // indirect
+require github.com/HU-bioinfo/hugo-book v0.0.0-20250503095049-2c0af3793e52 // indirect

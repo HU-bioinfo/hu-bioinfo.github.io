@@ -1,4 +1,6 @@
-github.com/alex-shpak/hugo-book v0.0.0-20241009212754-7c78a39c531a h1:GiRJQYc9Bt8H59/e0w/97i46Ql39CUIdDQjHikd9scA=
-github.com/alex-shpak/hugo-book v0.0.0-20241009212754-7c78a39c531a/go.mod h1:L4NMyzbn15fpLIpmmtDg9ZFFyTZzw87/lk7M2bMQ7ds=
-github.com/alex-shpak/hugo-book v0.0.0-20250203221943-645c868cec13 h1:Uiv/1d+alEEB6czCawa8rbKLMxgcJl3tbKP4uEmDc/g=
-github.com/alex-shpak/hugo-book v0.0.0-20250203221943-645c868cec13/go.mod h1:L4NMyzbn15fpLIpmmtDg9ZFFyTZzw87/lk7M2bMQ7ds=
+github.com/HU-bioinfo/hugo-book v0.0.0-20250503045727-7a4ce83cd180 h1:ihuou6FXHks3Cbssg9HOmNZgaN58iatRoN97UPVfjEU=
+github.com/HU-bioinfo/hugo-book v0.0.0-20250503045727-7a4ce83cd180/go.mod h1:NzaXNtRdN1GgJQm4pEvX8FMvNf3brtPgwcrz38UvADw=
+github.com/HU-bioinfo/hugo-book v0.0.0-20250503051010-660545ea0be4 h1:ITLrk8wBjexL1U6oonF8b/u9ZFR99FUAg2KCtGRv2hY=
+github.com/HU-bioinfo/hugo-book v0.0.0-20250503051010-660545ea0be4/go.mod h1:NzaXNtRdN1GgJQm4pEvX8FMvNf3brtPgwcrz38UvADw=
+github.com/HU-bioinfo/hugo-book v0.0.0-20250503095049-2c0af3793e52 h1:9v2Za21JDmSYKr4N9W5hyN3M9DxwqsQjnL4GTL5wUfY=
+github.com/HU-bioinfo/hugo-book v0.0.0-20250503095049-2c0af3793e52/go.mod h1:NzaXNtRdN1GgJQm4pEvX8FMvNf3brtPgwcrz38UvADw=
