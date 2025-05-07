@@ -60,6 +60,30 @@ Windows上でLinux環境を動かすための「WSL2」をセットアップし�
     インストール完了後、PowerShellで `wsl` または `wsl -d Ubuntu-24.04` と入力してUbuntuを起動します。
     初回起動時、ユーザー名とパスワードの設定を求められます。画面の指示に従い設定し、**忘れないようにメモしておきましょう。**
 
+{{< hint warning >}}
+**Ubuntu ユーザー名とパスワード:** この後すぐに使用します。忘れた場合は以下の方法で再設定が可能です。
+
+パスワード再設定手順:
+
+1.  **WindowsのコマンドプロンプトまたはPowerShellを管理者として開きます。**
+2.  **以下のコマンドでWSLをrootユーザーで起動します。** (`YourUbuntuDistro` の部分は、`wsl -l -v` で確認できる実際のディストリビューション名 (例: `Ubuntu-24.04`) に置き換えてください。)
+    ```powershell
+    wsl -d YourUbuntuDistro -u root
+    ```
+3.  **rootユーザーとしてUbuntuが起動したら、以下のコマンドでパスワードをリセットしたいユーザーのパスワードを設定します。** (`yourusername` の部分は、ご自身のUbuntuのユーザー名に置き換えてください。ユーザー名が分からない場合は、`ls /home` コマンドで確認できます。パスワード入力時は画面に文字が表示されませんが、そのまま入力してEnterを押してください。)
+    ```bash
+    passwd yourusername
+    ```
+4.  **新しいパスワードを2回入力し、設定が完了したら `exit` コマンドでrootシェルを終了します。**
+5.  **Windowsのコマンドプロンプト/PowerShellで、以下のコマンドを実行し、デフォルトユーザーを元に戻します。** (`YourUbuntuDistro` と `yourusername` は適切に置き換えてください。)
+    ```powershell
+    YourUbuntuDistro config --default-user yourusername
+    ```
+    *(`Ubuntu` コマンドで起動している場合は `ubuntu config --default-user yourusername` となります。)*
+
+これでパスワードが再設定されました。WSLを通常起動して、新しいパスワードでログインできることを確認してください。
+{{< /hint >}}
+
 これでWSL2とUbuntuの基本的なセットアップは完了です。
 {{< /details >}}
 
@@ -201,237 +225,9 @@ GitHub上のリソースにアクセスするために、Personal Access Token (
 
 このPATは後ほど使用します。パスワード同様、大切に扱ってください。
 
-#### 6.3 解析作業用ディレクトリの作成とLauncherの実行
-
-1.  **WSL (Ubuntu) ターミナルを開く** (Cursor内で `Ctrl+@`)
-    プロンプトが `your_username@your_hostname:~$` であることを確認。
-
-2.  **作業用親ディレクトリを作成**
-    ターミナルで以下のコマンドを実行し、ホームディレクトリに `BioinfoSpace` ディレクトリを作成して移動します。
-    ```bash
-    mkdir ~/BioinfoSpace
-    cd ~/BioinfoSpace
-    pwd # /home/your_username/BioinfoSpace と表示されることを確認
-    ```
-    この `BioinfoSpace` にプロジェクトファイルが格納されます。
-
-3.  **`bioinfo-launcher` を実行**
-    コマンドパレット (`Ctrl+Shift+P`) を開き、`bioinfo-launcher` と入力。
-    候補から `bioinfo-launcher: Start bioinfo-launcher` を選択して実行します。
-
-4.  **作業環境ディレクトリの設定**
-    プロンプトが表示されたら、先ほど作成したディレクトリのフルパス (例: `/home/your_username/BioinfoSpace`) を入力します。
-    (ターミナルの `pwd` コマンドの出力が参考になります。)
-
-5.  **GitHub Personal Access Token (PAT) の設定**
-    次にPATの入力を求められるので、準備しておいたPATを貼り付けます。
-
-6.  **環境構築の開始**
-    設定後、`bioinfo-launcher` がDockerを使って解析環境の構築を開始します。
-    *   **Dockerについて:** この拡張機能はDockerが必要です。UbuntuにDocker Engineが未インストールの場合は、拡張機能がインストールを試みます。うまくいかない場合は、[Docker Engine for Ubuntu 公式サイト](https://docs.docker.com/engine/install/ubuntu/) を参考に手動でインストールしてください。
-    *   環境構築には数分～数十分かかることがあります（特に初回）。
-
-7.  **コンテナ内での作業開始**
-    構築が完了すると、多くの場合、新しいCursorウィンドウが自動で開きます。これがDockerコンテナ内の開発環境です。
-    ウィンドウ左下のステータスバーがコンテナ環境を示していれば成功です。
-    `BioinfoSpace` ディレクトリ内に `.env` ファイルや `cache`, `container` などのディレクトリが自動生成されているはずです。
-
-これで、`hu-bioinfo-workshop.bioinfo-launcher` のセットアップと実行は完了です。統一された解析環境で作業を始めましょう！
-{{< /details >}}
-{{% /tab %}}
-
-{{% tab "Windows 10" %}}
-
-
-
-
-
-
-
-
-## Windows 10 でのセットアップ
-
-{{< details title = "1. WSL2 (Windows Subsystem for Linux 2) の導入" >}}
-
-Windows上でLinux環境を動かすための「WSL2」をセットアップします。これにより、Linuxベースのツールが使えるようになります。
-**注意:** WSL2の利用には、Windows 10 バージョン 2004 (ビルド 19041) 以降が必要です。お使いのWindowsのバージョンを確認してください。
-
-1.  **PowerShellを管理者として起動**
-    スタートメニューで "PowerShell" を検索し、「管理者として実行」を選びます。
-
-2.  **WSL機能の有効化**
-    PowerShellに以下のコマンドを入力し、Enterキーを押します。
-    ```powershell
-    dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
-    ```
-
-3.  **仮想マシンプラットフォーム機能の有効化**
-    続けて、以下のコマンドも入力します。
-    ```powershell
-    dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
-    ```
-
-4.  **PCの再起動**
-    上記2つのコマンド実行後、**必ずPCを再起動してください。**
-
-5.  **Linuxカーネルの更新**
-    再起動後、[WSL2 Linuxカーネル更新プログラムパッケージ(x64マシン用)](https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi) をダウンロードし、インストールします。
-    (ARM64マシンの場合は[こちら](https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_arm64.msi)を使用)
-
-6.  **WSL2をデフォルトバージョンに設定**
-    再度PowerShellを管理者として起動し、以下を入力します。
-    ```powershell
-    wsl --set-default-version 2
-    ```
-    このコマンドがエラーになる場合は、先にUbuntuをインストールしてから再度試すか、WSLのバージョンが古い可能性があります。
-
-7.  **Ubuntu 24.04 LTSのインストール**
-    PowerShellで以下のコマンドを実行し、Ubuntuをインストールします。
-    ```powershell
-    wsl --install -d Ubuntu-24.04
-    ```
-    ネットワーク環境によっては少し時間がかかります。
-    **注:** この `wsl --install` コマンドが利用できない古いバージョンのWindows 10 (バージョン 2004より前、または必要な更新プログラムが適用されていない場合) では、Microsoft Storeを開き、「Ubuntu 24.04 LTS」を検索してインストールしてください。その後、PowerShellで `wsl --set-default-version 2` (またはディストリビューション名を指定して `wsl --set-version Ubuntu-24.04 2`) を実行してWSL2を使用するように設定してください。
-
-8.  **Ubuntuの初期設定**
-    インストール完了後、PowerShellで `wsl` または `wsl -d Ubuntu-24.04` と入力してUbuntuを起動します。
-    初回起動時、ユーザー名とパスワードの設定を求められます。画面の指示に従い設定し、**忘れないようにメモしておきましょう。**
-
-これでWSL2とUbuntuの基本的なセットアップは完了です。
-{{< /details >}}
-
-{{< details title = "2. Cursorエディタのインストール" >}}
-AIコーディング支援機能付きのエディタ「Cursor」をインストールします。
-
-1.  **公式サイトからダウンロード**
-    [Cursor公式サイト](https://cursor.sh/) にアクセスし、Windows版インストーラーをダウンロードします。
-
-2.  **インストール実行**
-    ダウンロードした `.exe` ファイルをダブルクリックして実行し、画面の指示に従ってインストールを進めます。
-    「このアプリがデバイスに変更を加えることを許可しますか？」と表示されたら「はい」を選択してください。
-
-インストールが完了すると、Cursorが使えるようになります。
-{{< /details >}}
-
-{{< details title = "3. Cursorの日本語化" >}}
-Cursorの表示を日本語にします。
-
-1.  **Cursorを起動**
-
-2.  **拡張機能ビューを開く**
-    左側のアクティビティバーにある四角いアイコン（または `Ctrl+Shift+X`）で開きます。
-
-3.  **日本語言語パックを検索・インストール**
-    検索ボックスに `Japanese Language Pack` と入力し、`Japanese Language Pack for Visual Studio Code` (Microsoft提供) を見つけて `Install` ボタンをクリックします。
-
-4.  **Cursorを再起動**
-    インストール後、右下に再起動を促す通知が出たら「再起動」をクリックします。出ない場合は手動でCursorを再起動してください。
-
-これでCursorが日本語表示になります。
-{{< /details >}}
-
-{{< details title = "4. 便利な拡張機能のインストール" >}}
-開発効率を上げるため、Cursorに以下の拡張機能をインストールします。WSL連携やコンテナ開発に役立ちます。
-（日本語化の時と同じように、拡張機能ビューからIDで検索してインストールします）
-
-#### 4.1 Remote - WSL (`ms-vscode-remote.remote-wsl`)
-
-Windows Subsystem for Linux (WSL) と連携するための拡張機能です。CursorからWSL内のプロジェクトを直接扱えるようになります。
-
-1.  拡張機能ビューで `ms-vscode-remote.remote-wsl` を検索。
-2.  `Remote - WSL` (Microsoft提供) をインストール。
-
-#### 4.2 Remote - Containers (`ms-vscode-remote.remote-containers`)
-
-Dockerコンテナを開発環境として使うための拡張機能です。プロジェクトごとに独立した環境を構築できます。
-
-1.  拡張機能ビューで `ms-vscode-remote.remote-containers` を検索。
-2.  `Remote - Containers` (Microsoft提供) をインストール。
-
-これらの拡張機能で、より高度な開発が可能になります。
-{{< /details >}}
-
-{{< details title = "5. CursorからWSL (Ubuntu) へ接続" >}}
-インストールした `Remote - WSL` 拡張機能を使って、CursorからWSL上のUbuntu環境に接続します。
-
-1.  **Cursorを起動**
-
-2.  **コマンドパレットを開く**
-    `Ctrl+Shift+P` を押します。
-
-3.  **WSL接続コマンドを実行**
-    コマンドパレットに `WSL` と入力し、候補から `WSL: WSL に接続` (または `"WSL: Connect to WSL"`) を選択して実行します。
-
-4.  **接続するディストリビューションを選択**
-    利用可能なWSLディストリビューションのリストから `Ubuntu-24.04` を選択します。
-
-5.  **WSL (Ubuntu) 環境へ接続完了**
-    新しいCursorウィンドウが開き、WSL上のUbuntu環境に接続されます。
-    ウィンドウ左下に `WSL: Ubuntu-24.04` のように表示されていれば成功です。
-    （初回接続時は、必要なコンポーネントのインストールに少し時間がかかることがあります。）
-
-6.  **接続確認 (任意)**
-    Cursor内で新しいターミナルを開きます (`Ctrl+@` またはメニューから `ターミナル` > `新しいターミナル`)。
-    以下のようなプロンプトが表示されれば、Ubuntuに接続できています。
-    ```bash
-    your_username@your_hostname:~$
-    ```
-    (`your_username` はUbuntuのユーザー名、`your_hostname` はPC名です。)
-
-    試しに以下のコマンドを実行してみましょう。
-    ```bash
-    pwd       # 現在のディレクトリ (例: /home/your_username)
-    ls -la    # ファイルやフォルダの一覧
-    uname -a  # Linuxカーネル情報
-    ```
-    コマンドが正常に実行されれば、接続は完璧です。
-
-これで、CursorからWSL上のUbuntu環境で開発作業を開始できます。
-{{< /details >}}
-
-{{< details title = "6. HU-Bioinfo Workshop Launcher 拡張機能のセットアップと実行" >}}
-`hu-bioinfo-workshop.bioinfo-launcher` は、本ワークショップ用のR/Python解析環境を簡単に構築できるCursor拡張機能です。Dockerコンテナ技術を使用します。
-
-**重要:** この拡張機能のインストールと実行は、**CursorがWSL (Ubuntu) に接続された状態**で行います。
-
-#### 6.1 拡張機能のインストール (WSL接続環境で)
-
-1.  **WSL (Ubuntu) 接続の確認**
-    Cursorウィンドウ左下のステータスバーが `WSL: Ubuntu-24.04` (または類似の表示) になっていることを確認します。
-
-2.  **拡張機能ビューを開く** (`Ctrl+Shift+X`)
-
-3.  **`hu-bioinfo-workshop.bioinfo-launcher` を検索・インストール**
-    検索ボックスに `hu-bioinfo-workshop.bioinfo-launcher` と入力し、`HU-Bioinfo Workshop Launcher` をインストールします。
-
-#### 6.2 GitHub Personal Access Token (PAT) の準備
-
-GitHub上のリソースにアクセスするために、Personal Access Token (PAT) が必要です。
-
-1.  **GitHubアカウントの作成/サインイン**
-    *   持っていない場合は [GitHub公式サイト](https://github.com/) で作成します。
-    *   作成済みならサインインします。
-
-2.  **PAT設定ページへ移動**
-    *   右上のプロフィールアイコン → `Settings` → 左メニューの `Developer settings` → `Personal access tokens` → `Tokens (classic)` と進みます。
-
-3.  **新しいPATを生成 (classic)**
-    *   `Generate new token` ボタン → `Generate new token (classic)` を選択。
-    *   (パスワード確認があれば入力)
-
-4.  **PATの詳細設定**
-    *   **Note (メモ):** 分かりやすい名前 (例: `Bioinfo Launcher WSL Token`) を入力。
-    *   **Expiration (有効期限):** `30 days` や `90 days` などを選択 (無期限は非推奨)。
-    *   **Select scopes (権限スコープ):** 以下にチェックを入れます。
-        *   `repo` (プライベートリポジトリへのアクセス)
-        *   `read:packages` (GitHub Packagesからの読み取り)
-        *   `workflow` (GitHub Actionsワークフロー操作)
-
-5.  **PATを生成して安全に保管**
-    *   `Generate token` ボタンをクリック。
-    *   表示されたPAT (`ghp_`で始まる文字列) は**一度しか表示されません。必ずコピーし、安全な場所に保管してください。**
-
-このPATは後ほど使用します。パスワード同様、大切に扱ってください。
+{{< hint warning >}}
+**注意:** PATを紛失した、もしくは漏洩した場合は必ず **そのPATを削除** して新しく作り直してください。
+{{< /hint >}}
 
 #### 6.3 解析作業用ディレクトリの作成とLauncherの実行
 
@@ -460,8 +256,34 @@ GitHub上のリソースにアクセスするために、Personal Access Token (
 
 6.  **環境構築の開始**
     設定後、`bioinfo-launcher` がDockerを使って解析環境の構築を開始します。
-    *   **Dockerについて:** この拡張機能はDockerが必要です。UbuntuにDocker Engineが未インストールの場合は、拡張機能がインストールを試みます。うまくいかない場合は、[Docker Engine for Ubuntu 公式サイト](https://docs.docker.com/engine/install/ubuntu/) を参考に手動でインストールしてください。
-    *   環境構築には数分～数十分かかることがあります（特に初回）。
+    *   **Dockerについて:** この拡張機能はDockerが必要です。UbuntuにDocker Engineが未インストールの場合は、拡張機能がインストールを試みます。うまくいかない場合は、下記の方法を参考に手動でインストールしてください。
+
+{{< details title = "Docker Engineのインストール" >}}
+
+WSL2 Ubuntu上にDocker Engineをインストールする最もシンプルな方法です。
+
+1.  **インストールスクリプトのダウンロードと実行**
+    ターミナルで以下のコマンドを実行します。
+    ```bash
+    curl -fsSL https://get.docker.com -o get-docker.sh
+    sudo sh ./get-docker.sh
+    ```
+    このスクリプトはDockerの公式インストール手順を実行します。
+
+2.  **Dockerの動作確認**
+    インストール完了後、以下のコマンドでDockerが正しく動作するか確認できます。
+    ```bash
+    sudo docker run hello-world
+    ```
+    正常にインストールされていれば、Hello from Docker!というメッセージが表示されます。
+
+3.  **（推奨）一般ユーザーでDockerを使用できるようにする**
+    ```bash
+    sudo usermod -aG docker $USER
+    ```
+    このコマンドを実行後、**WSLを再起動**してください。再起動後は`sudo`なしでDockerコマンドが使えるようになります。
+
+{{< /details >}}
 
 7.  **コンテナ内での作業開始**
     構築が完了すると、多くの場合、新しいCursorウィンドウが自動で開きます。これがDockerコンテナ内の開発環境です。
@@ -470,7 +292,37 @@ GitHub上のリソースにアクセスするために、Personal Access Token (
 
 これで、`hu-bioinfo-workshop.bioinfo-launcher` のセットアップと実行は完了です。統一された解析環境で作業を始めましょう！
 {{< /details >}}
+
+{{< details title = "7. Cursor 有料版(Pro)の学生向け無料セットアップ（1年間)" >}}
+
+2025/5/7より学生認証を行うことでCursorの有料版であるProプランを1年間無料で利用できるようになりました。下記の手順でCursorのProプランを有効化してください。
+
+**利用開始の手順:**
+
+1.  **学生認証を行う:**
+    [https://www.cursor.com/ja/students](https://www.cursor.com/ja/students) にアクセスし、画面の指示に従って学生であることを証明する手続きを行ってください。
+
+2.  **Proプランの有効化を確認する:**
+    [https://www.cursor.com/ja/settings](https://www.cursor.com/ja/settings) にアクセスしてください。「Subscription」または「プラン」の項目で、Proプランが有効になっていることを確認できます。
+
+
+{{< hint warning >}}
+**注意:** 1年間は無料ですが、1年経つと **自動的に有料サブスクリプションに移行** してしまいます。無料期間中にサブスクリプションの自動更新を無効化できるので、１年以上使用しない場合は忘れずに設定しましょう。
+{{< /hint >}}
+
+{{< /details >}}
 {{% /tab %}}
+
+
+
+
+
+
+
+
+
+
+
 
 {{% tab "MacOS" %}}
 
@@ -622,6 +474,25 @@ GitHub上のリソースにアクセスするために、Personal Access Token (
     `BioinfoSpace` ディレクトリ内に `.env` ファイルや `cache`, `container` などのディレクトリが自動生成されているはずです。
 
 これで、`hu-bioinfo-workshop.bioinfo-launcher` のセットアップと実行は完了です。統一された解析環境で作業を始めましょう！
+{{< /details >}}
+
+{{< details title = "6. Cursor 有料版(Pro)の学生向け無料セットアップ（1年間)" >}}
+
+2025/5/7より学生認証を行うことでCursorの有料版であるProプランを1年間無料で利用できるようになりました。下記の手順でCursorのProプランを有効化してください。
+
+**利用開始の手順:**
+
+1.  **学生認証を行う:**
+    [https://www.cursor.com/ja/students](https://www.cursor.com/ja/students) にアクセスし、画面の指示に従って学生であることを証明する手続きを行ってください。
+
+2.  **Proプランの有効化を確認する:**
+    [https://www.cursor.com/ja/settings](https://www.cursor.com/ja/settings) にアクセスしてください。「Subscription」または「プラン」の項目で、Proプランが有効になっていることを確認できます。
+
+
+{{< hint warning >}}
+**注意:** 1年間は無料ですが、1年経つと **自動的に有料サブスクリプションに移行** してしまいます。無料期間中にサブスクリプションの自動更新を無効化できるので、１年以上使用しない場合は忘れずに設定しましょう。
+{{< /hint >}}
+
 {{< /details >}}
 {{% /tab %}}
 {{% /tabs %}}
