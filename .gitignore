@@ -1,0 +1,20 @@
+# Hugo
+/public/
+
+# Frontmatter CMS
+/.frontmatter/
+frontmatter.json
+
+# Cursor IDE
+/.cursor/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+._*
+
+# Log files
+*.log
+
+# Node.js dependencies (if any)
+# node_modules/

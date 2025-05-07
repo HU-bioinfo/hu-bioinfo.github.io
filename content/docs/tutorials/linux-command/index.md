@@ -1,7 +1,7 @@
 ---
 title: "linux-command"
 description: "Linux初心者向けに、最低限必要なコマンドと知っておくとよいコマンドを紹介します。"
-weight: 1
+weight: 3
 # bookFlatSection: false
 # bookToc: true
 # bookHidden: false

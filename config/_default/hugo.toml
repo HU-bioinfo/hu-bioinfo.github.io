@@ -1,9 +1,9 @@
-theme = "github.com/HU-bioinfo/hugo-book"
+# theme = "github.com/HU-bioinfo/hugo-book" # Hugo Modulesを使用しているためコメントアウト
 title = "北海道大学医学部 Bioinfo研究会"
 baseURL = "https://hu-bioinfo.github.io"
 languageCode = "ja"
 languageName = "Japanese"
-canonifyurls = true
+canonifyurls = false
 
 DefaultContentLanguage = "ja"
 SectionPagesMenu = "main"
@@ -30,6 +30,9 @@ path = 'github.com/HU-bioinfo/hugo-book'
 [[menu.after]]
   name = "X"
   url = "https://x.com/hokudaiBioinfo"
+
+[params]
+  BookMermaid = true
 
 [markup.goldmark.renderer]
   unsafe = true
