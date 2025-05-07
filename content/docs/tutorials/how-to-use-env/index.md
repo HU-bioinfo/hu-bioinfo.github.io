@@ -13,7 +13,7 @@ weight: 2
 # 解析環境の使い方
 
 ## 1. 解析環境のセットアップ
-[HU Bioinfo Workshop 開発環境セットアップガイド](../start-up/start-up.md)を参照してください。
+[HU Bioinfo Workshop 開発環境セットアップガイド]({{% ref "/docs/tutorials/start-up/" %}})を参照してください。
 
 ## 2. 仮想環境について
 
@@ -46,7 +46,7 @@ MacOSのDocker Desktopが**コンテナ(Docker Container)** を作成し、そ�
 
 {{% hint info %}}
 Windows Subsystem for Linux 2 (WSL2)が**仮想マシン(Virtual Machine)** を作成し、その中でUbuntuのOSを起動しています。 
-さらにDocker Desktopが**コンテナ(Docker Container)** を作成し、その中でUbuntuのOSを起動しています。
+さらにDocker Engineが**コンテナ(Docker Container)** を作成し、その中でUbuntuのOSを起動しています。
 {{% /hint %}}
 
 {{% hint info %}}
@@ -64,8 +64,9 @@ HU Bioinfo Workshop Launcher（具体的には `Start bioinfo-launcher` コマ�
 
 #### 初回実行時：解析環境の初期セットアップと起動
 
-初めて `Start bioinfo-launcher` コマンドを実行する場合、解析環境コンテナをゼロからセットアップします。　　
-初期設定の詳細な手順については、[HU Bioinfo Workshop 開発環境セットアップガイド](../start-up/start-up.md)の「6. HU-Bioinfo Workshop Launcher 拡張機能のセットアップと実行」を参照してください。
+初めて `Start bioinfo-launcher` コマンドを実行する場合、解析環境コンテナをゼロからセットアップします。
+
+初期設定の詳細な手順については、[HU Bioinfo Workshop 開発環境セットアップガイド]({{% ref "/docs/tutorials/start-up/" %}})の「6. HU-Bioinfo Workshop Launcher 拡張機能のセットアップと実行」を参照してください。
 
 #### 2回目以降の実行時：既存の解析環境の起動
 
