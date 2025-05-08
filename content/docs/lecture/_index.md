@@ -5,7 +5,7 @@ tags = []
 draft = false
 bookFlatSection = true
 bookCollapseSection = true
-weight = 2
+weight = 3
 +++
 
 # Lecture

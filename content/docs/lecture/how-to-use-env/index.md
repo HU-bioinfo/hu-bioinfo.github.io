@@ -1,7 +1,7 @@
 ---
-title: "How to use environment"
+title: "1. 解析環境を使ってみよう"
 description: "HU Bioinfo Workshopで使用する解析環境とCursorの使い方を紹介します。"
-weight: 2
+weight: 1
 # bookFlatSection: false
 # bookToc: true
 # bookHidden: false
@@ -10,10 +10,10 @@ weight: 2
 # bookSearchExclude: false
 ---
 
-# 解析環境の使い方
+# 解析環境を使ってみよう
 
 ## 1. 解析環境のセットアップ
-[HU Bioinfo Workshop 開発環境セットアップガイド]({{% ref "/docs/tutorials/start-up/" %}})を参照してください。
+[HU Bioinfo Workshop 開発環境セットアップガイド]({{% ref "/docs/start-up/" %}})を参照してください。
 
 ## 2. 仮想環境について
 
@@ -25,28 +25,30 @@ HU Bioinfo Workshop で使用する解析環境を使う前に、仮想環境に
 ただしその分け方にはいくつかのレベルがあります。
 
 1. **仮想マシン**: パソコンの中に別のパソコンを作ってその中でOSを起動する
-{{< hint info >}}完全に別の家、2世帯住宅{{< /hint >}}
+- 全く別のパソコンを作るようなものなのでファイルを保存する場所も根本から違う
+- 「`C:\Users\black\Documents`」と「`\\wsl.localhost\Ubuntu\home\shuu5`」のように一番最初の分岐から異なる。
+{{< hint info >}}完全に別の家、2世帯住宅。{{< /hint >}}
 2. **コンテナ**: 一つのOSの中で一部のアプリケーションやファイルを隔離する  
-{{< hint info >}}一つの家の中で部屋を分ける{{< /hint >}}
-3. **言語仮想環境**: 特定のプログラミング言語に必要なファイルを隔離する  
-{{< hint info >}}一つの部屋の中しまう棚や引き出しを分ける{{< /hint >}}
+- マシンとOSは一緒なのでファイルを保存する大本は一緒。
+- コンテナの中で利用するためにはコンテナの中にファイルを入れる作業（＝**マウント** ）が必要
+{{< hint info >}}一つの家の中で部屋を分ける。部屋の中に使う資料を入れる。{{< /hint >}}
+3. **言語仮想環境**: 特定のプログラミング言語に必要なファイルを隔離する。
+- 特定のディレクトリ（フォルダ）に必要なものをまとめる。
+- 日常的に行うフォルダによるファイル整理と全く同じ。  
+{{< hint info >}}一つの部屋の中でしまう棚や引き出しを分ける。{{< /hint >}}
 
 セットアップガイドで作成した環境を図示したものを以下に示します。
-いずれの環境も**Linuxと呼ばれる種類のOS** (Ubuntuのこと) を使用するために仮想環境を利用しています。
 
-**Macの場合**  
-![mac-devcontainer-figure.drawio.svg](mac-devcontainer-figure.drawio.svg)
-
-{{% hint info %}}
-MacOSのDocker Desktopが**コンテナ(Docker Container)** を作成し、その中でUbuntuのOSを起動しています。
-{{% /hint %}}
-
-**Windowsの場合**  
-![wsl-devcontainer-figure.drawio.svg](wsl-devcontainer-figure.drawio.svg)
+{{< figure 
+    src="wsl-devcontainer-figure.drawio.svg"
+    alt="仮想マシンとコンテナの関係"
+    caption="仮想マシンとコンテナの関係"
+>}}
 
 {{% hint info %}}
-Windows Subsystem for Linux 2 (WSL2)が**仮想マシン(Virtual Machine)** を作成し、その中でUbuntuのOSを起動しています。 
-さらにDocker Engineが**コンテナ(Docker Container)** を作成し、その中でUbuntuのOSを起動しています。
+Windows Subsystem for Linux 2 (WSL2), もしくはDocker Desktopが**仮想マシン(Virtual Machine)** を作成し、その中でUbuntuのOSを起動しています。 
+
+さらにDocker Engine（Macの場合はDocker Desktopの中に含まれているDocker Engine）が**コンテナ(Docker Container)** を作成し、その中でUbuntuのOSを起動しています。
 {{% /hint %}}
 
 {{% hint info %}}
@@ -66,7 +68,7 @@ HU Bioinfo Workshop Launcher（具体的には `Start bioinfo-launcher` コマ�
 
 初めて `Start bioinfo-launcher` コマンドを実行する場合、解析環境コンテナをゼロからセットアップします。
 
-初期設定の詳細な手順については、[HU Bioinfo Workshop 開発環境セットアップガイド]({{% ref "/docs/tutorials/start-up/" %}})の「6. HU-Bioinfo Workshop Launcher 拡張機能のセットアップと実行」を参照してください。
+初期設定の詳細な手順については、[HU Bioinfo Workshop 開発環境セットアップガイド]({{% ref "/docs/start-up/" %}})の「6. HU-Bioinfo Workshop Launcher 拡張機能のセットアップと実行」を参照してください。
 
 #### 2回目以降の実行時：既存の解析環境の起動
 
