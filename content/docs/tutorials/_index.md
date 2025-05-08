@@ -5,7 +5,7 @@ tags = []
 draft = false
 bookFlatSection = true
 bookCollapseSection = true
-weight = 1
+weight = 2
 +++
 
 # Tutorials
