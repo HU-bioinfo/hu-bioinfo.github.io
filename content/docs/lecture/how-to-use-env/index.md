@@ -12,6 +12,12 @@ weight: 1
 
 # 解析環境を使ってみよう
 
+## 0. 関連チュートリアル
+
+- [HU Bioinfo Launcherの使い方]({{% ref "/docs/tutorials/HU-bioinfo-Launcher/index.md" %}})
+- [Cursorの使い方]({{% ref "/docs/tutorials/Cursor/index.md" %}})
+- [Linuxコマンドの使い方]({{% ref "/docs/tutorials/Linux-command/index.md" %}})
+
 ## 1. 解析環境のセットアップ
 [HU Bioinfo Workshop 開発環境セットアップガイド]({{% ref "/docs/start-up/" %}})を参照してください。
 

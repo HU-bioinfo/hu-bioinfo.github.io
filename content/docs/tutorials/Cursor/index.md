@@ -19,7 +19,7 @@ weight: 2
 
 #### 現在の推奨AIモデル
 
-- 2025/05/08時点では以下のモデルが推奨されています。
+- 2025/05/08時点では以下のモデルを推奨します。
 - **claude-3.7-sonnet**
     - コード生成の精度が高い。
     - リクエストが返ってくるまでに非常に時間がかかる。
@@ -83,7 +83,7 @@ weight: 2
 
 ## CursorのAI機能
 
-### コードを書きながらリアルタイムでコードを補完(**Cursor Tab**)
+### **1. コードを書きながらリアルタイムでコードを補完(Cursor Tab)**
 
 {{< figure src="cursor-tab.drawio.svg" alt="CursorのCursor Tab">}}
 
@@ -96,7 +96,7 @@ weight: 2
 - 次に修正すべき部分を自動で認識し、`Tab`で受け入れるとその場所にカーソルが移動します。
 
 
-### AI chatでコードを書く
+### **2. AI chatでコードを書く**
 
 {{< figure src="cursor-ai-chat1.drawio.svg" alt="CursorのAIチャットエリア">}}
 
@@ -119,7 +119,7 @@ weight: 2
 
 {{< figure src="cursor-ai-chat2-2.drawio.svg" alt="CursorのAIチャットエリア">}}
 
-- このように編集中のファイルに自動的に適用されます。
+- このようにApplyを押すと編集中のファイルに適切な形で適用されます。
 - もしも適用したくない場合はRejectを押し、指示を追加して修正させることもできます。
 
 #### Agent / Ask / Manual
@@ -157,6 +157,6 @@ weight: 2
 - 表示されないモデルはCursor SettingsのModelsタブから追加できます。
 
 
-### インラインチャット
+### **3. インラインチャット**
 
 
