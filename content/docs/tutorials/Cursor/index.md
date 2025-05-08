@@ -27,6 +27,8 @@ weight: 2
     - コード生成の精度は3.7-sonnetに比べるとやや低い。
     - リクエストが比較的早く返ってくる。
 
+---
+
 ## コマンドパレット
 
 - Cursorは**Graphical User Interface (GUI)** なのでクリックしたりドラッグしたりで操作できます。
@@ -37,6 +39,8 @@ weight: 2
 - このような操作方法のインターフェースを**Command Line Interface (CLI)** といいます。
 - コマンドを覚えていればGUIよりも素早く操作できます。
 {{% /hint %}}
+
+---
 
 ## ユーザーインターフェース
 
@@ -80,6 +84,7 @@ weight: 2
 - `ctrl+L`(win) or `cmd+L`(mac)でチャットエリアを開くことができます。
 - 詳しい使い方は[CursorのAI機能](#cursorのai機能)を参照してください。
 
+---
 
 ## CursorのAI機能
 
