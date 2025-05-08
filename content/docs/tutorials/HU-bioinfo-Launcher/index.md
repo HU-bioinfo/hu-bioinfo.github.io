@@ -1,5 +1,5 @@
 ---
-title: "HU Bioinfo Workshop Launcher"
+title: "HU Bioinfo Launcher"
 weight: 1
 # bookFlatSection: false
 # bookToc: true
@@ -9,11 +9,11 @@ weight: 1
 # bookSearchExclude: false
 ---
 
-# HU Bioinfo Workshop Launcher
+# HU Bioinfo Launcher
 
-## bioinfo-launcher とは？
+## HU bioinfo-launcher とは？
 
-Cursorの追加機能で、データ解析に使うRやPythonの環境を簡単に用意してくれます。  
+Cursorの拡張機能で、データ解析に使うRやPythonの環境を簡単に用意してくれます。  
 Docker（仮想的な開発部屋）を使って、誰でも同じ開発環境をすぐに使えるようにします。
 
 ### 機能
@@ -22,10 +22,11 @@ Docker（仮想的な開発部屋）を使って、誰でも同じ開発環境�
 *   **簡単設定:** VS Codeの画面でポチポチするだけで環境ができます。
 *   **キャッシュ共有:** よく使う部品（ライブラリなど）を共有して、効率的に作業できます。
 
-### 使うには？（システム要件）
+### 使うには？
 
 *   LinuxかMacで使えます。WindowsはWSL（WindowsでLinuxを使う仕組み）経由で使えます。
 *   Dockerが必要です（自動インストール機能もあります）。
+*   識別子：`hu-bioinfo-workshop.bioinfo-launcher` 拡張機能で検索
 
 ### 使い方の流れ
 

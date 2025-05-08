@@ -1,6 +1,6 @@
 ---
-title: "解析環境セットアップ"
-description: "HU Bioinfoワークショップ用 開発環境セットアップ (Windows編)"
+title: "Set Up Environment"
+description: "HU Bioinfoワークショップ用 解析環境セットアップ (Windows編)"
 weight: 1
 # bookFlatSection: false
 # bookToc: true
@@ -10,7 +10,7 @@ weight: 1
 # bookSearchExclude: false
 ---
 
-# HU Bioinfo Workshop 開発環境セットアップガイド
+# HU Bioinfo Workshop 解析環境セットアップガイド
 
 {{% tabs "windows-version" %}}
 {{% tab "Windows 11" %}}

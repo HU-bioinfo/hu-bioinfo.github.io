@@ -12,6 +12,12 @@ weight: 1
 
 # 解析環境を使ってみよう
 
+## 0. 関連チュートリアル
+
+- [HU Bioinfo Launcherの使い方]({{% ref "/docs/tutorials/HU-bioinfo-Launcher/index.md" %}})
+- [Cursorの使い方]({{% ref "/docs/tutorials/Cursor/index.md" %}})
+- [Linuxコマンドの使い方]({{% ref "/docs/tutorials/Linux-command/index.md" %}})
+
 ## 1. 解析環境のセットアップ
 [HU Bioinfo Workshop 開発環境セットアップガイド]({{% ref "/docs/start-up/" %}})を参照してください。
 
@@ -140,15 +146,16 @@ mkdir lecture1
 
 その後の操作をやりやすくするために、Cursorの機能でこのディレクトリを開きます。
 
-```bash
-cursor lecture1
-```
-
 {{% hint info %}}
 - コマンドパレット(`Ctrl+Shift+P`, `Cmd+Shift+P` (Mac))で`File: Open Folder`
 - 左上の「ファイル」→「フォルダを開く」を選択（`Ctrl+M Ctrl+O` (Windows), `Cmd+M Cmd+O` (Mac)）
+{{% /hint %}}
 
-これらの方法でも同様のことができます。
+{{% hint info %}}
+- プロジェクトのディレクトリを開くと、そのディレクトリがProjectとして認識されます。
+- プロジェクト全体が収まっているディレクトリ（今回だとlecture1）のことを  
+**ルートディレクトリ** と呼びます。
+- プロジェクト内に入っている他のディレクトリを**サブディレクトリ** と呼びます。
 {{% /hint %}}
 
 まず試しにR言語を使用するためにR script(拡張子が.Rのファイル)を作成します。
@@ -228,5 +235,3 @@ print(data)
 {{% hint info %}}
 `library(readr)` は、インストールした `readr` パッケージを現在のRセッションで使用可能にするためのコマンドです。パッケージを使う前には必ず実行する必要があります。
 {{% /hint %}}
-
--- このセクションはまだ記述途中です -->
