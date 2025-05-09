@@ -268,6 +268,10 @@ GitHub上のリソースにアクセスするために、Personal Access Token (
     コマンドパレット (`Ctrl+Shift+P`) を開き、`bioinfo-launcher` と入力。
     候補から `bioinfo-launcher: Start bioinfo-launcher` を選択して実行します。
 
+{{% hint info %}}
+実行するとdocker imageのダウンロードが始まりますが**初回は時間がかかります**。
+{{% /hint %}}
+
 4.  **作業環境ディレクトリの設定**
     親ディレクトリを選択するように求められるので、先ほど作成した `BioinfoSpace` ディレクトリを選択します。
 
@@ -441,6 +445,10 @@ GitHub上のリソースにアクセスするために、Personal Access Token (
 3.  **`HU bioinfo launcher` を実行**
     コマンドパレット (Cursor内で `Cmd+Shift+P`) を開き、`bioinfo-launcher` と入力。
     候補から `bioinfo-launcher: Start bioinfo-launcher` を選択して実行します。
+
+{{% hint info %}}
+実行するとdocker imageのダウンロードが始まりますが**初回は時間がかかります**。
+{{% /hint %}}
 
 4.  **作業環境ディレクトリの設定**
     親ディレクトリを選択するように求められるので、先ほど作成した `BioinfoSpace` ディレクトリを選択します。
