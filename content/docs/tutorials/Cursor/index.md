@@ -46,7 +46,7 @@ weight: 2
 
 {{< figure src="cursor-ui.drawio.svg" alt="Cursorのユーザーインターフェース">}}
 
-### **1. サイドバー（左）とアクティビティバー**
+### **1.プライマリサイドバーとアクティビティバー**
 
 {{< figure src="cursor-side.drawio.svg" alt="Cursorのサイドバー">}}
 
