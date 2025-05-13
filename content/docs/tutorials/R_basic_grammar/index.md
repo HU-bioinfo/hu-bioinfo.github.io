@@ -169,7 +169,7 @@ print(lst$df)       # データフレーム
 ```
 
 ### tibble型
-tibbleはtidyverseというパッケージ群で提供されている．Dataframeを拡張したデータ構造です．詳しい内容はtidyverseのページをご覧ください．
+tibbleはtidyverseというパッケージ群で提供されている．Dataframeを拡張したデータ構造です．詳しい内容は[ tidyverse ]({{% ref "/docs/tutorials/tidyverse/tidyverse/_index.md" %}})および[ tibble ]({{% ref "/docs/tutorials/tidyverse/tidyverse/tibble/index.md" %}})のページをご覧ください．
 
 
 ## 制御構文
