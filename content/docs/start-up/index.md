@@ -80,7 +80,35 @@ Windows上でLinux環境を動かすための「WSL2」をセットアップし�
 これでWSL2とUbuntuの基本的なセットアップは完了です。
 {{< /details >}}
 
-{{< details title = "2. Cursorエディタのインストール" >}}
+{{< details title = "2. Docker Engineのインストール" >}}
+
+コンテナ技術を利用するために、Docker Engineをインストールします。
+
+1.  **インストールスクリプトのダウンロードと実行**
+    ターミナルで以下のコマンドを実行します。
+    ```bash
+    sudo apt update
+    sudo apt upgrade -y
+    curl -fsSL https://get.docker.com -o get-docker.sh
+    sudo sh ./get-docker.sh
+    ```
+
+2.  **Dockerの動作確認**
+    インストール完了後、以下のコマンドでDockerが正しく動作するか確認できます。
+    ```bash
+    sudo docker run hello-world
+    ```
+    正常にインストールされていれば、Hello from Docker!というメッセージが表示されます。
+
+3.  **一般ユーザーでDockerを使用できるようにする**
+    ```bash
+    sudo usermod -aG docker $USER
+    ```
+    このコマンドを実行後、**WSLを再起動**してください。再起動後は`sudo`なしでDockerコマンドが使えるようになります。
+
+{{< /details >}}
+
+{{< details title = "3. Cursorエディタのインストール" >}}
 
 AIコーディング支援機能付きのエディタ「Cursor」をインストールします。
 
@@ -94,13 +122,16 @@ AIコーディング支援機能付きのエディタ「Cursor」をインスト
 インストールが完了すると、Cursorが使えるようになります。
 {{< /details >}}
 
-{{< details title = "3. Cursorの日本語化" >}}
+{{< details title = "4. Cursorの日本語化" >}}
 
 Cursorの表示を日本語にします。
 
 1.  **Cursorを起動**
 
-2.  **拡張機能ビューを開く**
+2.  **プライマリサイドバーを開く**
+    `Ctrl + B`を押します。
+
+3.  **拡張機能ビューを開く**
     左側のアクティビティバーにある四角いアイコン（または `Ctrl+Shift+X`）で開きます。
 
 {{< figure src="cursor-side.drawio.svg" alt="Cursorのサイドバー">}}
@@ -114,19 +145,19 @@ Cursorの表示を日本語にします。
 これでCursorが日本語表示になります。
 {{< /details >}}
 
-{{< details title = "4. 便利な拡張機能のインストール" >}}
+{{< details title = "5. 便利な拡張機能のインストール" >}}
 
 開発効率を上げるため、Cursorに以下の拡張機能をインストールします。WSL連携やコンテナ開発に役立ちます。
 （日本語化の時と同じように、拡張機能ビューからIDで検索してインストールします）
 
-#### 4.1 Remote - WSL (`ms-vscode-remote.remote-wsl`)
+#### 5.1 Remote - WSL (`ms-vscode-remote.remote-wsl`)
 
 Windows Subsystem for Linux (WSL) と連携するための拡張機能です。CursorからWSL内のプロジェクトを直接扱えるようになります。
 
 1.  拡張機能ビューで `ms-vscode-remote.remote-wsl` を検索。
 2.  `Remote - WSL` (Microsoft提供) をインストール。
 
-#### 4.2 Dev Containers (`ms-vscode-remote.remote-containers`)
+#### 5.2 Dev Containers (`ms-vscode-remote.remote-containers`)
 
 Dockerコンテナを開発環境として使うための拡張機能です。プロジェクトごとに独立した環境を構築できます。
 
@@ -136,7 +167,7 @@ Dockerコンテナを開発環境として使うための拡張機能です。�
 これらの拡張機能で、より高度な開発が可能になります。
 {{< /details >}}
 
-{{< details title = "5. CursorからWSL (Ubuntu) へ接続" >}}
+{{< details title = "6. CursorからWSL (Ubuntu) へ接続" >}}
 
 インストールした `Remote - WSL` 拡張機能を使って、CursorからWSL上のUbuntu環境に接続します。
 
@@ -175,15 +206,15 @@ Dockerコンテナを開発環境として使うための拡張機能です。�
 これで、CursorからWSL上のUbuntu環境で開発作業を開始できます。
 {{< /details >}}
 
-{{< details title = "6. HU bioinfo launcher 拡張機能のセットアップと実行" >}}
+{{< details title = "7. HU bioinfo launcher 拡張機能のセットアップと実行" >}}
 
 これは、本ワークショップ用のR/Python解析環境を簡単に構築できるCursor拡張機能です。Dockerコンテナ技術を使用します。
 
 {{% hint warning %}}
-**重要:** この拡張機能のインストールと実行は、**CursorがWSL (Ubuntu) に接続された状態**で行います。
+**重要:** この拡張機能のインストールと実行は、**CursorがWSL (Ubuntu) に接続された状態**で行います。また、**Docker Engineがインストールされている必要があります** (「2. Docker Engineのインストール」参照)。
 {{% /hint %}}
 
-#### 6.1 拡張機能のインストール (WSL接続環境で)
+#### 7.1 拡張機能のインストール (WSL接続環境で)
 
 1.  **WSL (Ubuntu) 接続の確認**
     Cursorウィンドウ左下のステータスバーが `WSL: Ubuntu` (または類似の表示) になっていることを確認します。
@@ -192,7 +223,7 @@ Dockerコンテナを開発環境として使うための拡張機能です。�
 
 3.  **`hu-bioinfo-workshop.bioinfo-launcher` を検索・インストール**
 
-#### 6.2 GitHub Personal Access Token (PAT) の準備
+#### 7.2 GitHub Personal Access Token (PAT) の準備
 
 GitHub上のリソースにアクセスするために、Personal Access Token (PAT) が必要です。
 
@@ -225,7 +256,7 @@ GitHub上のリソースにアクセスするために、Personal Access Token (
 **注意:** PATを紛失した、もしくは漏洩した場合は必ず **そのPATを削除** して新しく作り直してください。
 {{< /hint >}}
 
-#### 6.3 解析作業用ディレクトリの作成とLauncherの実行
+#### 7.3 解析作業用ディレクトリの作成とLauncherの実行
 
 1.  **WSL (Ubuntu) ターミナルを開く** (Cursor内で `Ctrl+@`)
     プロンプトが `your_username@your_hostname:~$` であることを確認。
@@ -240,6 +271,10 @@ GitHub上のリソースにアクセスするために、Personal Access Token (
     コマンドパレット (`Ctrl+Shift+P`) を開き、`bioinfo-launcher` と入力。
     候補から `bioinfo-launcher: Start bioinfo-launcher` を選択して実行します。
 
+{{% hint info %}}
+実行するとdocker imageのダウンロードが始まりますが**初回は時間がかかります**。
+{{% /hint %}}
+
 4.  **作業環境ディレクトリの設定**
     親ディレクトリを選択するように求められるので、先ほど作成した `BioinfoSpace` ディレクトリを選択します。
 
@@ -248,33 +283,7 @@ GitHub上のリソースにアクセスするために、Personal Access Token (
 
 6.  **環境構築の開始**
     設定後、`HU bioinfo launcher` がDockerを使って解析環境の構築を開始します。
-    *   **Dockerについて:** この拡張機能はDockerが必要です。UbuntuにDocker Engineが未インストールの場合は、拡張機能がインストールを試みます。うまくいかない場合は、下記の方法を参考に手動でインストールしてください。
-
-{{< details title = "Docker Engineのインストール" >}}
-
-1.  **インストールスクリプトのダウンロードと実行**
-    ターミナルで以下のコマンドを実行します。
-    ```bash
-    sudo apt update
-    sudo apt upgrade -y
-    curl -fsSL https://get.docker.com -o get-docker.sh
-    sudo sh ./get-docker.sh
-    ```
-
-2.  **Dockerの動作確認**
-    インストール完了後、以下のコマンドでDockerが正しく動作するか確認できます。
-    ```bash
-    sudo docker run hello-world
-    ```
-    正常にインストールされていれば、Hello from Docker!というメッセージが表示されます。
-
-3.  **一般ユーザーでDockerを使用できるようにする**
-    ```bash
-    sudo usermod -aG docker $USER
-    ```
-    このコマンドを実行後、**WSLを再起動**してください。再起動後は`sudo`なしでDockerコマンドが使えるようになります。
-
-{{< /details >}}
+    *   **Dockerについて:** この拡張機能はDockerが必要です。Docker Engineがインストールされていることを確認してください。
 
 7.  **コンテナ内での作業開始**
     構築が完了すると、多くの場合、新しいCursorウィンドウが自動で開きます。これがDockerコンテナ内の開発環境です。
@@ -283,7 +292,7 @@ GitHub上のリソースにアクセスするために、Personal Access Token (
 これで、`HU bioinfo launcher` のセットアップと実行は完了です。統一された解析環境で作業を始めましょう！
 {{< /details >}}
 
-{{< details title = "7. Cursor 有料版(Pro)の学生向け無料セットアップ（1年間)" >}}
+{{< details title = "8. Cursor 有料版(Pro)の学生向け無料セットアップ（1年間)" >}}
 
 2025/5/7より学生認証を行うことでCursorの有料版であるProプランを1年間無料で利用できるようになりました。下記の手順でCursorのProプランを有効化してください。
 
@@ -329,7 +338,10 @@ Cursorの表示を日本語にします。
 
 1.  **Cursorを起動**
 
-2.  **拡張機能ビューを開く**
+2.  **プライマリサイドバーを開く**
+    `Cmd + B`を押します。
+
+3.  **拡張機能ビューを開く**
     左側のアクティビティバーにある四角いアイコン（または `Cmd+Shift+X`）で開きます。
 
 {{< figure src="cursor-side.drawio.svg" alt="Cursorのサイドバー">}}
@@ -439,6 +451,10 @@ GitHub上のリソースにアクセスするために、Personal Access Token (
 3.  **`HU bioinfo launcher` を実行**
     コマンドパレット (Cursor内で `Cmd+Shift+P`) を開き、`bioinfo-launcher` と入力。
     候補から `bioinfo-launcher: Start bioinfo-launcher` を選択して実行します。
+
+{{% hint info %}}
+実行するとdocker imageのダウンロードが始まりますが**初回は時間がかかります**。
+{{% /hint %}}
 
 4.  **作業環境ディレクトリの設定**
     親ディレクトリを選択するように求められるので、先ほど作成した `BioinfoSpace` ディレクトリを選択します。
