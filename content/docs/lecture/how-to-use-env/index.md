@@ -139,9 +139,9 @@ Projectは一つの言語で作成できることが多いですが、高度な�
 
 **細かいことは考えずにこのコマンドを実行しましょう！**
 
-- `lecture1`という名前のProjectを作成したい場合
+- `playground`という名前のProjectを作成したい場合
 ```bash
-prem lecture1
+prem playground
 ```
 
 このコマンドを実行すると`venv`(Pythonの言語仮想環境)と`renv`(Rの言語仮想環境)が自動的に作成されます。
@@ -149,7 +149,7 @@ prem lecture1
 プロジェクトディレクトリを作成できたら、Cursorの機能でこのディレクトリを開きます。
 
 ```bash
-cursor lecture1
+cursor playground
 ```
 
 このコマンドを実行すると、新しいウィンドウでcursorが開き、目的のディレクトリが表示されます。
@@ -160,148 +160,3 @@ cursor lecture1
 
 このような方法で開くこともできます。
 {{% /hint %}}
-
-
-
-## 5. R環境のデモ
-
-次に、この `lecture1` プロジェクト内でRのパッケージをインストールし、簡単な解析を試してみましょう。
-
-まず試しにR言語を使用するためにR script(拡張子が.Rのファイル)を作成します。
-
-```bash
-touch code/lecture1.R
-```
-
-`code`というディレクトリの中に`lecture1.R`というR言語のプログラムを記載するためのファイルが作成されます。
-
-{{% hint info %}}
-- 左のExplorer (エクスプローラー) ビューで、Projectディレクトリ（例: lecture1）を右クリックし、「New File...」を選択してファイル名を指定する。
-
-CursorのGUIを使ってより直感的な操作も可能です。
-{{% /hint %}}
-
-
-
-### 5.1. パッケージのインストール
-
-Rのパッケージは、特定の機能（データ読み込み、統計解析、グラフ作成など）を提供してくれる拡張機能のようなものです。`renv` を使っているプロジェクトでは、`renv::install()` 関数を使ってパッケージをインストールするのが一般的です。
-
-ここでは例として、CSVファイルを簡単に読み込むための`readr`パッケージをインストールしてみましょう。
-
-`lecture1.R` ファイルに以下のコードを追加してください。
-
-{{< highlight R "linenos=inline, linenostart=1" >}}
-# readr パッケージをインストール
-renv::install("readr")
-{{< /highlight >}}
-
-コードを追加したら、追加した部分にカーソルを合わせて `Ctrl+Enter` (Windows), `Cmd+Enter` (Mac) を押して実行します。
-
-インストールが完了すると、コンソールにメッセージが表示されます。`renv` はプロジェクトごとにインストールしたパッケージを管理してくれるため、他のプロジェクトに影響を与えません。
-
-### 5.2. インストールしたパッケージを使ってみる
-
-`readr` パッケージを使って、簡単なデータ読み込みのデモを行います。まず、試しに読み込むためのCSVファイルを作成しましょう。
-
-Projectディレクトリ（`lecture1`）内の、`data`というディレクトリの中に`sample_data.csv` という名前で新しいファイルを作成し、以下の内容をコピーアンドペーストしてください。
-
-{{< highlight csv "linenos=inline, linenostart=1" >}}
-gene_name, sample1, sample2, sample3
-gene1, 10, 20, 30
-gene2, 15, 25, 35
-gene3, 20, 30, 40
-gene4, 25, 35, 45
-gene5, 30, 40, 50
-{{< /highlight >}}
-
-次に、`lecture1.R` ファイルに以下のコードを追加します。
-
-{{< highlight R "linenos=inline, linenostart=3" >}}
-# readr パッケージを読み込みます
-library(readr)
-
-# sample_data.csv ファイルを読み込みます
-data <- read_csv("sample_data.csv")
-{{< /highlight >}}
-
-こちらもコードを追加したら、追加した部分にカーソルを合わせて実行してみてください。
-
-{{% hint info %}}
-- `library(readr)` は、インストールした `readr` パッケージを現在のRセッションで使用可能にするためのコマンドです。
-- パッケージを使う前には必ず`library()`で使いたいパッケージを読み込む必要があります。
-{{% /hint %}}
-
-次に読み込んだデータを表示してみます。
-
-{{< highlight R "linenos=inline, linenostart=1" >}}
-print(data)
-#   gene_name sample1 sample2 sample3
-#   <chr>     <dbl>   <dbl>   <dbl>
-# 1 gene1        10      20      30
-# 2 gene2        15      25      35
-# 3 gene3        20      30      40
-# 4 gene4        25      35      45
-# 5 gene5        30      40      50
-{{< /highlight >}}
-
-コンソールに `sample_data.csv` の内容が表示されれば成功です。これは `readr` パッケージの `read_csv` 関数を使ってファイルが正しく読み込めたことを示しています。
-
-{{% hint info %}}
-- このような`data`を**tibble**と言います。
-- **列名がついた列** と **行名がついていない行** からなるデータ形式です。
-{{% /hint %}}
-
-解析は基本的に行と列の形で整理されたデータを使います。
-
-データの中から一部の行や列、値を取り出してみましょう。
-
-{{< highlight R "linenos=inline, linenostart=1" >}}
-# 最初の3行を表示
-head(data, 3)
-#   gene_name sample1 sample2 sample3
-#   <chr>     <dbl>   <dbl>   <dbl>
-# 1 gene1        10      20      30
-# 2 gene2        15      25      35
-# 3 gene3        20      30      40
-
-# gene_name列を取り出す
-print(data$gene_name)
-# [1] gene1 gene2 gene3 gene4 gene5
-
-# sample1列を取り出す
-print(data$sample1)
-# [1] 10 15 20 25 30
-
-# 列番号で列を取り出す
-print(data[, 1])
-# [1] gene1 gene2 gene3 gene4 gene5
-
-# 行番号で行を取り出す
-print(data[1, ])
-# [1] gene1 10    20    30
-
-# 特定の値を取り出す
-print(data[1, 2])
-# [1] 10
-
-# 特定の範囲の行と列を取り出す
-print(data[1:2, 2:4])
-#   sample1 sample2 sample3
-#   <dbl>   <dbl>   <dbl>
-# 1    10      20      30
-# 2    15      25      35
-{{< /highlight >}}
-
-次は簡単な図を作成してみましょう。
-
-{{< highlight R "linenos=inline, linenostart=5" >}}
-# barplot 関数を使って棒グラフを作成
-barplot(
-    data$sample1, 
-    names.arg = data$gene_name, 
-    main = "Sample 1"
-    )
-{{< /highlight >}}
-
-このコードを実行すると、`sample1` 列のデータを棒グラフで表示します。

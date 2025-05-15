@@ -1,6 +1,6 @@
 ---
-title: "2. RNA-seqとは?"
-weight: 2
+title: "3. RNA-seqとは?"
+weight: 3
 # bookFlatSection: false
 # bookToc: true
 # bookHidden: false
