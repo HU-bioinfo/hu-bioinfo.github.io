@@ -396,6 +396,34 @@ starwars |>
 ```
 {{< button relref="/docs/tutorials/tidyverse/#問題5" >}}問題5へ{{< /button >}}
 
+
+## 名前空間
+
+上記でも説明のあったように，`tidyverse`とは幾つかの便利なパッケージの総称です．`tibble`, `ggplot2`など，それぞれのパッケージごとに便利な関数が用意されています．例えば`select`関数は`tidyverse`の中でも`dplyr`パッケージで提供されている関数です．
+
+上記の例では，この関数を使用するとき，ただ単に`select(...)`という書き方をしてきましたが`dplyr::select(...)`と言ったように明示的の`パッケージ名::関数`と言った形式で書くこともできます．この`パッケージ名::`の部分を**名前空間**といいます．
+
+何故わざわざ記述量を増やすような真似をするのかというと，語彙が限られているためです．それぞれ別々のパッケージで同じ名前の関数が提供されていることがあります．この時，Rを実行しようとした際に，どのパッケージの関数を実行すればいいのか分からずバグの温床になったりします．例えば，Rの標準パッケージである`stats`と，tidyverseの一角である`dplyr`にはどちらも`filter`関数が定義されています．この時，ただ漫然と`filter`関数を使ってしまうと，どちらのパッケージの関数が実行されたのが判然としません． そのため明示的のどのパッケージの関数なのか伝える必要があるのです．また，どのパッケージでどの関数を使えるのか勉強する意味でも，暇な時があれば，名前空間を用いてコーディングしてみるのもいいかもしれません．
+
+{{% hint warning %}}
+**ちなみに**
+```R
+── Attaching core tidyverse packages ───────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.5.1     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+✔ purrr     1.0.2     
+── Conflicts ─────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+
+ℹ Use the conflicted package to force all conflicts to become errors
+```
+`library(tidyverse)`を実行すると以上のような表示が出力されます．上の*Attaching core tidyverse packages*と書いてある段にはtidyverseに収録されており今回ロードされたライブラリの一覧が，下の*Conflicts*の段にはdplyrの`filter`と`lag`関数が`stats`パッケージの関数と名前が被っているけど，`dplyr`の方を優先して使うからなと書いてあります．
+{{% /hint %}}
+
+
 ## 練習問題
 以下は練習問題です．これまで学習してきたこと＋αな内容ですので，適宜，chatGPTに聞いてみたり調べたりしながら解いてみてください．
 
