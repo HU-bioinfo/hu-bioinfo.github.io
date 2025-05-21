@@ -1,12 +1,12 @@
 ---
-title: "第2回勉強会"
-date: 2025-05-14T20:04:47+09:00
+title: "第3回勉強会"
+date: 2025-05-21T00:00:00+09:00
 draft: false
-description: "5/20 17:00～ 中研究棟 5-1 共通セミナー室 ハイブリッド開催"
+description: "5/27 17:00～ 中研究棟 5-1 共通セミナー室 ハイブリッド開催"
 ---
-# 第2回勉強会のお知らせ
+# 第3回勉強会のお知らせ
 ## 開催日時
-5月20日(火曜日) 17:00～
+5月27日(火曜日) 17:00～
 
 ## 場所
 - 北大 医学院 中研究棟 5階 5-1 共通セミナー室
@@ -15,8 +15,7 @@ description: "5/20 17:00～ 中研究棟 5-1 共通セミナー室 ハイブリ�
 ## 内容
 ### 解析環境の導入
 - [HU Bioinfo Workshop 開発環境セットアップガイド]({{% ref "/docs/start-up/" %}})をつかってセットアップの続きを行います。
-- セットアップが終わった人は[解析環境の使い方]({{% ref "/docs/lecture/how-to-use-env/" %}})を見ながら解析環境の使い方を学びます。
-- ひとまずRのデモを用意したのでやってみましょう！
+- [RNA-seqとは？]({{% ref "/docs/lecture/what-is-rna-seq/" %}})を簡単に説明します。
 
 講義をするというよりは相談しながら課題を進めるという形になります。
 
@@ -30,5 +29,5 @@ description: "5/20 17:00～ 中研究棟 5-1 共通セミナー室 ハイブリ�
 ## discord
 参加希望者は下記へ連絡をお願いします。
 
-[hokudai.bioinfo@gmail.com](mailto:hokudai.bioinfo@gmail.com)
+[hokudai.bioinfo@gmail.com](mailto:hokudai.bioinfo@gmail.com)  
 

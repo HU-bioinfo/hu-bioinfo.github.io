@@ -23,6 +23,17 @@ weight: 2
 
 [解析環境を使ってみよう]({{% ref "/docs/lecture/how-to-use-env/index.md" %}})で作ったプロジェクトの中でRを使ってみましょう。
 
+{{% hint info %}}
+- プロジェクトの作成方法
+
+```bash
+prem playground
+cursor playground
+```
+
+このコマンドで`playground`という名前のプロジェクトを作成し、Cursorでそのプロジェクトディレクトリを開きます。
+{{% /hint %}}
+
 ### 1.1. R scriptを作成する
 
 まずR言語を使用するためにR script(拡張子が.Rのファイル)を作成します。
@@ -64,11 +75,11 @@ Projectディレクトリ（`playground`）内の、`data`というディレク�
 
 {{< highlight csv "linenos=inline, linenostart=1" >}}
 gene_name, sample1, sample2, sample3
-    gene1,      10,      20,      30
-    gene2,      15,      25,      35
-    gene3,      20,      30,      40
-    gene4,      25,      35,      45
-    gene5,      30,      40,      50
+    gene1,      10,      20,      40
+    gene2,      15,      40,      35
+    gene3,      30,      25,      45
+    gene4,      25,      35,      50
+    gene5,      20,      30,      30
 {{< /highlight >}}
 
 次に、`practice.R` ファイルに以下のコードを追加します。
@@ -78,7 +89,7 @@ gene_name, sample1, sample2, sample3
 library(readr)
 
 # sample_data.csv ファイルを読み込みます
-data <- read_csv("sample_data.csv")
+data <- read_csv("data/sample_data.csv")
 {{< /highlight >}}
 
 こちらもコードを追加したら、追加した部分にカーソルを合わせて実行してみてください。
