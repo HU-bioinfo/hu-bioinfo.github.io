@@ -18,9 +18,8 @@ weight: 2
 - [Cursorの使い方]({{% ref "/docs/tutorials/Cursor/index.md" %}})
 - [Linuxコマンドの使い方]({{% ref "/docs/tutorials/Linux-command/index.md" %}})
 - [R basic grammar]({{% ref "/docs/tutorials/R_basic_grammar/index.md" %}})
-- [ggplot2]({{% ref "/docs/tutorials/ggplot2/index.md" %}})
+- [ggplot2]({{% ref "/docs/tutorials/tidyverse/ggplot2/index.md" %}})
 - [Tidyverse]({{% ref "/docs/tutorials/tidyverse/index.md" %}})
-
 ## 1. Rを使ってデータの読み込みをしてみよう
 
 [解析環境を使ってみよう]({{% ref "/docs/lecture/how-to-use-env/index.md" %}})で作ったプロジェクトの中でRを使ってみましょう。
@@ -259,7 +258,7 @@ Rではグラフを作成するための関数がたくさん用意されてい�
 
 多くの論文でこのパッケージが使用されているため、これを使えば論文で見たことのあるFigureを作成することができます！
 
-tutorialsの[ggplot2]({{% ref "/docs/tutorials/ggplot2/index.md" %}})も参考にしながら練習してみましょう。
+tutorialsの[ggplot2]({{% ref "/docs/tutorials/tidyverse/ggplot2/index.md" %}})も参考にしながら練習してみましょう。
 
 ### 2.1. ggplot2のインストール
 
@@ -438,7 +437,7 @@ tidy data(整然としたデータ)は、データ解析において非常に重
 
 チュートリアルに詳しい説明がありますが、ひとまず**機械にとって解析しやすいデータ形式**と覚えておけば良いです。
 
-[Tidyverse]({{% ref "/docs/tutorials/Tidyverse/index.md" %}})のチュートリアルも参考にしながら練習してみましょう。
+[tidyverse]({{% ref "/docs/tutorials/tidyverse/_index.md" %}})のチュートリアルも参考にしながら練習してみましょう。
 
 ### 4.1. tidy data(縦長データ)に変換する
 
