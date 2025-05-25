@@ -20,6 +20,7 @@ weight: 2
 - [R basic grammar]({{% ref "/docs/tutorials/R_basic_grammar/index.md" %}})
 - [ggplot2]({{% ref "/docs/tutorials/tidyverse/ggplot2/index.md" %}})
 - [Tidyverse]({{% ref "/docs/tutorials/tidyverse/index.md" %}})
+
 ## 1. Rを使ってデータの読み込みをしてみよう
 
 [解析環境を使ってみよう]({{% ref "/docs/lecture/how-to-use-env/index.md" %}})で作ったプロジェクトの中でRを使ってみましょう。
