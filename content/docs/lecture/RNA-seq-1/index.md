@@ -15,7 +15,7 @@ weight: 4
 - [RNA-seqとは？]({{% ref "/docs/lecture/what-is-RNA-seq/index.md" %}})
 - [Cursorの使い方]({{% ref "/docs/tutorials/Cursor/index.md" %}})
 - [R basic grammar]({{% ref "/docs/tutorials/R_basic_grammar/index.md" %}})
-- [ggplot2]({{% ref "/docs/tutorials/ggplot2/index.md" %}})
+- [ggplot2]({{% ref "/docs/tutorials/tidyverse/ggplot2/index.md" %}})
 - [Tidyverse]({{% ref "/docs/tutorials/tidyverse/index.md" %}})
 
 ## 1. データの準備(Raw Countsデータ & TPMデータ)
