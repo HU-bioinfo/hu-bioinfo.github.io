@@ -19,6 +19,8 @@ weight: 2
 - [Linuxコマンドの使い方]({{% ref "/docs/tutorials/Linux-command/index.md" %}})
 - [R basic grammar]({{% ref "/docs/tutorials/R_basic_grammar/index.md" %}})
 - [ggplot2]({{% ref "/docs/tutorials/ggplot2/index.md" %}})
+- [Tidyverse]({{% ref "/docs/tutorials/tidyverse/index.md" %}})
+
 ## 1. Rを使ってデータの読み込みをしてみよう
 
 [解析環境を使ってみよう]({{% ref "/docs/lecture/how-to-use-env/index.md" %}})で作ったプロジェクトの中でRを使ってみましょう。
@@ -341,13 +343,28 @@ ggsave("bar_plot.png", bar_plot, width = 10, height = 8)
 - `ggsave` 関数は、グラフをPNG、PDF、JPEGなどの形式で保存することができます。
 {{% /hint %}}
 
-### 2.4. scatter plot を作成してみる
+## 3. AIに聞きながらグラフを作成してみる
 
 {{% hint info %}}
 - ここから先は一部のコードを隠しておきます。
 - 画像だけ見てAIに聞いてコードを作れるか練習してみましょう。
 - 一度質問をしてからコードを見ると「ＡＩにこう聞けば良かったのかも」のような発見があるかもしれません。
 {{% /hint %}}
+
+
+### 3.0. AI chatの使い方
+
+- `ctrl+L`(win) or `cmd+L`(mac)でチャットエリアを開くことができます。
+- チャットエリアを開いたときにエディットエリアで編集中のファイル(今回だと`practice.R`)が自動的に**コンテクスト**として認識されます。
+- つまり自動的に今書いているコードを読んで、ユーザーが次に何をしたいかを推測しながらコードを生成してくれます。
+- コードのなかの「特にこの部分が知りたい」という時には、その部分をドラッグで選択してから`ctrl+L`(win) or `cmd+L`(mac)を押すと、その部分をコンテクストとして認識してくれます。
+- 詳しくは[Cursor - AI Chatでコードを書く]({{% ref "/docs/tutorials/cursor/index.md#2-ai-chatでコードを書く" %}})を参考にしてください。
+
+
+
+
+### 3.1. scatter plot を作成してみる
+
 
 {{< highlight R>}}
 # scatter plot を作成
@@ -374,7 +391,7 @@ ggplot(data, aes(x = sample1, y = sample2)) +
 {{% /details %}}
 {{< figure src="unnamed-chunk-15-1.png" >}}
 
-### 2.5. heatmap を作成してみる
+### 3.2. heatmap を作成してみる
 
 {{< highlight R>}}
 # heatmap用のきれいなカラーパレットを読み込む
@@ -415,7 +432,7 @@ heatmap(matrix_data,
 
 {{< figure src="unnamed-chunk-18-1.png" >}}
 
-## 3. tidy dataを使ったグラフ作成
+## 4. tidy dataを使ったグラフ作成
 
 tidy data(整然としたデータ)は、データ解析において非常に重要な概念です。
 
@@ -423,7 +440,7 @@ tidy data(整然としたデータ)は、データ解析において非常に重
 
 [Tidyverse]({{% ref "/docs/tutorials/Tidyverse/index.md" %}})のチュートリアルも参考にしながら練習してみましょう。
 
-### 3.1. tidy data(縦長データ)に変換する
+### 4.1. tidy data(縦長データ)に変換する
 
 1. 一つの変数は一つの列に（Each variable must have its own column.）
 2. 一つの観測は一つの行に（Each observation must have its own row.）
@@ -468,7 +485,7 @@ print(data_tidy)
 15 gene5     sample3    30
 {{< /highlight >}}
 
-### 3.2. サマリを作ってみる
+### 4.2. サマリを作ってみる
 
 tidy dataは非常に計算しやすいです。
 
@@ -501,7 +518,7 @@ print(data_summary)
 5 gene5      26.7  5.77
 {{< /highlight >}}
 
-### 3.3. summaryを使ってbar plot を作成してみる
+### 4.3. summaryを使ってbar plot を作成してみる
 
 先ほど作成したbar plotとは違って、各サンプルの情報が集計されたsummaryがあります。
 
@@ -528,7 +545,7 @@ ggplot(data_summary, aes(x = gene_name, y = mean)) +
 
 {{< figure src="unnamed-chunk-23-1.png" >}}
 
-### 3.4. box plot を作成してみる
+### 4.4. box plot を作成してみる
 
 データのばらつきを表現するもう一つの方法としてbox plotがあります。
 
@@ -551,7 +568,7 @@ ggplot(data_tidy, aes(x = gene_name, y = value)) +
 
 {{< figure src="unnamed-chunk-24-1.png" >}}
 
-### 3.5. box dot plot を作成してみる
+### 4.5. box dot plot を作成してみる
 
 さらにdot plotやjitter plotによってデータ点を加えることによって、データのばらつきをさらに直感的に表現できます。
 
