@@ -1,6 +1,6 @@
 ---
 title: "tidyverse"
-weight: 4
+weight: 3
 # bookFlatSection: false
 # bookToc: true
 # bookHidden: false
@@ -23,12 +23,12 @@ tidyverseは，データ分析と可視化を効率的に行うために設計�
 
 | パッケージ名 | 役割                           | 主な機能                                                   | 
 | ------------ | ------------------------------ | ---------------------------------------------------------- | 
-| [ ggplot2 ]({{% ref "/docs/tutorials/tidyverse/ggplot2/index.md" %}})      | データ可視化                   | グラフィックスの文法に基づいて、グラフを宣言的に作成できる | 
+| [ ggplot2 ]({{% ref "/docs/R/tidyverse/ggplot2/index.md" %}})      | データ可視化                   | グラフィックスの文法に基づいて、グラフを宣言的に作成できる | 
 | dplyr        | データ操作                     | フィルタリング，要約，並べ替え，結合といったデータ操作     | 
-| [ tidyr ]({{% ref "/docs/tutorials/tidyverse/tidyr/index.md" %}})        | データ整理                     | **tidy data**作成                                          | 
+| [ tidyr ]({{% ref "/docs/R/tidyverse/tidyr/index.md" %}})        | データ整理                     | **tidy data**作成                                          | 
 | readr        | データ読み込み                 | 矩形データ（csv、tsv、fwfなど）の高速読み込み              | 
 | purrr        | 関数型プログラミング           | ベクトルやリストの操作（map関数など）                      | 
-| [ tibble ]({{% ref "/docs/tutorials/tidyverse/tibble/index.md" %}})     | データフレームの現代的な再構築 | モダンなデータフレーム構造                             |
+| [ tibble ]({{% ref "/docs/R/tidyverse/tibble/index.md" %}})     | データフレームの現代的な再構築 | モダンなデータフレーム構造                             |
 | stringr      | 文字列操作                     | パターンマッチングや文字列の処理                           | 
 | forcats      | 因子型操作                     | 因子データのレベルの順序や値の変更など                     | 
 | lubridate    | 日付・時刻データ操作           | 日付や時間の解析と処理                                     | 
@@ -243,7 +243,7 @@ glimpse()を適用すると,行と列がひっくり返ってしまうので注�
 
 このようなデータが与えられたときに概観をざっくり知るのは重要です．具体的には行数(レコード数)，列数(特徴量数)，それぞれの列は何を内蔵しているデータなのか，列名と列のデータ型(数値型，文字列型など)に矛盾はないか，データに欠損値はないか，解析の目的にあったデータの内容かといったことを確認するのが重要になります．
 
-{{< button relref="/docs/tutorials/tidyverse/#問題1" >}}問題1へ{{< /button >}}
+{{< button relref="/docs/R/tidyverse/#問題1" >}}問題1へ{{< /button >}}
 
 ### 列の操作
 まず初めに列に対する操作です．パイプ演算子`|>`を使って`select`関数を適用することで，列を抽出できます．`rename`関数では列名を新しく付け替えることができます．
@@ -301,8 +301,8 @@ starwars |>
 #>  4 Tatooine   
 #>  5 Alderaan   
 ```
-{{< button relref="/docs/tutorials/tidyverse/#問題2" >}}問題2へ{{< /button >}}
-{{< button relref="/docs/tutorials/tidyverse/#問題4" >}}問題4へ{{< /button >}}
+{{< button relref="/docs/R/tidyverse/#問題2" >}}問題2へ{{< /button >}}
+{{< button relref="/docs/R/tidyverse/#問題4" >}}問題4へ{{< /button >}}
 
 ### 行の操作
 `slice_*`系の関数は行の操作に使います．`slice`関数は指定した行番号の列を，`slice_head`,`slice_tail`はそれぞれ最初のn行と最後のn行を，`slice_min`, `slice_max`は指定して列の値が小さい順ないし大きい順にn行抽出します．
@@ -344,7 +344,7 @@ starwars |>
 #> 2 Anakin Skywalker blond         188    84
 ```
 
-{{< button relref="/docs/tutorials/tidyverse/#問題3" >}}問題3へ{{< /button >}}
+{{< button relref="/docs/R/tidyverse/#問題3" >}}問題3へ{{< /button >}}
 
 ### データの要約
 `summarise`関数を使うと変数の平均値や標準偏差などの記述統計量(要約統計量)を計算できます. `group_by`関数と組み合わせることで値ごとの記述統計量を出すことができます．
@@ -364,7 +364,7 @@ starwars |>
 #>  3 Bespin                175       79  
 #>  4 Bestine IV            180      110  
 ```
-{{< button relref="/docs/tutorials/tidyverse/#問題7" >}}問題7へ{{< /button >}}
+{{< button relref="/docs/R/tidyverse/#問題7" >}}問題7へ{{< /button >}}
 
 ### データの拡張
 `mutate`関数はtibble内の変数を用いて計算を行い，その結果を新しい列として追加する関数です．
@@ -394,7 +394,7 @@ starwars |>
 #>  4 Darth Vader           202   136     2.02  33.3 obesity    
 #>  5 Leia Organa           150    49     1.5   21.8 not_obesity
 ```
-{{< button relref="/docs/tutorials/tidyverse/#問題5" >}}問題5へ{{< /button >}}
+{{< button relref="/docs/R/tidyverse/#問題5" >}}問題5へ{{< /button >}}
 
 
 ## 名前空間
@@ -433,7 +433,7 @@ starwars |>
 {{% hint info %}}
 💡 ヒント: glimpse(), head(), dim() などを使う
 
-{{< button relref="/docs/tutorials/tidyverse/#tidyverseで遊んでみよう" >}}参考{{< /button >}}
+{{< button relref="/docs/R/tidyverse/#tidyverseで遊んでみよう" >}}参考{{< /button >}}
 {{% /hint %}}
 
 {{% details title="Answer" open=false %}}
@@ -458,7 +458,7 @@ starwars |>
 {{% hint info %}}
 💡 ヒント: `arrange`関数と，`desc`関数について調べてみよう
 
-{{< button relref="/docs/tutorials/tidyverse/#列の操作" >}}列の操作{{< /button >}}
+{{< button relref="/docs/R/tidyverse/#列の操作" >}}列の操作{{< /button >}}
 {{% /hint %}}
 
 {{% details title="Answer" open=false %}}
@@ -477,7 +477,7 @@ starwars |>
 {{% hint info %}}
 💡 ヒント: `filter`関数について調べてみよう
 
-{{< button relref="/docs/tutorials/tidyverse/#行の操作" >}}行の操作{{< /button >}}
+{{< button relref="/docs/R/tidyverse/#行の操作" >}}行の操作{{< /button >}}
 
 {{% /hint %}}
 
@@ -497,7 +497,7 @@ starwars |>
 {{% hint info %}}
 💡 ヒント: `select`, `contains`関数の使い方を調べてみよう
 
-{{< button relref="/docs/tutorials/tidyverse/#列の操作" >}}列の操作{{< /button >}}
+{{< button relref="/docs/R/tidyverse/#列の操作" >}}列の操作{{< /button >}}
 {{% /hint %}}
 
 {{% details title="Answer" open=false %}}
@@ -513,7 +513,7 @@ starwars |>
 {{% hint info %}}
 💡 ヒント: `if_else`関数の使い方を調べてみよう
 
-{{< button relref="/docs/tutorials/tidyverse/#データの拡張" >}}データの拡張{{< /button >}}
+{{< button relref="/docs/R/tidyverse/#データの拡張" >}}データの拡張{{< /button >}}
 {{< button href="https://dplyr.tidyverse.org/reference/if_else.html" >}}if_else関数{{< /button >}}
 {{% /hint %}}
 
@@ -563,7 +563,7 @@ species ごとに、
 {{% hint info %}}
 💡 ヒント: `group_by`, `summarise`, `filter`関数の使い方を調べてみよう
 
-{{< button relref="/docs/tutorials/tidyverse/#データの要約" >}}データの要約{{< /button >}}
+{{< button relref="/docs/R/tidyverse/#データの要約" >}}データの要約{{< /button >}}
 {{% /hint %}}
 
 {{% details title="Answer" open=false %}}

@@ -1,7 +1,7 @@
 ---
 title: "AI学習の進め方"
 description: "AI学習の進め方"
-weight: 2
+weight: 5
 # bookFlatSection: false
 # bookToc: true
 # bookHidden: false
@@ -70,7 +70,7 @@ normal  tumor
 {{% hint info %}}
 
 - `Manual`モード、モデルは`gemini-2.5-Pro`を使用します。
-- CursorやAIチャットの使い方は[Cursorの使い方]({{% ref "/docs/tutorials/Cursor/index.md" %}})を参考にしてください。
+- CursorやAIチャットの使い方は[Cursorの使い方]({{% ref "/docs/get-started/Cursor/index.md" %}})を参考にしてください。
 
 {{% /hint %}}
 

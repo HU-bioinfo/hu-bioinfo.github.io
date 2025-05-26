@@ -1,6 +1,6 @@
 ---
 title: "Cursor"
-weight: 2
+weight: 4
 # bookFlatSection: false
 # bookToc: true
 # bookHidden: false
@@ -13,7 +13,7 @@ weight: 2
 
 [Cursor](https://www.cursor.com/)は、VS Codeというプログラミング用エディタを基に、AIによるプログラミングをサポートするように作られたエディタです。  
 
-セットアップについては[HU Bioinfo Workshop 開発環境セットアップガイド]({{% ref "/docs/start-up/" %}})を参照してください。
+セットアップについては[HU Bioinfo Workshop 開発環境セットアップガイド]({{% ref "/docs/get-started/start-up/" %}})を参照してください。
 
 基本的な使い方は分かったので、CursorのAI機能だけ知りたいという方は[CursorのAI機能](#cursorのai機能)を参照してください。
 

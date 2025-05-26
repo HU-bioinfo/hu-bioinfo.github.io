@@ -1,6 +1,6 @@
 ---
-title: "4. RNA-seq解析 1 (データの読み込みと可視化)"
-weight: 4
+title: "RNA-seq解析 1 (データの読み込みと可視化)"
+weight: 2
 # bookFlatSection: false
 # bookToc: true
 # bookHidden: false
@@ -17,11 +17,11 @@ weight: 4
 
 ## 0. 関連チュートリアル
 
-- [RNA-seqとは？]({{% ref "/docs/lecture/what-is-RNA-seq/index.md" %}})
-- [Cursorの使い方]({{% ref "/docs/tutorials/Cursor/index.md" %}})
-- [R basic grammar]({{% ref "/docs/tutorials/R_basic_grammar/index.md" %}})
-- [ggplot2]({{% ref "/docs/tutorials/tidyverse/ggplot2/index.md" %}})
-- [Tidyverse]({{% ref "/docs/tutorials/tidyverse/index.md" %}})
+- [RNA-seqとは？]({{% ref "/docs/RNA-seq/what-is-RNA-seq/index.md" %}})
+- [Cursorの使い方]({{% ref "/docs/get-started/Cursor/index.md" %}})
+- [R basic grammar]({{% ref "/docs/R/R_basic_grammar/index.md" %}})
+- [ggplot2]({{% ref "/docs/R/tidyverse/ggplot2/index.md" %}})
+- [Tidyverse]({{% ref "/docs/R/tidyverse/index.md" %}})
 
 ## 1. データの準備(Raw Countsデータ & TPMデータ)
 
@@ -316,7 +316,7 @@ hist(
 ## 3. データの正規化
 
 - サンプル間で比較ができるように**メディアン比正規化**を行います。
-- [RNA-seqとは？]({{% ref "/docs/lecture/what-is-RNA-seq/index.md#メディアン比正規化median-ratio-normalization" %}})で詳しく解説しています。
+- [RNA-seqとは？]({{% ref "/docs/RNA-seq/what-is-RNA-seq/index.md#メディアン比正規化median-ratio-normalization" %}})で詳しく解説しています。
 - 正規化はraw countsデータに対して行います。
 
 

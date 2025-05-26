@@ -1,7 +1,7 @@
 ---
-title: "2. Rの練習"
+title: "Rの練習"
 description: "Rの練習をします。"
-weight: 2
+weight: 1
 # bookFlatSection: false
 # bookToc: true
 # bookHidden: false
@@ -10,20 +10,20 @@ weight: 2
 # bookSearchExclude: false
 ---
 
-# 2. Rの練習
+# Rの練習
 
 ## 0. 関連チュートリアル
 
-- [HU Bioinfo Launcherの使い方]({{% ref "/docs/tutorials/HU-bioinfo-Launcher/index.md" %}})
-- [Cursorの使い方]({{% ref "/docs/tutorials/Cursor/index.md" %}})
-- [Linuxコマンドの使い方]({{% ref "/docs/tutorials/Linux-command/index.md" %}})
-- [R basic grammar]({{% ref "/docs/tutorials/R_basic_grammar/index.md" %}})
-- [ggplot2]({{% ref "/docs/tutorials/tidyverse/ggplot2/index.md" %}})
-- [Tidyverse]({{% ref "/docs/tutorials/tidyverse/index.md" %}})
+- [HU Bioinfo Launcherの使い方]({{% ref "/docs/get-started/HU-bioinfo-Launcher/index.md" %}})
+- [Cursorの使い方]({{% ref "/docs/get-started/Cursor/index.md" %}})
+- [Linuxコマンドの使い方]({{% ref "/docs/get-started/linux-command/index.md" %}})
+- [R basic grammar]({{% ref "/docs/R/R_basic_grammar/index.md" %}})
+- [ggplot2]({{% ref "/docs/R/tidyverse/ggplot2/index.md" %}})
+- [Tidyverse]({{% ref "/docs/R/tidyverse/index.md" %}})
 
 ## 1. Rを使ってデータの読み込みをしてみよう
 
-[解析環境を使ってみよう]({{% ref "/docs/lecture/how-to-use-env/index.md" %}})で作ったプロジェクトの中でRを使ってみましょう。
+[解析環境を使ってみよう]({{% ref "/docs/get-started/how-to-use-env/index.md" %}})で作ったプロジェクトの中でRを使ってみましょう。
 
 {{% hint info %}}
 - プロジェクトの作成方法
@@ -259,7 +259,7 @@ Rではグラフを作成するための関数がたくさん用意されてい�
 
 多くの論文でこのパッケージが使用されているため、これを使えば論文で見たことのあるFigureを作成することができます！
 
-tutorialsの[ggplot2]({{% ref "/docs/tutorials/tidyverse/ggplot2/index.md" %}})も参考にしながら練習してみましょう。
+tutorialsの[ggplot2]({{% ref "/docs/R/tidyverse/ggplot2/index.md" %}})も参考にしながら練習してみましょう。
 
 ### 2.1. ggplot2のインストール
 
@@ -358,7 +358,7 @@ ggsave("bar_plot.png", bar_plot, width = 10, height = 8)
 - チャットエリアを開いたときにエディットエリアで編集中のファイル(今回だと`practice.R`)が自動的に**コンテクスト**として認識されます。
 - つまり自動的に今書いているコードを読んで、ユーザーが次に何をしたいかを推測しながらコードを生成してくれます。
 - コードのなかの「特にこの部分が知りたい」という時には、その部分をドラッグで選択してから`ctrl+L`(win) or `cmd+L`(mac)を押すと、その部分をコンテクストとして認識してくれます。
-- 詳しくは[Cursor - AI Chatでコードを書く]({{% ref "/docs/tutorials/cursor/index.md#2-ai-chatでコードを書く" %}})を参考にしてください。
+- 詳しくは[Cursor - AI Chatでコードを書く]({{% ref "/docs/get-started/Cursor/index.md#2-ai-chatでコードを書く" %}})を参考にしてください。
 
 
 
@@ -438,7 +438,7 @@ tidy data(整然としたデータ)は、データ解析において非常に重
 
 チュートリアルに詳しい説明がありますが、ひとまず**機械にとって解析しやすいデータ形式**と覚えておけば良いです。
 
-[tidyverse]({{% ref "/docs/tutorials/tidyverse/_index.md" %}})のチュートリアルも参考にしながら練習してみましょう。
+[tidyverse]({{% ref "/docs/R/tidyverse/_index.md" %}})のチュートリアルも参考にしながら練習してみましょう。
 
 ### 4.1. tidy data(縦長データ)に変換する
 

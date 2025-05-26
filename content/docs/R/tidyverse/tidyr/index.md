@@ -24,7 +24,7 @@ tidyrは字の如く，与えられたデータフレーム(tibble)をtidy data�
 | Bob     | 70   | 85      | 
 | Charlie | 30   | 40      | 
 
-この表は一見[ tidy data ]({{% ref "/docs/tutorials/tidyverse/#tidy-data" %}})に見えますが，原則に合致していない部分があります．
+この表は一見[ tidy data ]({{% ref "/docs/R/tidyverse/#tidy-data" %}})に見えますが，原則に合致していない部分があります．
 
 {{% details title="tidy dataの3原則" open=false %}}
 1. 一つの変数は一つの列に（Each variable must have its own column.）
@@ -75,7 +75,7 @@ print(long_data)
 このコードの動きは上の動画を見ていただくとわかりやすいと思います．cols引数で指定された元の表の列名が，新しい表では`subject`列に収まっています．また,元の表の値は新しく指定された`score`列に収まっています．このように，cols引数で，分割したい元の列名を指定し，それぞれ収納先の列名を新しくつけてやる必要があります．
 
 {{% details title="colsの指定方法" open=false %}}
-上記の例の他にもう一つ，colsの指定方法があります．それは，分割したくない列名に`!`をつけてやることです．`!`はの[論理型]({{% ref "/docs/tutorials/r_basic_grammar/#logicalbool-論理型" %}})説明にもあったように否定を表す記号です．こうすることによって以下の例では`name`列以外を分割するように指定できます．
+上記の例の他にもう一つ，colsの指定方法があります．それは，分割したくない列名に`!`をつけてやることです．`!`はの[論理型]({{% ref "/docs/R/R_basic_grammar/#logicalbool-論理型" %}})説明にもあったように否定を表す記号です．こうすることによって以下の例では`name`列以外を分割するように指定できます．
 
 long dataに変換する際は，多くの列名を指定することが多く，その際，分割しない列名を指定した方が記述がスッキリと分かりやすくなることが多いです．
 ```R

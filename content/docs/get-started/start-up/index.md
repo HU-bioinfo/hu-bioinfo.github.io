@@ -1,5 +1,5 @@
 ---
-title: "はじめに - 環境セットアップ"
+title: "セットアップ"
 description: "HU Bioinfoワークショップ用 解析環境セットアップ (Windows/MacOS)"
 weight: 1
 # bookFlatSection: false

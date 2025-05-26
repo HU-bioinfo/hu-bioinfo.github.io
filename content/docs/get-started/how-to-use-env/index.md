@@ -1,7 +1,7 @@
 ---
-title: "1. 解析環境を使ってみよう"
+title: "解析環境を使ってみよう"
 description: "HU Bioinfo Workshopで使用する解析環境とCursorの使い方を紹介します。"
-weight: 1
+weight: 3
 # bookFlatSection: false
 # bookToc: true
 # bookHidden: false
@@ -14,12 +14,12 @@ weight: 1
 
 ## 0. 関連チュートリアル
 
-- [HU Bioinfo Launcherの使い方]({{% ref "/docs/tutorials/HU-bioinfo-Launcher/index.md" %}})
-- [Cursorの使い方]({{% ref "/docs/tutorials/Cursor/index.md" %}})
-- [Linuxコマンドの使い方]({{% ref "/docs/tutorials/Linux-command/index.md" %}})
+- [HU Bioinfo Launcherの使い方]({{% ref "/docs/get-started/HU-bioinfo-Launcher/index.md" %}})
+- [Cursorの使い方]({{% ref "/docs/get-started/Cursor/index.md" %}})
+- [Linuxコマンドの使い方]({{% ref "/docs/get-started/linux-command/index.md" %}})
 
 ## 1. 解析環境のセットアップ
-[HU Bioinfo Workshop 開発環境セットアップガイド]({{% ref "/docs/start-up/" %}})を参照してください。
+[HU Bioinfo Workshop 開発環境セットアップガイド]({{% ref "/docs/get-started/start-up/" %}})を参照してください。
 
 ## 2. 仮想環境について
 
@@ -74,7 +74,7 @@ HU Bioinfo Workshop Launcher（具体的には `Start bioinfo-launcher` コマ�
 
 初めて `Start bioinfo-launcher` コマンドを実行する場合、解析環境コンテナをゼロからセットアップします。
 
-初期設定の詳細な手順については、[HU Bioinfo Workshop 開発環境セットアップガイド]({{% ref "/docs/start-up/" %}})の「6. HU-Bioinfo Workshop Launcher 拡張機能のセットアップと実行」を参照してください。
+初期設定の詳細な手順については、[HU Bioinfo Workshop 開発環境セットアップガイド]({{% ref "/docs/get-started/start-up/" %}})の「6. HU-Bioinfo Workshop Launcher 拡張機能のセットアップと実行」を参照してください。
 
 #### 2回目以降の実行時：既存の解析環境の起動
 
