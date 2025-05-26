@@ -1,6 +1,6 @@
 ---
-title: "Set Up Environment"
-description: "HU Bioinfoワークショップ用 解析環境セットアップ (Windows編)"
+title: "はじめに - 環境セットアップ"
+description: "HU Bioinfoワークショップ用 解析環境セットアップ (Windows/MacOS)"
 weight: 1
 # bookFlatSection: false
 # bookToc: true
