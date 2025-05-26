@@ -1,6 +1,7 @@
 ---
 title: "Example"
 weight: 100
+draft: true
 # bookFlatSection: false
 # bookToc: true
 # bookHidden: false

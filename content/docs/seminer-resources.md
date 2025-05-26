@@ -1,5 +1,5 @@
 ---
-title: "ロードマップ"
+title: "勉強会資料"
 weight: 10
 # bookFlatSection: false
 # bookToc: true
@@ -8,7 +8,7 @@ weight: 10
 # bookComments: false
 # bookSearchExclude: false
 ---
-# ロードマップ
+# 勉強会資料
 
 ## 2025前半期レクチャー
 [1. セットアップ]({{% ref "/docs/get-started/start-up/" %}})  

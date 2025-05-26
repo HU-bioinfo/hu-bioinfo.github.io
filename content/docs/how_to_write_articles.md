@@ -1,6 +1,7 @@
 ---
 title: "How to Write Articles"
 weight: 100
+draft: true
 # bookFlatSection: false
 # bookToc: true
 # bookHidden: false
