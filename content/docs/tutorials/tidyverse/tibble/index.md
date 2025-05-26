@@ -18,7 +18,7 @@ Rの基本文法にあったように，tibbleなるデータ型があります�
 
 ここでは実際にcsvファイル(Excelファイルの廉価版みたいなやつ)を用いてtibbleの使い方を実践的に学んでいきましょう．
 
-この[ リンク ]()からファイルをダウンロードするか，あるいは下の内容をコピペして`student_sample.csv`として保存してください．
+この[リンク](student_sample.csv)からファイルをダウンロードするか，あるいは下の内容をコピペして`student_sample.csv`として保存してください．
 ```csv
 student_id,name,gender,math_score,english_score,science_score,passed
 101,John Doe,M,78,85,69,TRUE
