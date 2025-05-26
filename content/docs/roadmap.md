@@ -11,7 +11,7 @@ weight: 10
 # ロードマップ
 
 ## 2025前半期レクチャー
-[1. セットアップ](/get-started/start-up/index.md)  
-[2. Rの基礎](/R/R-practice/index.md)  
-[3. RNA seqとは？](/RNA-seq/what-is-RNA-seq/index.md)  
-[4. RNA seq解析1](/RNA-seq/RNA-seq-1/index.md)
+[1. セットアップ]({{% ref "/docs/get-started/start-up/" %}})  
+[2. Rの基礎]({{% ref "/docs/R/R-practice/" %}})  
+[3. RNA seqとは？]({{% ref "/docs/RNA-seq/what-is-RNA-seq/" %}})  
+[4. RNA seq解析1]({{% ref "/docs/RNA-seq/RNA-seq-1/" %}})  
