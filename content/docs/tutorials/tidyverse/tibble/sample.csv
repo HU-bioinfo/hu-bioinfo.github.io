@@ -1,0 +1,11 @@
+student_id,name,gender,math_score,english_score,science_score,passed
+101,John Doe,M,78,85,69,TRUE
+102,Jane Smith,F,92,89,95,TRUE
+103,Bob Lee,M,56,72,60,FALSE
+104,Alice Wong,F,88,91,84,TRUE
+105,Chris Johnson,M,45,50,48,FALSE
+106,Maria Garcia,F,74,80,70,TRUE
+107,David Kim,M,66,59,73,TRUE
+108,Nancy Allen,F,81,77,88,TRUE
+109,Tom Brown,M,39,42,35,FALSE
+110,Lisa White,F,90,94,92,TRUE
