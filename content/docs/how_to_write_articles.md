@@ -1,6 +1,7 @@
 ---
 title: "How to Write Articles"
 weight: 100
+draft: true
 # bookFlatSection: false
 # bookToc: true
 # bookHidden: false
@@ -83,7 +84,7 @@ weight: 1
 weightはサイトの左側メニューに表示される時の順番を示しています．上に載せたいものほど小さい値をつけてください．
 挿入する画像は，作成したディレクトリ以下に配置してください．
 
-markdownの編集方法については，[Hugo-bookのサイト](https://hugo-book-demo.netlify.app/)のShortcodesや，私が作成した[記事](https://github.com/HU-bioinfo/hu-bioinfo.github.io/blob/main/content/docs/tutorials/example/index.md)と[サイト](https://hu-bioinfo.github.io/docs/tutorials/example/)を見比べてみてください．
+markdownの編集方法については，[Hugo-bookのサイト](https://hugo-book-demo.netlify.app/)のShortcodesや，私が作成した[記事](https://github.com/HU-bioinfo/hu-bioinfo.github.io/blob/main/content/docs/example/index.md)と[サイト](https://hu-bioinfo.github.io/docs/example/)を見比べてみてください．
 
 
 ## 投稿方法
