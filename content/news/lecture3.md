@@ -14,9 +14,9 @@ description: "5/27 17:00～ 中研究棟 5-1 共通セミナー室 ハイブリ�
 
 ## 内容
 ### 解析環境の導入
-- [HU Bioinfo Workshop 開発環境セットアップガイド]({{% ref "/docs/start-up/" %}})をつかってセットアップの続きを行います。
-- [RNA-seqとは？]({{% ref "/docs/lecture/what-is-rna-seq/" %}})を簡単に説明します。
-- [RNA-seq解析 1 (データの読み込みと可視化)]({{% ref "/docs/lecture/RNA-seq-1/" %}})を少し進めます。
+- [HU Bioinfo Workshop 開発環境セットアップガイド]({{% ref "/docs/get-started/start-up/" %}})をつかってセットアップの続きを行います。
+- [RNA-seqとは？]({{% ref "/docs/RNA-seq/what-is-RNA-seq/" %}})を簡単に説明します。
+- [RNA-seq解析 1 (データの読み込みと可視化)]({{% ref "/docs/RNA-seq/RNA-seq-1/" %}})を少し進めます。
 
 講義をするというよりは相談しながら課題を進めるという形になります。
 
