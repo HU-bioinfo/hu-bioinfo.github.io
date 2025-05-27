@@ -288,6 +288,7 @@ hist(
 {{% /details %}}
 
 {{< figure src="unnamed-chunk-7-1.png" >}}
+
 - カウントの値の頻度を見ると、ほとんどの値が非常に低い値だがごく一部非常に大きな値もあることがわかります。
 - 一般にRNA-seqの発現値はこのような対数正規分布になります。
 - このように値のスケールがあまりにも違いすぎるデータは理解しにくく扱いづらいので、ログ変換を行います。
@@ -699,14 +700,142 @@ Heatmap(
 
 {{< figure src="unnamed-chunk-16-1.png" >}}
 
+
+- Stageの項目が多すぎて少々見づらくなっています。
+- Stage I, II, III, IVというようにまとめてみましょう。
+
+
+
+{{< highlight R >}}
+# 現在のStageの項目を確認
+table(col_annotation_data$stage)
+{{< /highlight >}}
+
+{{< highlight R >}}
+       '--     Normal    Stage I   Stage II  Stage IIA  Stage IIB  Stage III 
+         9         50          9          4         13          1          2 
+Stage IIIA Stage IIIB Stage IIIC   Stage IV  Stage IVA  Stage IVB 
+         1          5          3          1          1          1 
+{{< /highlight >}}
+
+
+
+
+{{% details title="ステージ情報を整理" %}}
+{{< highlight R >}}
+# ステージ情報を整理
+col_annotation_data_updated <- col_annotation_data %>% 
+    mutate(stage_simplified = case_when(
+        stage == "'--" ~ "Unknown",
+        stage == "Normal" ~ "Normal",
+        str_detect(stage, "^Stage IV") ~ "Stage_IV",
+        str_detect(stage, "^Stage III") ~ "Stage_III",
+        str_detect(stage, "^Stage II") ~ "Stage_II",
+        str_detect(stage, "^Stage I") ~ "Stage_I",
+        TRUE ~ "Other"
+    ))
+
+# 整理後のステージ分布を確認
+table(col_annotation_data_updated$stage_simplified)
+{{< /highlight >}}
+{{% /details %}}
+
+{{< highlight R >}}
+   Normal   Stage_I  Stage_II Stage_III  Stage_IV   Unknown 
+       50         9        18        11         3         9 
+{{< /highlight >}}
+
+
+{{< highlight R >}}
+table(col_annotation_data$stage, col_annotation_data_updated$stage_simplified)
+{{< /highlight >}}
+
+{{< highlight R >}}
+            
+             Normal Stage_I Stage_II Stage_III Stage_IV Unknown
+  '--             0       0        0         0        0       9
+  Normal         50       0        0         0        0       0
+  Stage I         0       9        0         0        0       0
+  Stage II        0       0        4         0        0       0
+  Stage IIA       0       0       13         0        0       0
+  Stage IIB       0       0        1         0        0       0
+  Stage III       0       0        0         2        0       0
+  Stage IIIA      0       0        0         1        0       0
+  Stage IIIB      0       0        0         5        0       0
+  Stage IIIC      0       0        0         3        0       0
+  Stage IV        0       0        0         0        1       0
+  Stage IVA       0       0        0         0        1       0
+  Stage IVB       0       0        0         0        1       0
+{{< /highlight >}}
+
+
+
+{{% details title="ステージ情報の整理後、色設定を更新" %}}
+{{< highlight R >}}
+# ステージ情報の整理後、色設定を更新
+stage_colors_updated <- brewer.pal(
+    n = min(length(unique(col_annotation_data_updated$stage_simplified)), 11), 
+    "Dark2"
+)
+names(stage_colors_updated) <- unique(col_annotation_data_updated$stage_simplified)
+
+# stage列は使わないのでcol_annotation_data_updatedから削除
+col_annotation_data_updated <- col_annotation_data_updated %>% 
+    select(-stage)
+
+# 色設定を確認
+print(stage_colors_updated)
+{{< /highlight >}}
+{{% /details %}}
+
+{{< highlight R >}}
+ Stage_II   Unknown Stage_III   Stage_I  Stage_IV    Normal 
+"#1B9E77" "#D95F02" "#7570B3" "#E7298A" "#66A61E" "#E6AB02" 
+{{< /highlight >}}
+
+
+
+{{% details title="更新されたcol annotation barを作成しheatmapを作成" %}}
+{{< highlight R >}}
+# 更新されたcol annotation barを作成
+col_annotation_updated <- HeatmapAnnotation(
+    df = col_annotation_data_updated,
+    col = list(
+        source = source_colors,
+        stage_simplified = stage_colors_updated
+    )
+)
+
+# 整理されたステージ情報を使ったheatmapを作成
+Heatmap(
+    heatmap_data_scaled,
+    name = "exp",
+    cluster_rows = FALSE,
+    cluster_columns = TRUE,
+    show_row_names = TRUE,
+    show_column_names = FALSE,
+    row_names_gp = gpar(fontsize = 8),  
+    row_names_max_width = unit(6, "cm"), 
+    row_names_side = "right",         
+    width = unit(8, "cm"),
+    height = unit(14, "cm"),
+    top_annotation = col_annotation_updated,
+    left_annotation = row_annotation
+)
+{{< /highlight >}}
+{{% /details %}}
+
+{{< figure src="unnamed-chunk-17-1.png" >}}
+
+
+
 - このようにheatmapは臨床情報と遺伝子発現量の両方を可視化することができます。
 - このような可視化はデータの全体像を把握するのに非常に便利です。
 
-{{% hint info %}}
-- 臨床情報が見えるようにはなりましたが、Stageのようにカテゴリが多すぎるとまだ見づらいです。
-- いくつかのStageをまとめて1つのカテゴリにすることで、より見やすくすることができます。
-- col_annotation_dataにsimple_stageなどのような列を追加してもっと見やすくしてみましょう。
-{{% /hint %}}
+
+
+
+
 
 ## 5. PCAでデータのばらつきをつかむ
 
@@ -762,7 +891,7 @@ barplot(
 {{< /highlight >}}
 {{% /details %}}
 
-{{< figure src="unnamed-chunk-17-1.png" >}}
+{{< figure src="unnamed-chunk-18-1.png" >}}
 
 
 - PC1（最初の主成分）が最も多くの情報を持っており、PCが進むにつれて寄与率が小さくなっていることがわかります。
@@ -817,7 +946,7 @@ ggplot(plot_data_pca_gg, aes(x = PC1, y = PC2)) +
 {{< /highlight >}}
 {{% /details %}}
 
-{{< figure src="unnamed-chunk-18-1.png" >}}
+{{< figure src="unnamed-chunk-19-1.png" >}}
 
 
 - このプロットでは、横軸にPC1、縦軸にPC2を取り、各サンプルを点で表示しています。
@@ -847,7 +976,7 @@ ggplot(plot_data_pca_gg, aes(x = PC1, y = PC2)) +
 {{< /highlight >}}
 {{% /details %}}
 
-{{< figure src="unnamed-chunk-19-1.png" >}}
+{{< figure src="unnamed-chunk-20-1.png" >}}
 
 - このように、大腸がんと正常大腸粘膜はかなり分離していることが分かります。
 - 一方で横行結腸とS状結腸はかなり近いところにいて一部混ざっていますが、ある程度別の集団であることを示しています。
@@ -894,11 +1023,385 @@ ggplot(plot_data_pca_gg, aes(x = PC1, y = PC2)) +
 {{< /highlight >}}
 {{% /details %}}
 
-{{< figure src="unnamed-chunk-20-1.png" >}}
+{{< figure src="unnamed-chunk-21-1.png" >}}
 
 - 大腸がんと正常大腸粘膜ははっきりクラスタリングすることができました。
 - 横行結腸とS状結腸の正常粘膜については完全に分けることはできませんが、集団の大部分が所属するクラスターに分けることはできました。
+- 今回はすべての遺伝子を使いましたが、多くの場合ほとんどの遺伝子は大きく変動していないのでがんと正常大腸を分けることくらいしかできませんでした。
+- 大腸がんをさらに細かく分けるためには、ある程度重要な遺伝子を絞り込んでからPCAを行う必要があります。
+- heatmapの時に使ったgene setの遺伝子を使ってみましょう。
 
+{{< highlight R >}}
+# heatmapの時に使ったgene setのデータを確認
+print(row_annotation_data)
+{{< /highlight >}}
+
+{{< highlight R >}}
+             set_name
+APC        CRC driver
+KRAS       CRC driver
+PIK3CA     CRC driver
+FBXW7      CRC driver
+SMAD4      CRC driver
+TCF7L2     CRC driver
+NRAS       CRC driver
+BRAF       CRC driver
+TP53       CRC driver
+CTNNB1     CRC driver
+PTEN       CRC driver
+MSH2       CRC driver
+MLH1       CRC driver
+MSH6       CRC driver
+PMS2       CRC driver
+POLE       CRC driver
+POLD1      CRC driver
+CDX2    CMS signature
+EPHB2   CMS signature
+HNF4A   CMS signature
+KRT20   CMS signature
+VIL1    CMS signature
+CEACAM5 CMS signature
+EPCAM   CMS signature
+LGR5    CMS signature
+ASCL2   CMS signature
+OLFM4   CMS signature
+SOX9    CMS signature
+BMI1    CMS signature
+MSI1    CMS signature
+DCLK1   CMS signature
+CD44    CMS signature
+CD3E           Immune
+CD8A           Immune
+GZMA           Immune
+GZMB           Immune
+PRF1           Immune
+IFNG           Immune
+TBX21          Immune
+FOXP3          Immune
+IL10           Immune
+TGFB1          Immune
+CTLA4          Immune
+LAG3           Immune
+COL1A1        Stromal
+COL1A2        Stromal
+COL3A1        Stromal
+FN1           Stromal
+VIM           Stromal
+ACTA2         Stromal
+PDGFRB        Stromal
+FAP           Stromal
+THY1          Stromal
+SPARC         Stromal
+TIMP1         Stromal
+VCAN          Stromal
+{{< /highlight >}}
+
+
+
+{{% details title="tibbleに変換" %}}
+{{< highlight R >}}
+# tibbleに変換
+gene_set_tibble <- row_annotation_data |>
+    rownames_to_column(var = "gene_name") |>
+    as_tibble()
+
+# データの中身を確認
+print(gene_set_tibble)
+{{< /highlight >}}
+{{% /details %}}
+
+{{< highlight R >}}
+# A tibble: 56 × 2
+   gene_name set_name  
+   <chr>     <chr>     
+ 1 APC       CRC driver
+ 2 KRAS      CRC driver
+ 3 PIK3CA    CRC driver
+ 4 FBXW7     CRC driver
+ 5 SMAD4     CRC driver
+ 6 TCF7L2    CRC driver
+ 7 NRAS      CRC driver
+ 8 BRAF      CRC driver
+ 9 TP53      CRC driver
+10 CTNNB1    CRC driver
+# ℹ 46 more rows
+{{< /highlight >}}
+
+
+
+- これらの遺伝子だけを使って、大腸がんだけをPCAプロットしてみましょう。
+
+
+{{% details title="大腸がんのサンプルの行だけを抽出" %}}
+{{< highlight R >}}
+# metadataから大腸がんのサンプルの行だけを抽出
+tumor_samples_metadata <- metadata |>
+    filter(source == "TCGA_CRC")
+
+head(tumor_samples_metadata)
+{{< /highlight >}}
+{{% /details %}}
+
+{{< highlight R >}}
+```
+# A tibble: 6 × 210
+  case_id     source project.project_id cases.consent_type cases.days_to_consent
+  <chr>       <chr>  <chr>              <chr>              <chr>                
+1 TCGA-D5-55… TCGA_… TCGA-COAD          Informed Consent   20                   
+2 TCGA-EI-65… TCGA_… TCGA-READ          Informed Consent   0                    
+3 TCGA-A6-61… TCGA_… TCGA-COAD          Informed Consent   0                    
+4 TCGA-QG-A5… TCGA_… TCGA-COAD          Informed Consent   49                   
+5 TCGA-AA-34… TCGA_… TCGA-COAD          Informed Consent   31                   
+6 HCM-CSHL-0… TCGA_… HCMI-CMDC          '--                '--                  
+# ℹ 205 more variables: cases.days_to_lost_to_followup <chr>,
+#   cases.disease_type <chr>, cases.index_date <chr>,
+#   cases.lost_to_followup <chr>, cases.primary_site <chr>,
+#   demographic.age_at_index <chr>, demographic.age_is_obfuscated <chr>,
+#   demographic.cause_of_death <chr>, demographic.cause_of_death_source <chr>,
+#   demographic.country_of_birth <chr>,
+#   demographic.country_of_residence_at_enrollment <chr>, …
+{{< /highlight >}}
+
+
+
+{{% details title="log_normalized_countsから大腸がんのサンプルの列だけを抽出" %}}
+{{< highlight R >}}
+# log_normalized_countsから大腸がんのサンプルの列だけを抽出
+tumor_log_normalized_counts <- log_normalized_counts[, tumor_samples_metadata$case_id]
+
+tumor_log_normalized_counts[1:5, 1:5]
+{{< /highlight >}}
+{{% /details %}}
+
+{{< highlight R >}}
+       TCGA-D5-5540 TCGA-EI-6509 TCGA-A6-6137 TCGA-QG-A5Z2 TCGA-AA-3489
+A1BG       1.329186     2.300096     0.000000     2.125344     2.219624
+A1CF      10.216637    11.397360    10.886229     8.766558     8.911765
+A2M       11.790972    12.663097    13.708594    11.535881    14.781264
+A2ML1      1.329186     3.297344     4.101680     2.513061     2.776599
+A4GALT     6.201736     8.339064     8.020667     6.947383     9.593912
+{{< /highlight >}}
+
+{{< highlight R >}}
+dim(tumor_log_normalized_counts)
+{{< /highlight >}}
+
+{{< highlight R >}}
+[1] 16457    50
+{{< /highlight >}}
+
+
+{{% details title="使用するgene setの遺伝子行だけを抽出" %}}
+{{< highlight R >}}
+# 使用するgene setの遺伝子行だけを抽出
+tumor_gene_set_log_normalized_counts <- tumor_log_normalized_counts[gene_set_tibble$gene_name, ]
+
+tumor_gene_set_log_normalized_counts[1:5, 1:5]
+{{< /highlight >}}
+{{% /details %}}
+
+{{< highlight R >}}
+       TCGA-D5-5540 TCGA-EI-6509 TCGA-A6-6137 TCGA-QG-A5Z2 TCGA-AA-3489
+APC        9.940582     9.574465     9.831598    10.237207     10.38061
+KRAS      11.824451    11.461010    11.381450    11.268820     11.07960
+PIK3CA     8.961879     9.976906    10.173252     9.614568     10.14368
+FBXW7      9.275326     8.763883     9.727003    10.057651     10.17140
+SMAD4     11.526786     8.476560    10.933299    11.861563     10.80839
+{{< /highlight >}}
+
+{{< highlight R >}}
+dim(tumor_gene_set_log_normalized_counts)
+{{< /highlight >}}
+
+
+{{< highlight R >}}
+[1] 56 50
+{{< /highlight >}}
+
+
+- うまくデータを抽出できたらPCAを行ってplotしてみましょう。
+- 今回はsourceは一つしかないのでStageで色分けしてみましょう。
+
+
+{{% details title="PCAを行って結果をメタデータと結合したデータフレームを作成" %}}
+{{< highlight R >}}
+# PCAを行う（行をサンプルにする必要があるので転置する）
+pca_result <- prcomp(t(tumor_gene_set_log_normalized_counts))
+
+# PCAの結果とメタデータを結合したデータフレームを作成
+plot_data_pca_gg <- data.frame(
+  PC1 = pca_result$x[, 1],
+  PC2 = pca_result$x[, 2],
+  stage = tumor_samples_metadata$diagnoses.ajcc_pathologic_stage,
+  sample_id = rownames(pca_result$x)
+)
+
+head(plot_data_pca_gg)
+{{< /highlight >}}
+{{% /details %}}
+
+{{< highlight R >}}
+                        PC1       PC2      stage         sample_id
+TCGA-D5-5540       1.041493 -4.475991  Stage IIA      TCGA-D5-5540
+TCGA-EI-6509       3.471889  7.542652        '--      TCGA-EI-6509
+TCGA-A6-6137       5.181010  1.625038 Stage IIIB      TCGA-A6-6137
+TCGA-QG-A5Z2       6.057406 -3.254991    Stage I      TCGA-QG-A5Z2
+TCGA-AA-3489      -7.073449  3.741021   Stage II      TCGA-AA-3489
+HCM-CSHL-0160-C18 -3.227502  1.648932  Stage IIA HCM-CSHL-0160-C18
+{{< /highlight >}}
+
+
+
+{{% details title="ステージ情報を整理" %}}
+{{< highlight R >}}
+# ステージ情報を整理
+plot_data_pca_gg <- plot_data_pca_gg %>% 
+    mutate(stage_simplified = case_when(
+        stage == "'--" ~ "Unknown",
+        stage == "Normal" ~ "Normal",
+        str_detect(stage, "^Stage IV") ~ "Stage_IV",
+        str_detect(stage, "^Stage III") ~ "Stage_III",
+        str_detect(stage, "^Stage II") ~ "Stage_II",
+        str_detect(stage, "^Stage I") ~ "Stage_I",
+        TRUE ~ "Other"
+    ))
+
+head(plot_data_pca_gg)
+{{< /highlight >}}
+{{% /details %}}
+
+{{< highlight R >}}
+                        PC1       PC2      stage         sample_id
+TCGA-D5-5540       1.041493 -4.475991  Stage IIA      TCGA-D5-5540
+TCGA-EI-6509       3.471889  7.542652        '--      TCGA-EI-6509
+TCGA-A6-6137       5.181010  1.625038 Stage IIIB      TCGA-A6-6137
+TCGA-QG-A5Z2       6.057406 -3.254991    Stage I      TCGA-QG-A5Z2
+TCGA-AA-3489      -7.073449  3.741021   Stage II      TCGA-AA-3489
+HCM-CSHL-0160-C18 -3.227502  1.648932  Stage IIA HCM-CSHL-0160-C18
+                  stage_simplified
+TCGA-D5-5540              Stage_II
+TCGA-EI-6509               Unknown
+TCGA-A6-6137             Stage_III
+TCGA-QG-A5Z2               Stage_I
+TCGA-AA-3489              Stage_II
+HCM-CSHL-0160-C18         Stage_II
+{{< /highlight >}}
+
+{{< highlight R >}}
+table(plot_data_pca_gg$stage, plot_data_pca_gg$stage_simplified)
+{{< /highlight >}}
+
+
+
+
+{{< highlight R >}}
+             Stage_I Stage_II Stage_III Stage_IV Unknown
+  '--              0        0         0        0       9
+  Stage I          9        0         0        0       0
+  Stage II         0        4         0        0       0
+  Stage IIA        0       13         0        0       0
+  Stage IIB        0        1         0        0       0
+  Stage III        0        0         2        0       0
+  Stage IIIA       0        0         1        0       0
+  Stage IIIB       0        0         5        0       0
+  Stage IIIC       0        0         3        0       0
+  Stage IV         0        0         0        1       0
+  Stage IVA        0        0         0        1       0
+  Stage IVB        0        0         0        1       0
+{{< /highlight >}}
+
+- k-meansクラスタリングしてplotします。
+
+
+{{% details title="k-meansクラスタリングしてplot" %}}
+{{< highlight R >}}
+# k-meansクラスタリング (PC1とPC2を使用)
+set.seed(123)
+kmeans_obj <- kmeans(plot_data_pca_gg[, c("PC1", "PC2")], centers = 3, nstart = 25)
+plot_data_pca_gg$cluster <- factor(kmeans_obj$cluster)
+
+# クラスタの中心点をデータフレームとして準備
+cluster_centers_gg <- as.data.frame(kmeans_obj$centers)
+colnames(cluster_centers_gg) <- c("PC1", "PC2")
+
+# クラスタを中心点から信頼楕円を書くためにクラスタIDを追加
+cluster_centers_gg$cluster <- factor(1:nrow(cluster_centers_gg))
+
+# ggplot2でプロット
+ggplot(plot_data_pca_gg, aes(x = PC1, y = PC2)) +
+  geom_point(aes(color = stage_simplified, shape = cluster), size = 3, alpha = 0.7) +
+  stat_ellipse(aes(fill = cluster), geom = "polygon", alpha = 0.15, type = "t", level = 0.95, show.legend = FALSE, color = "darkgrey") + 
+  scale_color_manual(values = stage_colors_updated) + 
+  scale_fill_brewer(palette = "Pastel2") + 
+  scale_shape_manual(values = c("1" = 16, "2" = 17, "3" = 15)) +
+  labs(
+    title = "PCA Plot",
+    x = paste0("PC1 (", round((pca_result$sdev[1]^2 / sum(pca_result$sdev^2)) * 100, 1), "%)"),
+    y = paste0("PC2 (", round((pca_result$sdev[2]^2 / sum(pca_result$sdev^2)) * 100, 1), "%)"),
+    color = "Stage",
+    shape = "K-means Cluster"
+  ) +
+  theme_classic() +
+  theme(
+    plot.title = element_text(size = 16, face = "bold", hjust = 0.5),
+    axis.title = element_text(size = 14, face = "bold"),
+    axis.text = element_text(size = 12),
+    legend.title = element_text(size = 14, face = "bold"),
+    legend.text = element_text(size = 12)
+  )
+{{< /highlight >}}
+{{% /details %}}
+
+{{< figure src="unnamed-chunk-25-1.png" >}}
+
+
+- k-meansクラスタリングは中心点の数を調整することができます。
+- 4つにしてみましょう。
+
+
+{{% details title="k-meansクラスタリング (PC1とPC2を使用)、中心点を4つにしてplot" %}}
+{{< highlight R >}}
+# k-meansクラスタリング (PC1とPC2を使用)
+set.seed(123)
+kmeans_obj <- kmeans(plot_data_pca_gg[, c("PC1", "PC2")], centers = 4, nstart = 25)
+plot_data_pca_gg$cluster <- factor(kmeans_obj$cluster)
+
+# クラスタの中心点をデータフレームとして準備
+cluster_centers_gg <- as.data.frame(kmeans_obj$centers)
+colnames(cluster_centers_gg) <- c("PC1", "PC2")
+
+# クラスタを中心点から信頼楕円を書くためにクラスタIDを追加
+cluster_centers_gg$cluster <- factor(1:nrow(cluster_centers_gg))
+
+# ggplot2でプロット
+ggplot(plot_data_pca_gg, aes(x = PC1, y = PC2)) +
+  geom_point(aes(color = stage_simplified, shape = cluster), size = 3, alpha = 0.7) +
+  stat_ellipse(aes(fill = cluster), geom = "polygon", alpha = 0.15, type = "t", level = 0.95, show.legend = FALSE, color = "darkgrey") + 
+  scale_color_manual(values = stage_colors_updated) + 
+  scale_fill_brewer(palette = "Pastel2") + 
+  scale_shape_manual(values = c("1" = 16, "2" = 17, "3" = 15, "4" = 18)) +
+  labs(
+    title = "PCA Plot",
+    x = paste0("PC1 (", round((pca_result$sdev[1]^2 / sum(pca_result$sdev^2)) * 100, 1), "%)"),
+    y = paste0("PC2 (", round((pca_result$sdev[2]^2 / sum(pca_result$sdev^2)) * 100, 1), "%)"),
+    color = "Stage",
+    shape = "K-means Cluster"
+  ) +
+  theme_classic() +
+  theme(
+    plot.title = element_text(size = 16, face = "bold", hjust = 0.5),
+    axis.title = element_text(size = 14, face = "bold"),
+    axis.text = element_text(size = 12),
+    legend.title = element_text(size = 14, face = "bold"),
+    legend.text = element_text(size = 12)
+  )
+{{< /highlight >}}
+{{% /details %}}
+
+{{< figure src="unnamed-chunk-26-1.png" >}}
+
+
+- このように、heatmapとは違った形でサンプルのばらつきを可視化することができます。
 
 
 ## 6. 追加演習
