@@ -25,7 +25,8 @@ weight: 2
 
 ## 1. データの準備(Raw Countsデータ & TPMデータ)
 
-今回はすでに**matrix**形式にまとめたデータを用意してあるのでこちらをダウンロードしてください。。
+- 今回はすでに**tibble**形式にまとめたデータを用意してあるのでダウンロードしてください。
+- ダウンロードしたファイルはプロジェクト内の`data`フォルダに保存してください。
 
 Google Drive
 - [TCGA_GTEx_colon_counts_tibble.csv](https://drive.google.com/uc?id=1qfSMqOc2pcrhflhq0BgTvAe_4I1t3ChG&export=download)
@@ -62,8 +63,21 @@ library(here)
 
 {{< highlight R >}}
 # データの読み込み
-counts <- read_csv(here("data", "TCGA_GTEx_colon", "processed", "TCGA_GTEx_colon_counts_tibble.csv"))
+counts <- read_csv(here("data", "TCGA_GTEx_colon_counts_tibble.csv"))
 {{< /highlight >}}
+
+{{% hint info %}}
+### here()関数
+
+- here()関数はファイルのパスを指定するための関数です。
+- この関数を使うと、相対パスを絶対パスに変換してくれます。
+- 絶対パスを自分で書くのはめんどくさいので相対パスをよく使いますが、相対パスだとうまく動かなくなる場合があります。
+- パスを手書きするならそれぞれ以下のようになります。
+  - 相対パス：`data/TCGA_GTEx_colon_counts_tibble.csv`
+  - 絶対パス：`/home/user/proj/{プロジェクト名}/data/TCGA_GTEx_colon_counts_tibble.csv"`
+- `here("data", "TCGA_GTEx_colon_counts_tibble.csv")`とだけ書いて実行し、本当に絶対パスが出力されるか確認してみましょう。
+
+{{% /hint %}}
 
 {{< highlight R >}}
 Rows: 61569 Columns: 103
@@ -245,7 +259,7 @@ protein_coding
 # 行名をgene_nameに変更
 counts_mrna_matrix <- counts_mrna %>% 
     column_to_rownames("gene_name") %>% 
-    select(-gene_id, -gene_type) %>% 
+    select(!gene_id, !gene_type) %>% 
     as.matrix()
 {{< /highlight >}}
 
