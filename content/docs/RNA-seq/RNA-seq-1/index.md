@@ -93,7 +93,7 @@ dbl (100): TCGA-D5-5540, TCGA-EI-6509, TCGA-A6-6137, TCGA-QG-A5Z2, TCGA-AA-3...
 
 
 {{< highlight R >}}
-metadata <- read_csv(here("data", "TCGA_GTEx_colon", "processed", "TCGA_GTEx_colon_metadata_tibble.csv"))
+metadata <- read_csv(here("data", "TCGA_GTEx_colon_metadata_tibble.csv"))
 {{< /highlight >}}
 
 
