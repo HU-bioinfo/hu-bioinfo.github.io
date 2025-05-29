@@ -259,7 +259,7 @@ protein_coding
 # 行名をgene_nameに変更
 counts_mrna_matrix <- counts_mrna %>% 
     column_to_rownames("gene_name") %>% 
-    select(!gene_id, !gene_type) %>% 
+    select(!c(gene_id, gene_type)) %>% 
     as.matrix()
 {{< /highlight >}}
 
@@ -795,7 +795,7 @@ names(stage_colors_updated) <- unique(col_annotation_data_updated$stage_simplifi
 
 # stage列は使わないのでcol_annotation_data_updatedから削除
 col_annotation_data_updated <- col_annotation_data_updated %>% 
-    select(-stage)
+    select(!stage)
 
 # 色設定を確認
 print(stage_colors_updated)
