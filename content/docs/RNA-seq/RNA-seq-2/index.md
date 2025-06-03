@@ -25,8 +25,8 @@ library(here)
 {{% details title="前回同様にcountsとmetadata変数にデータを読み込む" %}}
 {{< highlight r >}}
 # データの読み込み
-counts <- read_csv(here("data", "TCGA_GTEx_colon", "processed", "TCGA_GTEx_colon_counts_tibble.csv"))
-metadata <- read_csv(here("data", "TCGA_GTEx_colon", "processed", "TCGA_GTEx_colon_metadata_tibble.csv"))
+counts <- read_csv(here("data", "TCGA_GTEx_colon_counts_tibble.csv"))
+metadata <- read_csv(here("data", "TCGA_GTEx_colon_metadata_tibble.csv"))
 {{< /highlight >}}
 {{% /details %}}
 
