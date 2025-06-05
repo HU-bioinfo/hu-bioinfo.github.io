@@ -16,3 +16,4 @@ weight: 10
 3. [Rの練習]({{% ref "/docs/R/R-practice/" %}})  
 4. [RNA seqとは？]({{% ref "/docs/RNA-seq/what-is-RNA-seq/" %}})  
 5. [RNA seq解析1(データの読み込みと可視化)]({{% ref "/docs/RNA-seq/RNA-seq-1/" %}})  
+6. [RNA-seq解析2(DEG解析, Pathway解析)]({{% ref "/docs/RNA-seq/RNA-seq-2/" %}})
