@@ -16,7 +16,7 @@ description: "6/3 17:00～ 医学院 医学部管理等 中会議室 ハイブ�
 ## 内容
 ### 解析環境の導入
 - [RNA-seqとは？]({{% ref "/docs/RNA-seq/what-is-RNA-seq/" %}})を簡単に説明します。
-- [RNA-seq解析 1 (データの読み込みと可視化)]({{% ref "/docs/RNA-seq/RNA-seq-1/" %}})を進めます。
+- [RNA-seq解析 1 (データの読み込みと可視化)]({{% ref "/docs/RNA-seq-lecture/RNA-seq-1/" %}})を進めます。
 
 講義をするというよりは相談しながら課題を進めるという形になります。
 

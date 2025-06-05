@@ -1,9 +1,9 @@
 +++
-title = 'RNA seq'
+title = 'RNA seq lecture'
 date = 2025-01-23T00:49:37+09:00
 tags = []
-draft = true
+draft = false
 bookFlatSection = true
 bookCollapseSection = true
-weight = 3
+weight = 4
 +++
