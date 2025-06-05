@@ -793,7 +793,7 @@ Warning: Removed 3543 rows containing missing values or values outside the scale
 {{< /highlight >}}
 
 
-{{< figure src="unnamed-chunk-8-1.png">}}
+{{< figure src="unnamed-chunk-11-1.png">}}
 
 
 {{% hint info %}}
@@ -887,7 +887,7 @@ Warning: Removed 3543 rows containing missing values or values outside the scale
 {{< /highlight >}}
 
 
-{{< figure src="unnamed-chunk-9-1.png">}}
+{{< figure src="unnamed-chunk-12-1.png">}}
 
 
 - さらにlogFCの絶対値が大きい上位10遺伝子のラベルを追加してみましょう。
@@ -956,7 +956,7 @@ Warning: Removed 3543 rows containing missing values or values outside the scale
 {{< /highlight >}}
 
 
-{{< figure src="unnamed-chunk-11-1.png">}}
+{{< figure src="unnamed-chunk-14-1.png">}}
 
 
 - 大腸がんと正常大腸の間で変動のある遺伝子を網羅的に解析し可視化することができました。
@@ -1252,7 +1252,7 @@ dotplot(ora_result_up, showCategory = 10) +
 {{< /highlight >}}
 {{% /details %}}
 
-{{< figure src="unnamed-chunk-16-1.png">}}
+{{< figure src="unnamed-chunk-22-1.png">}}
 
 {{% details title="barplotで可視化(up-regulated)" %}}
 {{< highlight r >}}
@@ -1261,7 +1261,7 @@ barplot(ora_result_up, showCategory = 10) +
 {{< /highlight >}}
 {{% /details %}}
 
-{{< figure src="unnamed-chunk-16-2.png">}}
+{{< figure src="unnamed-chunk-22-2.png">}}
 
 
 {{% details title="dotplotで可視化(down-regulated)" %}}
@@ -1271,7 +1271,7 @@ dotplot(ora_result_down, showCategory = 10) +
 {{< /highlight >}}
 {{% /details %}}
 
-{{< figure src="unnamed-chunk-16-3.png">}}
+{{< figure src="unnamed-chunk-22-3.png">}}
 
 {{% details title="barplotで可視化(down-regulated)" %}}
 {{< highlight r >}}
@@ -1280,7 +1280,7 @@ barplot(ora_result_down, showCategory = 10) +
 {{< /highlight >}}
 {{% /details %}}
 
-{{< figure src="unnamed-chunk-16-4.png">}}
+{{< figure src="unnamed-chunk-22-4.png">}}
 
 - このように自分で決めたthresholdを満たすパスウェイを一覧で表示することができました。
 - 図の中の値が示す意味についてAIに聞いてみましょう。
@@ -1470,7 +1470,7 @@ dotplot(gse, showCategory = 10, split = ".sign") +
 {{< /highlight >}}
 {{% /details %}}
 
-{{< figure src="unnamed-chunk-20-1.png">}}
+{{< figure src="unnamed-chunk-26-1.png">}}
 
 {{% details title="ridgeplotで可視化" %}}
 {{< highlight r >}}
@@ -1484,7 +1484,7 @@ ridgeplot(gse, showCategory = 10) +
 Picking joint bandwidth of 0.457
 {{< /highlight >}}
 
-{{< figure src="unnamed-chunk-20-2.png">}}
+{{< figure src="unnamed-chunk-26-2.png">}}
 
 
 - 次にbarplotで表示してみます。
@@ -1524,7 +1524,7 @@ ggplot(top_pathways, aes(x = reorder(Description, NES), y = NES, fill = regulati
 {{% /details %}}
 
 
-{{< figure src="unnamed-chunk-21-1.png">}}
+{{< figure src="unnamed-chunk-27-1.png">}}
 
 
 - GSEAの結果は**エンリッチメントプロット**で表示することが一般的です。
@@ -1570,9 +1570,9 @@ gseaplot2(gse, geneSetID = most_sig_down,
 {{< /highlight >}}
 {{% /details %}}
 
-{{< figure src="unnamed-chunk-22-1.png">}}
+{{< figure src="unnamed-chunk-28-1.png">}}
 
-{{< figure src="unnamed-chunk-22-2.png">}}
+{{< figure src="unnamed-chunk-28-2.png">}}
 
 {{% details title="ORAとGSEAの結果比較(有意なパスウェイ数をそれぞれ表示)" %}}
 {{< highlight r >}}
