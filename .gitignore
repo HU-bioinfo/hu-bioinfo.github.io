@@ -9,6 +9,9 @@ frontmatter.json
 # Cursor IDE
 /.cursor/
 
+# Claude AI assistance
+CLAUDE.md
+
 # OS generated files
 .DS_Store
 Thumbs.db
