@@ -80,53 +80,25 @@ Windows上でLinux環境を動かすための「WSL2」をセットアップし�
 これでWSL2とUbuntuの基本的なセットアップは完了です。
 {{< /details >}}
 
-{{< details title = "2. Docker Engineのインストール" >}}
+{{< details title = "2. VSCode のインストール" >}}
 
-コンテナ技術を利用するために、Docker Engineをインストールします。
-
-1.  **インストールスクリプトのダウンロードと実行**
-    ターミナルで以下のコマンドを実行します。
-    ```bash
-    sudo apt update
-    sudo apt upgrade -y
-    curl -fsSL https://get.docker.com -o get-docker.sh
-    sudo sh ./get-docker.sh
-    ```
-
-2.  **Dockerの動作確認**
-    インストール完了後、以下のコマンドでDockerが正しく動作するか確認できます。
-    ```bash
-    sudo docker run hello-world
-    ```
-    正常にインストールされていれば、Hello from Docker!というメッセージが表示されます。
-
-3.  **一般ユーザーでDockerを使用できるようにする**
-    ```bash
-    sudo usermod -aG docker $USER
-    ```
-    このコマンドを実行後、**WSLを再起動**してください。再起動後は`sudo`なしでDockerコマンドが使えるようになります。
-
-{{< /details >}}
-
-{{< details title = "3. Cursorエディタのインストール" >}}
-
-AIコーディング支援機能付きのエディタ「Cursor」をインストールします。
+マイクロソフト製のコードエディタ「Visual Studio Code (VSCode)」をインストールします。
 
 1.  **公式サイトからダウンロード**
-    [Cursor公式サイト](https://cursor.sh/) にアクセスし、Windows版インストーラーをダウンロードします。
+    [VSCode公式サイト](https://code.visualstudio.com/) にアクセスし、Windows版インストーラーをダウンロードします。
 
 2.  **インストール実行**
     ダウンロードした `.exe` ファイルをダブルクリックして実行し、画面の指示に従ってインストールを進めます。
     「このアプリがデバイスに変更を加えることを許可しますか？」と表示されたら「はい」を選択してください。
 
-インストールが完了すると、Cursorが使えるようになります。
+インストールが完了すると、VSCodeが使えるようになります。
 {{< /details >}}
 
-{{< details title = "4. Cursorの日本語化" >}}
+{{< details title = "3. VSCodeの日本語化" >}}
 
-Cursorの表示を日本語にします。
+VSCodeの表示を日本語にします。
 
-1.  **Cursorを起動**
+1.  **VSCodeを起動**
 
 2.  **プライマリサイドバーを開く**
     `Ctrl + B`を押します。
@@ -134,32 +106,37 @@ Cursorの表示を日本語にします。
 3.  **拡張機能ビューを開く**
     左側のアクティビティバーにある四角いアイコン（または `Ctrl+Shift+X`）で開きます。
 
-{{< figure src="cursor-side.drawio.svg" alt="Cursorのサイドバー">}}
+{{< figure src="cursor-side.drawio.svg" alt="VSCodeのサイドバー">}}
 
 3.  **日本語言語パックを検索・インストール**
     検索ボックスに `Japanese Language Pack` と入力し、`Japanese Language Pack for Visual Studio Code` (Microsoft提供) を見つけて `Install` ボタンをクリックします。
 
-4.  **Cursorを再起動**
-    インストール後、右下に再起動を促す通知が出たら「再起動」をクリックします。出ない場合は手動でCursorを再起動してください。
+4.  **VSCodeを再起動**
+    インストール後、右下に再起動を促す通知が出たら「再起動」をクリックします。出ない場合は手動でVSCodeを再起動してください。
 
-これでCursorが日本語表示になります。
+これでVSCodeが日本語表示になります。
 {{< /details >}}
 
-{{< details title = "5. 便利な拡張機能のインストール" >}}
+{{< details title = "4. 便利な拡張機能のインストール" >}}
 
-開発効率を上げるため、Cursorに以下の拡張機能をインストールします。WSL連携やコンテナ開発に役立ちます。
+開発効率を上げるため、VSCodeに以下の拡張機能をインストールします。WSL連携やコンテナ開発に役立ちます。
 （日本語化の時と同じように、拡張機能ビューからIDで検索してインストールします）
 
-#### 5.1 Remote - WSL (`ms-vscode-remote.remote-wsl`)
+#### 4.1 Remote - WSL (`ms-vscode-remote.remote-wsl`)
 
-Windows Subsystem for Linux (WSL) と連携するための拡張機能です。CursorからWSL内のプロジェクトを直接扱えるようになります。
+Windows Subsystem for Linux (WSL) と連携するための拡張機能です。VSCodeからWSL内のプロジェクトを直接扱えるようになります。
 
 1.  拡張機能ビューで `ms-vscode-remote.remote-wsl` を検索。
 2.  `Remote - WSL` (Microsoft提供) をインストール。
 
-#### 5.2 Dev Containers (`ms-vscode-remote.remote-containers`)
+#### 4.2 Dev Containers (`ms-vscode-remote.remote-containers`)
 
 Dockerコンテナを開発環境として使うための拡張機能です。プロジェクトごとに独立した環境を構築できます。
+
+{{% hint info %}}
+**Dev Containers拡張機能について:**
+この拡張機能を使用して初めてコンテナ環境を作成する際に、Dockerが必要な場合は自動的にインストールプロセスが開始されます。
+{{% /hint %}}
 
 1.  拡張機能ビューで `ms-vscode-remote.remote-containers` を検索。
 2.  `Dev Containers` (Microsoft提供) をインストール。
@@ -167,11 +144,11 @@ Dockerコンテナを開発環境として使うための拡張機能です。�
 これらの拡張機能で、より高度な開発が可能になります。
 {{< /details >}}
 
-{{< details title = "6. CursorからWSL (Ubuntu) へ接続" >}}
+{{< details title = "5. VSCodeからWSL (Ubuntu) へ接続" >}}
 
-インストールした `Remote - WSL` 拡張機能を使って、CursorからWSL上のUbuntu環境に接続します。
+インストールした `Remote - WSL` 拡張機能を使って、VSCodeからWSL上のUbuntu環境に接続します。
 
-1.  **Cursorを起動**
+1.  **VSCodeを起動**
 
 2.  **コマンドパレットを開く**
     `Ctrl+Shift+P` を押します。
@@ -183,12 +160,12 @@ Dockerコンテナを開発環境として使うための拡張機能です。�
     利用可能なWSLディストリビューションのリストから `Ubuntu` を選択します。
 
 5.  **WSL (Ubuntu) 環境へ接続完了**
-    新しいCursorウィンドウが開き、WSL上のUbuntu環境に接続されます。
+    新しいVSCodeウィンドウが開き、WSL上のUbuntu環境に接続されます。
     ウィンドウ左下に `WSL: Ubuntu` のように表示されていれば成功です。
     （初回接続時は、必要なコンポーネントのインストールに少し時間がかかることがあります。）
 
 6.  **接続確認 (任意)**
-    Cursor内で新しいターミナルを開きます (`Ctrl+@` またはメニューから `ターミナル` > `新しいターミナル`)。
+    VSCode内で新しいターミナルを開きます (`Ctrl+@` またはメニューから `ターミナル` > `新しいターミナル`)。
     以下のようなプロンプトが表示されれば、Ubuntuに接続できています。
     ```bash
     your_username@your_hostname:~$
@@ -203,27 +180,27 @@ Dockerコンテナを開発環境として使うための拡張機能です。�
     ```
     コマンドが正常に実行されれば、接続は完璧です。
 
-これで、CursorからWSL上のUbuntu環境で開発作業を開始できます。
+これで、VSCodeからWSL上のUbuntu環境で開発作業を開始できます。
 {{< /details >}}
 
-{{< details title = "7. HU bioinfo launcher 拡張機能のセットアップと実行" >}}
+{{< details title = "6. HU bioinfo launcher 拡張機能のセットアップと実行" >}}
 
-これは、本ワークショップ用のR/Python解析環境を簡単に構築できるCursor拡張機能です。Dockerコンテナ技術を使用します。
+これは、本ワークショップ用のR/Python解析環境を簡単に構築できるVSCode拡張機能です。Dockerコンテナ技術を使用します。
 
 {{% hint warning %}}
-**重要:** この拡張機能のインストールと実行は、**CursorがWSL (Ubuntu) に接続された状態**で行います。また、**Docker Engineがインストールされている必要があります** (「2. Docker Engineのインストール」参照)。
+**重要:** この拡張機能のインストールと実行は、**VSCodeがWSL (Ubuntu) に接続された状態**で行います。
 {{% /hint %}}
 
-#### 7.1 拡張機能のインストール (WSL接続環境で)
+#### 6.1 拡張機能のインストール (WSL接続環境で)
 
 1.  **WSL (Ubuntu) 接続の確認**
-    Cursorウィンドウ左下のステータスバーが `WSL: Ubuntu` (または類似の表示) になっていることを確認します。
+    VSCodeウィンドウ左下のステータスバーが `WSL: Ubuntu` (または類似の表示) になっていることを確認します。
 
 2.  **拡張機能ビューを開く** (`Ctrl+Shift+X`)
 
 3.  **`hu-bioinfo-workshop.bioinfo-launcher` を検索・インストール**
 
-#### 7.2 GitHub Personal Access Token (PAT) の準備
+#### 6.2 GitHub Personal Access Token (PAT) の準備
 
 GitHub上のリソースにアクセスするために、Personal Access Token (PAT) が必要です。
 
@@ -256,9 +233,9 @@ GitHub上のリソースにアクセスするために、Personal Access Token (
 **注意:** PATを紛失した、もしくは漏洩した場合は必ず **そのPATを削除** して新しく作り直してください。
 {{< /hint >}}
 
-#### 7.3 解析作業用ディレクトリの作成とLauncherの実行
+#### 6.3 解析作業用ディレクトリの作成とLauncherの実行
 
-1.  **WSL (Ubuntu) ターミナルを開く** (Cursor内で `Ctrl+@`)
+1.  **WSL (Ubuntu) ターミナルを開く** (VSCode内で `Ctrl+@`)
     プロンプトが `your_username@your_hostname:~$` であることを確認。
 
 2.  **作業用親ディレクトリを作成**
@@ -273,6 +250,7 @@ GitHub上のリソースにアクセスするために、Personal Access Token (
 
 {{% hint info %}}
 実行するとdocker imageのダウンロードが始まりますが**初回は時間がかかります**。
+Dev Containers拡張機能により、必要に応じてDockerが自動的にインストールされます。
 {{% /hint %}}
 
 4.  **作業環境ディレクトリの設定**
@@ -283,33 +261,76 @@ GitHub上のリソースにアクセスするために、Personal Access Token (
 
 6.  **環境構築の開始**
     設定後、`HU bioinfo launcher` がDockerを使って解析環境の構築を開始します。
-    *   **Dockerについて:** この拡張機能はDockerが必要です。Docker Engineがインストールされていることを確認してください。
 
 7.  **コンテナ内での作業開始**
-    構築が完了すると、多くの場合、新しいCursorウィンドウが自動で開きます。これがDockerコンテナ内の開発環境です。
+    構築が完了すると、多くの場合、新しいVSCodeウィンドウが自動で開きます。これがDockerコンテナ内の開発環境です。
     ウィンドウ左下のステータスバーがコンテナ環境を示していれば成功です。
 
 これで、`HU bioinfo launcher` のセットアップと実行は完了です。統一された解析環境で作業を始めましょう！
 {{< /details >}}
 
-{{< details title = "8. Cursor 有料版(Pro)の学生向け無料セットアップ（1年間)" >}}
+{{< details title = "7. GitHub Copilot の学生向け無料セットアップ" >}}
 
-2025/5/7より学生認証を行うことでCursorの有料版であるProプランを1年間無料で利用できるようになりました。下記の手順でCursorのProプランを有効化してください。
+GitHub Copilotは、AIペアプログラミングツールで、コードの提案やオートコンプリート機能を提供します。学生は認証を行うことで、通常有料のGitHub Copilotを無料で利用できます。
 
-**利用開始の手順:**
+#### 7.1 学生認証の手続き
 
-1.  **学生認証を行う:**
-    [https://www.cursor.com/ja/students](https://www.cursor.com/ja/students) にアクセスし、画面の指示に従って学生であることを証明する手続きを行ってください。
+1. **GitHub Educationにアクセス**
+   [GitHub Education](https://education.github.com/students) にアクセスします。
 
-2.  **Proプランの有効化を確認する:**
-    [https://www.cursor.com/ja/settings](https://www.cursor.com/ja/settings) にアクセスしてください。「Subscription」または「プラン」の項目で、Proプランが有効になっていることを確認できます。
+2. **学生申請を開始**
+   「Join GitHub Education」または「Get student benefits」ボタンをクリックします。
 
+3. **学生情報の入力**
+   - 学校名を検索・選択
+   - 学術メールアドレス（.ac.jpドメインなど）を入力
+   - 在学証明書類のアップロード（学生証の写真など）
 
-{{< hint warning >}}
-**注意:** 1年間は無料ですが、1年経つと **自動的に有料サブスクリプションに移行** してしまいます。無料期間中にサブスクリプションの自動更新を無効化できるので、１年以上使用しない場合は忘れずに設定しましょう。
+4. **申請の承認を待つ**
+   通常、数日以内に承認されます。承認されるとメールで通知が届きます。
+
+#### 7.2 GitHub Copilotの有効化
+
+1. **GitHub設定ページへアクセス**
+   [GitHub Settings](https://github.com/settings/copilot) にアクセスします。
+
+2. **Copilotを有効化**
+   学生認証が完了していれば、「Enable GitHub Copilot」ボタンが表示されます。クリックして有効化します。
+
+#### 7.3 VSCodeでGitHub Copilotを使用
+
+1. **GitHub Copilot拡張機能のインストール**
+   VSCodeの拡張機能ビューで `GitHub.copilot` を検索し、「GitHub Copilot」をインストールします。
+
+2. **GitHubアカウントでサインイン**
+   拡張機能インストール後、GitHubアカウントでのサインインを求められます。指示に従ってサインインします。
+
+3. **Copilotの使用開始**
+   サインインが完了すると、コード編集時に自動的にAIによる提案が表示されるようになります。
+   - `Tab`キー: 提案を受け入れる
+   - `Esc`キー: 提案を拒否する
+   - `Alt + ]`: 次の提案を表示
+   - `Alt + [`: 前の提案を表示
+
+{{< hint info >}}
+**GitHub Copilotの主な機能:**
+- コードの自動補完
+- 関数やクラスの実装提案
+- コメントからのコード生成
+- テストコードの生成
+- ドキュメントの作成支援
 {{< /hint >}}
 
+{{< hint warning >}}
+**注意事項:**
+- 学生認証は定期的に更新が必要です（通常は年1回）
+- 卒業後は有料プランへの移行が必要になります
+- 提案されたコードは必ず確認し、理解してから使用してください
+{{< /hint >}}
+
+これで、GitHub Copilotを使った効率的なコーディングが可能になります！
 {{< /details >}}
+
 {{% /tab %}}
 
 {{% tab "MacOS" %}}
@@ -318,25 +339,25 @@ GitHub上のリソースにアクセスするために、Personal Access Token (
 
 MacOSはUnixベースのOSであり、WSLのようなLinux仮想環境は通常不要です。
 
-{{< details title = "1. Cursorエディタのインストール" >}}
+{{< details title = "1. VSCode のインストール" >}}
 
-AIコーディング支援機能付きのエディタ「Cursor」をインストールします。
+マイクロソフト製のコードエディタ「Visual Studio Code (VSCode)」をインストールします。
 
 1.  **公式サイトからダウンロード**
-    [Cursor公式サイト](https://cursor.sh/) にアクセスし、macOS版インストーラー (通常は `.dmg` ファイル) をダウンロードします。
+    [VSCode公式サイト](https://code.visualstudio.com/) にアクセスし、macOS版インストーラー (通常は `.zip` ファイル) をダウンロードします。
 
 2.  **インストール実行**
-    ダウンロードした `.dmg` ファイルを開き、Cursorアプリアイコンを `Applications` フォルダにドラッグ＆ドロップします。
+    ダウンロードした `.zip` ファイルを解凍し、VSCodeアプリアイコンを `Applications` フォルダにドラッグ＆ドロップします。
     初回起動時にセキュリティ確認が表示された場合は、「開く」を選択してください。
 
-インストールが完了すると、Cursorが使えるようになります。
+インストールが完了すると、VSCodeが使えるようになります。
 {{< /details >}}
 
-{{< details title = "2. Cursorの日本語化" >}}
+{{< details title = "2. VSCodeの日本語化" >}}
 
-Cursorの表示を日本語にします。
+VSCodeの表示を日本語にします。
 
-1.  **Cursorを起動**
+1.  **VSCodeを起動**
 
 2.  **プライマリサイドバーを開く**
     `Cmd + B`を押します。
@@ -344,25 +365,30 @@ Cursorの表示を日本語にします。
 3.  **拡張機能ビューを開く**
     左側のアクティビティバーにある四角いアイコン（または `Cmd+Shift+X`）で開きます。
 
-{{< figure src="cursor-side.drawio.svg" alt="Cursorのサイドバー">}}
+{{< figure src="cursor-side.drawio.svg" alt="VSCodeのサイドバー">}}
 
 3.  **日本語言語パックを検索・インストール**
     検索ボックスに `Japanese Language Pack` と入力し、`Japanese Language Pack for Visual Studio Code` (Microsoft提供) を見つけて `Install` ボタンをクリックします。
 
-4.  **Cursorを再起動**
-    インストール後、右下に再起動を促す通知が出たら「再起動」をクリックします。出ない場合は手動でCursorを再起動してください。
+4.  **VSCodeを再起動**
+    インストール後、右下に再起動を促す通知が出たら「再起動」をクリックします。出ない場合は手動でVSCodeを再起動してください。
 
-これでCursorが日本語表示になります。
+これでVSCodeが日本語表示になります。
 {{< /details >}}
 
 {{< details title = "3. 便利な拡張機能のインストール" >}}
 
-開発効率を上げるため、Cursorに以下の拡張機能をインストールします。コンテナ開発に役立ちます。
+開発効率を上げるため、VSCodeに以下の拡張機能をインストールします。コンテナ開発に役立ちます。
 （日本語化の時と同じように、拡張機能ビューからIDで検索してインストールします）
 
 #### 3.1 Dev Containers (`ms-vscode-remote.remote-containers`)
 
 Dockerコンテナを開発環境として使うための拡張機能です。プロジェクトごとに独立した環境を構築できます。
+
+{{% hint info %}}
+**Dev Containers拡張機能について:**
+この拡張機能を使用して初めてコンテナ環境を作成する際に、Dockerが必要な場合は自動的にインストールプロセスが開始されます。
+{{% /hint %}}
 
 1.  拡張機能ビューで `ms-vscode-remote.remote-containers` を検索。
 2.  `Dev Containers` (Microsoft提供) をインストール。
@@ -370,41 +396,17 @@ Dockerコンテナを開発環境として使うための拡張機能です。�
 この拡張機能で、より高度な開発が可能になります。
 {{< /details >}}
 
-{{< details title = "4. Docker Desktop のインストール" >}}
+{{< details title = "4. HU bioinfo launcher 拡張機能のセットアップと実行" >}}
 
-コンテナ技術を利用するために、Docker Desktop for Mac をインストールします。
+これは、本ワークショップ用のR/Python解析環境を簡単に構築できるVSCode拡張機能です。Dockerコンテナ技術を使用します。
 
-1.  **公式サイトからダウンロード**
-    [Docker Desktop for Mac 公式サイト](https://docs.docker.com/desktop/install/mac-install/) にアクセスし、お使いのMacのチップ (Intel または Apple Silicon) に対応したインストーラーをダウンロードします。
+#### 4.1 拡張機能のインストール
 
-2.  **インストール実行**
-    ダウンロードした `.dmg` ファイルを開き、Dockerアプリアイコンを `Applications` フォルダにドラッグ＆ドロップします。
+1.  **拡張機能ビューを開く** (VSCode内で `Cmd+Shift+X`)
 
-3.  **Docker Desktop の起動と設定**
-    `Applications` フォルダからDockerを起動します。初回起動時には設定や利用規約への同意が求められる場合があります。
-    画面右上のメニューバーにDockerアイコンが表示されれば起動成功です。
+2.  **`hu-bioinfo-workshop.bioinfo-launcher` を検索・インストール**
 
-これでDockerが利用可能になります。
-{{< /details >}}
-
-{{< details title = "5. HU bioinfo launcher 拡張機能のセットアップと実行" >}}
-
-これは、本ワークショップ用のR/Python解析環境を簡単に構築できるCursor拡張機能です。Dockerコンテナ技術を使用します。
-
-{{% hint warning %}}
-**重要:** この拡張機能のインストールと実行は、**Docker Desktopが起動している状態**で行います。
-{{% /hint %}}
-
-#### 5.1 拡張機能のインストール
-
-1.  **Docker Desktopの起動確認**
-    メニューバーにDockerアイコンが表示され、起動していることを確認します。
-
-2.  **拡張機能ビューを開く** (Cursor内で `Cmd+Shift+X`)
-
-3.  **`hu-bioinfo-workshop.bioinfo-launcher` を検索・インストール**
-
-#### 5.2 GitHub Personal Access Token (PAT) の準備
+#### 4.2 GitHub Personal Access Token (PAT) の準備
 
 GitHub上のリソースにアクセスするために、Personal Access Token (PAT) が必要です。
 
@@ -437,9 +439,9 @@ GitHub上のリソースにアクセスするために、Personal Access Token (
 **注意:** PATを紛失した、もしくは漏洩した場合は必ず **そのPATを削除** して新しく作り直してください。
 {{< /hint >}}
 
-#### 5.3 解析作業用ディレクトリの作成とLauncherの実行
+#### 4.3 解析作業用ディレクトリの作成とLauncherの実行
 
-1.  **ターミナルを開く** (Cursor内で `Ctrl+@` またはMacのターミナルアプリ)
+1.  **ターミナルを開く** (VSCode内で `Ctrl+@` またはMacのターミナルアプリ)
     プロンプトが `your_username@your_hostname:~$` (または類似の形式) であることを確認。
 
 2.  **作業用親ディレクトリを作成**
@@ -449,11 +451,12 @@ GitHub上のリソースにアクセスするために、Personal Access Token (
     ```
 
 3.  **`HU bioinfo launcher` を実行**
-    コマンドパレット (Cursor内で `Cmd+Shift+P`) を開き、`bioinfo-launcher` と入力。
+    コマンドパレット (VSCode内で `Cmd+Shift+P`) を開き、`bioinfo-launcher` と入力。
     候補から `bioinfo-launcher: Start bioinfo-launcher` を選択して実行します。
 
 {{% hint info %}}
 実行するとdocker imageのダウンロードが始まりますが**初回は時間がかかります**。
+Dev Containers拡張機能により、必要に応じてDockerが自動的にインストールされます。
 {{% /hint %}}
 
 4.  **作業環境ディレクトリの設定**
@@ -464,33 +467,76 @@ GitHub上のリソースにアクセスするために、Personal Access Token (
 
 6.  **環境構築の開始**
     設定後、`HU bioinfo launcher` がDockerを使って解析環境の構築を開始します。
-    *   **Dockerについて:** この拡張機能はDockerが必要です。Docker Desktopが起動していることを確認してください。
 
 7.  **コンテナ内での作業開始**
-    構築が完了すると、多くの場合、新しいCursorウィンドウが自動で開きます。これがDockerコンテナ内の開発環境です。
+    構築が完了すると、多くの場合、新しいVSCodeウィンドウが自動で開きます。これがDockerコンテナ内の開発環境です。
     ウィンドウ左下のステータスバーがコンテナ環境を示していれば成功です。
 
 これで、`HU bioinfo launcher` のセットアップと実行は完了です。統一された解析環境で作業を始めましょう！
 {{< /details >}}
 
-{{< details title = "6. Cursor 有料版(Pro)の学生向け無料セットアップ（1年間)" >}}
+{{< details title = "5. GitHub Copilot の学生向け無料セットアップ" >}}
 
-2025/5/7より学生認証を行うことでCursorの有料版であるProプランを1年間無料で利用できるようになりました。下記の手順でCursorのProプランを有効化してください。
+GitHub Copilotは、AIペアプログラミングツールで、コードの提案やオートコンプリート機能を提供します。学生は認証を行うことで、通常有料のGitHub Copilotを無料で利用できます。
 
-**利用開始の手順:**
+#### 5.1 学生認証の手続き
 
-1.  **学生認証を行う:**
-    [https://www.cursor.com/ja/students](https://www.cursor.com/ja/students) にアクセスし、画面の指示に従って学生であることを証明する手続きを行ってください。
+1. **GitHub Educationにアクセス**
+   [GitHub Education](https://education.github.com/students) にアクセスします。
 
-2.  **Proプランの有効化を確認する:**
-    [https://www.cursor.com/ja/settings](https://www.cursor.com/ja/settings) にアクセスしてください。「Subscription」または「プラン」の項目で、Proプランが有効になっていることを確認できます。
+2. **学生申請を開始**
+   「Join GitHub Education」または「Get student benefits」ボタンをクリックします。
 
+3. **学生情報の入力**
+   - 学校名を検索・選択
+   - 学術メールアドレス（.ac.jpドメインなど）を入力
+   - 在学証明書類のアップロード（学生証の写真など）
 
-{{< hint warning >}}
-**注意:** 1年間は無料ですが、1年経つと **自動的に有料サブスクリプションに移行** してしまいます。無料期間中にサブスクリプションの自動更新を無効化できるので、１年以上使用しない場合は忘れずに設定しましょう。
+4. **申請の承認を待つ**
+   通常、数日以内に承認されます。承認されるとメールで通知が届きます。
+
+#### 5.2 GitHub Copilotの有効化
+
+1. **GitHub設定ページへアクセス**
+   [GitHub Settings](https://github.com/settings/copilot) にアクセスします。
+
+2. **Copilotを有効化**
+   学生認証が完了していれば、「Enable GitHub Copilot」ボタンが表示されます。クリックして有効化します。
+
+#### 5.3 VSCodeでGitHub Copilotを使用
+
+1. **GitHub Copilot拡張機能のインストール**
+   VSCodeの拡張機能ビューで `GitHub.copilot` を検索し、「GitHub Copilot」をインストールします。
+
+2. **GitHubアカウントでサインイン**
+   拡張機能インストール後、GitHubアカウントでのサインインを求められます。指示に従ってサインインします。
+
+3. **Copilotの使用開始**
+   サインインが完了すると、コード編集時に自動的にAIによる提案が表示されるようになります。
+   - `Cmd + ]`: 次の提案を表示
+   - `Cmd + [`: 前の提案を表示
+   - `Tab`キー: 提案を受け入れる
+   - `Esc`キー: 提案を拒否する
+
+{{< hint info >}}
+**GitHub Copilotの主な機能:**
+- コードの自動補完
+- 関数やクラスの実装提案
+- コメントからのコード生成
+- テストコードの生成
+- ドキュメントの作成支援
 {{< /hint >}}
 
+{{< hint warning >}}
+**注意事項:**
+- 学生認証は定期的に更新が必要です（通常は年1回）
+- 卒業後は有料プランへの移行が必要になります
+- 提案されたコードは必ず確認し、理解してから使用してください
+{{< /hint >}}
+
+これで、GitHub Copilotを使った効率的なコーディングが可能になります！
 {{< /details >}}
+
 {{% /tab %}}
 {{% /tabs %}}
 
