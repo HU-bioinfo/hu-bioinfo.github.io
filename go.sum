@@ -6,3 +6,5 @@ github.com/HU-bioinfo/hugo-book v0.0.0-20250503095049-2c0af3793e52 h1:9v2Za21JDm
 github.com/HU-bioinfo/hugo-book v0.0.0-20250503095049-2c0af3793e52/go.mod h1:NzaXNtRdN1GgJQm4pEvX8FMvNf3brtPgwcrz38UvADw=
 github.com/HU-bioinfo/hugo-book v0.0.0-20250509092642-56fe4c5a3d16 h1:tQ12e8JDUxepN11f3K6fTjSwGn9eaM4Vd3ir5GUgzVk=
 github.com/HU-bioinfo/hugo-book v0.0.0-20250509092642-56fe4c5a3d16/go.mod h1:NzaXNtRdN1GgJQm4pEvX8FMvNf3brtPgwcrz38UvADw=
+github.com/HU-bioinfo/hugo-book v0.0.0-20250619031246-a8ad0ec20bdd h1:9tv3niR67odUcwXjcgsG+Bw8vK2/i3EFvVS2nV7PB2U=
+github.com/HU-bioinfo/hugo-book v0.0.0-20250619031246-a8ad0ec20bdd/go.mod h1:NzaXNtRdN1GgJQm4pEvX8FMvNf3brtPgwcrz38UvADw=
